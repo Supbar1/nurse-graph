@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import "../App.css";
 import main from "../img/main.png";
 import "./myStyles.css";
-import A from "./calendar/a";
 
 const Main = () => {
   return (
     <React.Fragment>
       <div className="hello">
-        <A />
         <p>Witamy w Interaktywny Grafiku szpitala Dzieciątka Judasz</p>
         <p>
           U dołu widzą państwo kozacką grafikę z pielęgniarką a u góry pasek
