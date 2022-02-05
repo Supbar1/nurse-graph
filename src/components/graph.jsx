@@ -1,0 +1,51 @@
+import React, { Component } from "react";
+import MorningButton from "./morningbutton";
+import InfoWindow from "./infoWindow";
+import WorkButton from "./workbutton";
+// import { getDay } from "date-fns/getDay";
+import "./calendar.css";
+import Calendar from "./calendar";
+
+class Graph extends React.Component {
+  state = {
+    count: 0,
+    days: 0,
+    nights: 0,
+  };
+
+  handleSave = () => {
+    this.props.history.push("/table");
+  };
+
+  incrementNights = () => {
+    this.setState({ nights: this.state.nights + 1 });
+    console.log(this.state.nights);
+  };
+  incrementDays = () => {
+    this.setState({ days: this.state.days + 1 });
+    console.log(this.state.days);
+  };
+
+  message = () => {
+    console.log("Przycisk dziala");
+  };
+
+  render() {
+    return (
+      <div className="grid-container">
+        <button className="btn btn-primary one item1" onClick={this.handleSave}>
+          Zapisz Zmiany
+        </button>
+        <div className="itemX"></div>
+        <InfoWindow
+          className="item2"
+          nights={this.state.nights}
+          days={this.state.days}
+        />
+        <Calendar className="item3" />
+      </div>
+    );
+  }
+}
+
+export default Graph;
