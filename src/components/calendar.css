@@ -158,3 +158,6 @@
 .currentDay {
   background-color: magenta;
 }
+.specialDay {
+  color: red;
+}

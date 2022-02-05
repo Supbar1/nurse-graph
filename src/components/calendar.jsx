@@ -11,7 +11,7 @@ class Calendar extends Component {
     prevDays: [],
     daysOfMonth: [],
     nextDays: [],
-    monthChange: 2,
+    monthChange: 0,
     months: [
       "Styczeń",
       "Luty",
@@ -32,6 +32,7 @@ class Calendar extends Component {
     const date = new Date();
 
     date.setUTCDate(1);
+
     let firstDayIndex = date.getDay() - 1;
 
     let prevLastDay = new Date(
@@ -44,7 +45,7 @@ class Calendar extends Component {
       date.getFullYear(),
       date.getMonth() + 1 + this.state.monthChange,
       0
-    ).getDate();
+    );
 
     let lastDayIndex = new Date(
       date.getFullYear(),
@@ -57,9 +58,12 @@ class Calendar extends Component {
       previousDays.push(prevLastDay - x + 1);
     }
 
+    let currentDate = new Date();
     let days = [];
-    for (let i = 1; i <= lastDay; i++) {
-      days.push(i);
+    for (let i = 1; i <= lastDay.getDate(); i++) {
+      currentDate.setUTCDate(i);
+      days.push({ day: i, special: currentDate.getDay() === 0 ? true : false });
+      //
     }
 
     let nextMonthDays = [];
@@ -117,12 +121,14 @@ class Calendar extends Component {
                   {day}
                 </div>
               ))}
-              {daysOfMonth.map((day) => (
+              {daysOfMonth.map((dayObject) => (
                 <div
-                  key={day}
-                  className={day === new Date().getDate() ? "today" : ""}
+                  key={dayObject.day}
+                  className={`${
+                    dayObject.day === new Date().getDate() ? "today" : ""
+                  } ${dayObject.special ? "specialDay" : ""}`}
                 >
-                  {day}
+                  {dayObject.day}
                 </div>
               ))}
               {nextDays.map((day) => (
