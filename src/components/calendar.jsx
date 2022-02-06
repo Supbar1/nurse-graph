@@ -12,6 +12,9 @@ class Calendar extends Component {
     daysOfMonth: [],
     nextDays: [],
     monthChange: 0,
+    workDays: [],
+    day: "",
+    night: "",
     months: [
       "Styczeń",
       "Luty",
@@ -77,6 +80,16 @@ class Calendar extends Component {
       nextDays: nextMonthDays,
     });
   }
+  thisDay = () => {
+    this.setState({ day: +1 });
+  };
+  thisNight = () => {
+    this.setState({ night: +1 });
+  };
+  workDay = () => {
+    this.setState({ workDays: { day: 1, special: 1 } });
+    console.log(this.state.workDays);
+  };
   render() {
     const { prevDays, daysOfMonth, nextDays } = this.state;
     const date = new Date();
@@ -89,9 +102,6 @@ class Calendar extends Component {
         <div className="container">
           <div className="calendar">
             <div className="month">
-              {/*               
-             <PrevMonth 
-            onClick={this.hello}/> */}
               <i
                 onClick={this.previousMonth}
                 className="fas fa-angle-left next"
@@ -123,6 +133,7 @@ class Calendar extends Component {
               ))}
               {daysOfMonth.map((dayObject) => (
                 <div
+                  onClick={this.workDay}
                   key={dayObject.day}
                   className={`${
                     dayObject.day === new Date().getDate() ? "today" : ""
