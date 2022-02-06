@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import "./calendar.css";
-import { getDays } from "../utils/getDays";
-import { getPrevDays } from "../utils/getDays";
-import { getNextDays } from "../utils/getDays";
-import PrevMonth from "./prevMonth";
-
+import WorkButton from "./workbutton";
 class Calendar extends Component {
   state = {
     date: new Date(),
@@ -86,10 +82,35 @@ class Calendar extends Component {
   thisNight = () => {
     this.setState({ night: +1 });
   };
-  workDay = () => {
-    this.setState({ workDays: { day: 1, special: 1 } });
-    console.log(this.state.workDays);
+
+  workDay = (dayObject) => {
+    const allDays = [{ day: dayObject, special: 1 }, ...this.state.workDays];
+
+    // console.log(allDays);
+    this.setState({ workDays: allDays });
+    // console.log(this.state.workDays);
+    return <div>H U y</div>;
   };
+
+  show(dday) {
+    console.log(this.state.workDays);
+    // for (let key in this.state.workDays) {
+    //   if (this.state.workDays[key].day === dday)
+    //     return console.log("hej", dday);
+    //   return null;
+    // }
+  }
+  handleDaySelect = (ddday) => {
+    const preFilter = [...this.state.workDays];
+    for (let key in preFilter) {
+      if (preFilter[key].day === ddday) 
+      return <WorkButton />;
+      return ddday;
+      //     return null;
+      // const filtered = preFilter.filter(f => f.day === ddday)
+    }
+  };
+
   render() {
     const { prevDays, daysOfMonth, nextDays } = this.state;
     const date = new Date();
@@ -113,7 +134,7 @@ class Calendar extends Component {
                   {currentDay}.{date.getMonth() + 1}.{currentYear}
                 </p>
               </div>
-              <i className="fas fa-angle-right next"></i>
+              <i onClick={this.dni} className="fas fa-angle-right next"></i>
             </div>
             <div className="weekdays">
               <div>Pon</div>
@@ -133,13 +154,17 @@ class Calendar extends Component {
               ))}
               {daysOfMonth.map((dayObject) => (
                 <div
-                  onClick={this.workDay}
+                  onClick={() => this.workDay(dayObject.day)}
                   key={dayObject.day}
                   className={`${
                     dayObject.day === new Date().getDate() ? "today" : ""
                   } ${dayObject.special ? "specialDay" : ""}`}
                 >
-                  {dayObject.day}
+                  {dayObject.day === this.show(dayObject.day) ? (
+                    <WorkButton />
+                  ) : (
+                    dayObject.day
+                  )}
                 </div>
               ))}
               {nextDays.map((day) => (

@@ -12,12 +12,27 @@ class Help extends Component {
   };
 
   thisDay = () => {
-    this.setState({ day: + 1 });
+    this.setState({ day: +1 });
   };
   thisNight = () => {
     this.setState({ night: +1 });
   };
   render() {
+    const person = [
+      {
+        name: "mosh",
+        age: 30,
+      },
+      {
+        name: "mosha",
+        age: 1,
+      },
+    ];
+    for (let key in person) {
+      if (person[key].age === 1) 
+      console.log(person[key].age);
+    }
+
     return (
       <React.Fragment>
         <WorkButton thisDay={this.thisDay} thisNight={this.thisNight} />
