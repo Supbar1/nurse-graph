@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import "./calendar.css";
 import WorkButton from "./workbutton";
+import "./calendar.css";
+
 class Calendar extends Component {
   state = {
     date: new Date(),
@@ -76,13 +77,6 @@ class Calendar extends Component {
       nextDays: nextMonthDays,
     });
   }
-  // thisDay = () => {
-  //   this.setState({ day: +1 });
-  // };
-  // thisNight = () => {
-  //   console.log("noc");
-  //   this.setState({ night: +1 });
-  // };
 
   workDay = (dayObject) => {
     const allDays = [{ day: dayObject, special: 1 }, ...this.state.workDays];
@@ -90,15 +84,16 @@ class Calendar extends Component {
   };
 
   handleDaySelect = (ddday) => {
-    console.log(ddday.day);
     const preFilter = [...this.state.workDays];
-    console.log(preFilter, "COTO");
     for (let key in preFilter)
       if (preFilter[key].day === ddday.day)
-        return <WorkButton thisNight={this.props.thisNight} thisDay={this.props.thisDay} />;
+        return (
+          <WorkButton
+            thisNight={this.props.thisNight}
+            thisDay={this.props.thisDay}
+          />
+        );
     return ddday.day;
-    //     return null;
-    // const filtered = preFilter.filter(f => f.day === ddday)
   };
 
   render() {
@@ -113,18 +108,14 @@ class Calendar extends Component {
         <div className="container">
           <div className="calendar">
             <div className="month">
-              <i
-                onClick={this.previousMonth}
-                className="fas fa-angle-left next"
-              ></i>
+              <i className="fas fa-angle-left next"></i>
               <div className="date">
                 <h1>{currentMonth}</h1>
                 <p>
-                  {" "}
                   {currentDay}.{date.getMonth() + 1}.{currentYear}
                 </p>
               </div>
-              <i onClick={this.dni} className="fas fa-angle-right next"></i>
+              <i className="fas fa-angle-right next"></i>
             </div>
             <div className="weekdays">
               <div>Pon</div>
@@ -142,6 +133,7 @@ class Calendar extends Component {
                   {day}
                 </div>
               ))}
+
               {daysOfMonth.map((dayObject) => (
                 <div
                   onClick={() => this.workDay(dayObject.day)}
@@ -153,6 +145,7 @@ class Calendar extends Component {
                   {this.handleDaySelect(dayObject)}
                 </div>
               ))}
+
               {nextDays.map((day) => (
                 <div key={day} className="prev-date">
                   {day}

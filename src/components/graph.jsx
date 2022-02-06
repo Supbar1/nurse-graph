@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import MorningButton from "./morningbutton";
 import InfoWindow from "./infoWindow";
-import WorkButton from "./workbutton";
-// import { getDay } from "date-fns/getDay";
-import "./calendar.css";
 import Calendar from "./calendar";
+import "./calendar.css";
 
 class Graph extends React.Component {
   state = {

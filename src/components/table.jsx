@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { getList, getCourses } from "../utils/nurseslist";
-import InfoWindow from "./infoWindow";
 import ListGroup from "./calendar/listGroup";
 
 class Table extends React.Component {

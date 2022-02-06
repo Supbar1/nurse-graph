@@ -2,19 +2,6 @@
   height: 50px;
 }
 
-.table {
-  background-color: red;
-}
-
-.info {
-  color: mediumseagreen;
-  font-size: 35px;
-}
-.work {
-  color: dodgerblue;
-  font-size: 30px;
-}
-
 .grid-container {
   display: grid;
   box-sizing: border-box;
@@ -108,22 +95,7 @@
 .today {
   background-color: #167e56;
 }
-.body {
-  background-color: yellow;
-}
-.item1 {
-  background-color: red;
-}
-.item2 {
-  background-color: blue;
-  margin: 3px solid red;
-}
-.item3 {
-  background-color: green;
-}
-.item4 {
-  background-color: violet;
-}
+
 .item {
   background: royalblue;
   margin: 5px;
@@ -140,23 +112,6 @@
 }
 .button {
   font-size: 40px;
-}
-.dateInfo {
-  border: solid 1px black;
-  margin-top: 100px;
-  align-content: center;
-  justify-content: center;
-  display: grid;
-  grid-row: 1fr 1fr 1fr;
-}
-.dateWindow {
-  font-size: 2em;
-
-  margin: 2px;
-  background-color: rgb(113, 205, 233);
-}
-.currentDay {
-  background-color: magenta;
 }
 .specialDay {
   color: red;

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import "../App.css";
 import main from "../img/main.png";
-import "./myStyles.css";
 
 const Main = () => {
   return (
