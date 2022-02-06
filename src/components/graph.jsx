@@ -25,11 +25,13 @@ class Graph extends React.Component {
     this.setState({ days: this.state.days + 1 });
     console.log(this.state.days);
   };
-
-  message = () => {
-    console.log("Przycisk dziala");
+  thisDay = () => {
+    this.setState({ days: this.state.days + 1 });
   };
-
+  thisNight = () => {
+    console.log("noc");
+    this.setState({ nights: this.state.nights + 1 });
+  };
   render() {
     return (
       <div className="grid-container">
@@ -42,7 +44,11 @@ class Graph extends React.Component {
           nights={this.state.nights}
           days={this.state.days}
         />
-        <Calendar className="item3" />
+        <Calendar
+          thisNight={this.thisNight}
+          thisDay={this.thisDay}
+          className="item3"
+        />
       </div>
     );
   }

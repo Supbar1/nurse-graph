@@ -9,8 +9,8 @@ class Calendar extends Component {
     nextDays: [],
     monthChange: 0,
     workDays: [],
-    day: "",
-    night: "",
+    day: [],
+    night: [],
     months: [
       "Styczeń",
       "Luty",
@@ -76,39 +76,29 @@ class Calendar extends Component {
       nextDays: nextMonthDays,
     });
   }
-  thisDay = () => {
-    this.setState({ day: +1 });
-  };
-  thisNight = () => {
-    this.setState({ night: +1 });
-  };
+  // thisDay = () => {
+  //   this.setState({ day: +1 });
+  // };
+  // thisNight = () => {
+  //   console.log("noc");
+  //   this.setState({ night: +1 });
+  // };
 
   workDay = (dayObject) => {
     const allDays = [{ day: dayObject, special: 1 }, ...this.state.workDays];
-
-    // console.log(allDays);
     this.setState({ workDays: allDays });
-    // console.log(this.state.workDays);
-    return <div>H U y</div>;
   };
 
-  show(dday) {
-    console.log(this.state.workDays);
-    // for (let key in this.state.workDays) {
-    //   if (this.state.workDays[key].day === dday)
-    //     return console.log("hej", dday);
-    //   return null;
-    // }
-  }
   handleDaySelect = (ddday) => {
+    console.log(ddday.day);
     const preFilter = [...this.state.workDays];
-    for (let key in preFilter) {
-      if (preFilter[key].day === ddday) 
-      return <WorkButton />;
-      return ddday;
-      //     return null;
-      // const filtered = preFilter.filter(f => f.day === ddday)
-    }
+    console.log(preFilter, "COTO");
+    for (let key in preFilter)
+      if (preFilter[key].day === ddday.day)
+        return <WorkButton thisNight={this.props.thisNight} thisDay={this.props.thisDay} />;
+    return ddday.day;
+    //     return null;
+    // const filtered = preFilter.filter(f => f.day === ddday)
   };
 
   render() {
@@ -160,11 +150,7 @@ class Calendar extends Component {
                     dayObject.day === new Date().getDate() ? "today" : ""
                   } ${dayObject.special ? "specialDay" : ""}`}
                 >
-                  {dayObject.day === this.show(dayObject.day) ? (
-                    <WorkButton />
-                  ) : (
-                    dayObject.day
-                  )}
+                  {this.handleDaySelect(dayObject)}
                 </div>
               ))}
               {nextDays.map((day) => (
