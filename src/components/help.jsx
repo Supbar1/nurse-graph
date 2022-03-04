@@ -1,25 +1,23 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-class Help extends Component {
-  state = {};
-
+class help extends Component {
+state ={
+  lastPreviousDay:[]
+}
+funkcja() {
+  let date = new Date();
+  const kurwaDzialaj = new Date(date.getFullYear()).getDate();
+console.log(kurwaDzialaj)
+  // this.setState({lastPreviousDay})
+  }
   render() {
+    this.funkcja();
     return (
-      <React.Fragment>
-        <h1>Bartosz, Misz i Izabela</h1>
-      </React.Fragment>
+      <div>
+        {this.state.lastPreviousDay}
+      </div>
     );
   }
 }
 
-export default Help;
-
-// const Help = () => {
-//   return (
-//     <React.Fragment>
-//       <WorkButton />
-//     </React.Fragment>
-//   );
-// };
-
-// export default Help;
+export default help;

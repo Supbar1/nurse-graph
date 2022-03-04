@@ -1,0 +1,57 @@
+/* html {
+  background-image: linear-gradient(
+    to right top,
+    #0f4c84,
+    #4973a2,
+    #799cc0,
+    #abc6df,
+    #e0f1ff
+  );
+} */
+.grid-container {
+  /* position: absolute; */
+  /* border: 13px solid black; */
+  /* inset: 0; */
+  /* box-sizing: border-box;
+  min-height: 100%;
+  max-width: 100%; */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.frame {
+  margin: 0;
+  /* border: 2px solid black; */
+}
+.actualNurse {
+  /* background-color: aliceblue; */
+  width: 800px;
+  margin: auto;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 1em;
+  /* line-break: unset; */
+  grid-column: 3 / span 3;
+}
+.nursesWindow {
+  /* border: 1px solid orange; */
+  break-inside: avoid;
+  line-break: unset;
+  padding: 1em;
+  grid-column: 1;
+  grid-row: 2 / span 3;
+  margin: 0;
+}
+
+.infoWindow {
+  grid-column: 7;
+  grid-row: 2 / span 3;
+}
+.backButton {
+  grid-column: 2 / span 2;
+  grid-row: 7;
+}
+.saveButton {
+  grid-column: 5 / span 2;
+  grid-row: 7;
+}

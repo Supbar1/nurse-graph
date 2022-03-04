@@ -1,0 +1,33 @@
+.scroll {
+  overflow: hidden;
+  height: 75vh;
+  overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 0.8em;
+}
+/* .scroll::-webkit-scrollbar-track {
+  background: #51b3f8;
+  margin: red;
+  margin-block: 0.5em;
+} */
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 100vw;
+  background: #f97362;
+}
+/* .scroll::-webkit-scrollbar-thumb:hover {
+  background: #f97362;
+} */
+
+.cwaniaczek {
+  /* border: 1px solid black; */
+  display: flex;
+  /* position: relative; */
+}
+.szerokosc {
+  width: fit-content;
+}
+.line-break {
+  line-break: unset;
+}

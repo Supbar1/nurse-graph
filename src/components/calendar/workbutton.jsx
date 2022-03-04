@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MorningButton from "./morningbutton";
 import NightButton from "./nightButton";
-
+import "./calendar.css";
 class WorkButton extends React.Component {
   state = {
     used: false,
@@ -9,12 +9,18 @@ class WorkButton extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.state.used === false ? (
           <React.Fragment>
+            {/* <div className="kolumny">
+              <div className=" dupa">Dzien</div>
+              <div className="jaja">Noc</div>
+            </div> */}
+
             <MorningButton
               onClick={() => this.setState({ used: true })}
               thisDay={this.props.thisDay}
+              
             />
             <NightButton
               onClick={() => this.setState({ used: true })}
@@ -27,7 +33,7 @@ class WorkButton extends React.Component {
             <h6>xD</h6>
           </React.Fragment>
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -6,8 +6,8 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          Grafik Pracy Oddziału Kardiologi Inwazywnej
+        <Link className="" to="/">
+          <h3>Grafik Pracy Oddziału Kardiologi Inwazywnej</h3>
         </Link>
 
         <div className="collapse navbar-collapse" id="navbarNav">
@@ -26,7 +26,7 @@ const NavBar = () => {
               <Link className="nav-link" to="/help">
                 Pomoc
               </Link>
-              </li>
+            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/login">
                 Login
