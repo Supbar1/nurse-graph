@@ -1,16 +1,31 @@
-import React, {useContext} from 'react';
-import UserContext from './userContext';
-import CartContext from './cartContext';
+import React, { useContext } from "react";
+import UserContext from "./userContext";
+import CartContext from "./cartContext";
+
 function MovieRow(props) {
-const wspanialaZabawa = useContext(UserContext);    
-const chwalebnaSluzba = useContext(CartContext);    
+  const wspanialaZabawa = useContext(UserContext);
+  const chwalebnaSluzba = useContext(CartContext);
+
+  return (
+    <div>
+      -----
+      <br></br>
+      Linijka nizej{" "}
+      {wspanialaZabawa ? wspanialaZabawa : ""}
+    </div>
     
-    console.log("Cart context chwala", chwalebnaSluzba);
-    return (
-        <div>
-           Linijka nizej {wspanialaZabawa.currentUser ? wspanialaZabawa.currentUser.name : ""}
-        </div>
-    );
+  );
 }
 
 export default MovieRow;
+
+<div
+      onClick={() => {
+        this.props.thisDay();
+
+        this.props.onClick();
+      }}
+      className="lewy"
+    >
+      <i className="fa-solid fa-sun yellow"></i>
+    </div>

@@ -28,6 +28,7 @@
 .szerokosc {
   width: fit-content;
 }
-.line-break {
-  line-break: unset;
+.margin-auto {
+  margin: auto;
+  margin-left: 35%;
 }

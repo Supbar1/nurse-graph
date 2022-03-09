@@ -1,75 +1,66 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import InfoWindow from "./infoWindow";
 import Calendar from "../calendar/calendar";
 import NursesWindow from "./nursesWindow";
 import ActualNurse from "./actualNurse";
 import "./graph.css";
+import ButtonContext from "./buttonContext";
+import NightButton from "../calendar/nightButton";
 
-class Graph extends React.Component {
-  state = {
-    count: 0,
-    days: 0,
-    nights: 0,
-    actualNurse: "",
-  };
-
-  handleSave = () => {
+function Graph() {
+  const [name, setName] = useState({ name: "bartosz" });
+  const [count, setCount] = useState(0);
+  const [days, setDays] = useState(0);
+  
+  function handleSave() {
     this.props.history.push("/table");
-  };
+  }
 
-  incrementNights = () => {
-    this.setState({ nights: this.state.nights + 1 });
-    console.log(this.state.nights);
-  };
-  incrementDays = () => {
-    this.setState({ days: this.state.days + 1 });
-    console.log(this.state.days);
-  };
-  thisDay = () => {
-    this.setState({ days: this.state.days + 1 });
-  };
-  thisNight = () => {
-    console.log(this.state.actualNurse);
-    this.setState({ nights: this.state.nights + 1 });
-  };
-  actualNurse = (nurse) => {
-    console.log("MexicanoTv");
-    // this.setState({ actualNurse: nurse.name });
-  };
-  render() {
+  function incrementNights() {
+    setNights({ nights: nights + 1 });
+  }
+  // incrementDays = () => {
+    //   this.setState({ days: this.state.days + 1 });
+    //   console.log(this.state.days);
+    // };
+    function thisDay() {
+      setDays({ days: days + 1 });
+    }
+    function thisNight() {
+      setNights({ nights: nights + 1 });
+    }
+    
+    const [nights, setNights] = useState(0);
     return (
+      <ButtonContext.Provider value={{ days, nights, count, setNights, setDays }}>
       <div className="grid-container">
-        <ActualNurse actualNurse={this.actualNurse} className="" />
+        {/* <ActualNurse actualNurse={this.actualNurse} className="" /> */}
         {/* <NursesWindow className="nursesWindow" /> */}
-
+        <NightButton />
         <Calendar
-          thisNight={this.thisNight}
-          thisDay={this.thisDay}
-          //className="actualCalendar frame"
+          thisNight={thisNight}
+          thisDay={thisDay}
+          className="actualCalendar frame"
         />
 
-        <InfoWindow
-          nights={this.state.nights}
-          days={this.state.days}
-          className="infoWindow"
-        />
+        <InfoWindow className="infoWindow" />
 
-        <button
+        {/* <button
           className="btn btn-warning frame backButton"
-          onClick={this.handleSave}
+          onClick={handleSave}
         >
           Cofnij
-        </button>
+        </button> */}
 
         <button
           className="btn btn-danger frame saveButton"
-          onClick={this.handleSave}
+          onClick={handleSave}
         >
           Zapisz Zmiany
         </button>
       </div>
-    );
-  }
+    </ButtonContext.Provider>
+  );
 }
 
 export default Graph;
