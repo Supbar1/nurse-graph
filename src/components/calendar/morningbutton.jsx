@@ -1,24 +1,14 @@
-import React, { Component } from "react";
-import "./calendar.css";
+import React, { useContext } from "react";
+import ButtonContext from "./../graph/buttonContext";
 
-class MorningButton extends React.Component {
-  render() {
-    return (
-      // <p className="dupa">Hajda Ha!</p>
-      <div
-        onClick={() => {
-          this.props.thisDay();
-
-          this.props.onClick();
-        }}
-        className="lewy"
-      >
-       
-          <i className="fa-solid fa-sun yellow"></i>
-      
-      </div>
-    );
-  }
+function NightButton() {
+  const dayContext = useContext(ButtonContext);
+  return (
+    <i
+      onClick={() => dayContext.setDays(dayContext.days + 1)}
+      className="fa-solid fa-sun yellow"
+    ></i>
+  );
 }
 
-export default MorningButton;
+export default NightButton;

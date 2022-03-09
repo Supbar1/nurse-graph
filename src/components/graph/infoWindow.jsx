@@ -1,19 +1,24 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import "./graph.css";
+import ButtonContext from "./buttonContext";
 
-class InfoWindow extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <div className="infoWindow">
-          <h2>Wesołe Okienko</h2>
-          <p>{this.props.days} dni</p>
-          <p>{this.props.nights} noc</p>
-          <h2>Razem: {this.props.nights + this.props.days}</h2>
-        </div>
-      </React.Fragment>
-    );
-  }
+function InfoWindow() {
+  const { days, nights, count } = useContext(ButtonContext);
+  return (
+    <React.Fragment>
+      <div className="infoWindow">
+        <h2>Wesołe Okienko</h2>
+        <ButtonContext.Consumer>
+          {(buttonContext) => <p>Tyle dni {days}</p>}
+        </ButtonContext.Consumer>
+        <ButtonContext.Consumer>
+          {(ButtonContext) => <p>Tyle nocy {nights}</p>}
+        </ButtonContext.Consumer>
+        <ButtonContext.Consumer>
+          {(ButtonContext) => <p>Razem: {count}</p>}
+        </ButtonContext.Consumer>
+      </div>
+    </React.Fragment>
+  );
 }
-
 export default InfoWindow;

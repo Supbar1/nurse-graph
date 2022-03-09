@@ -1,26 +1,9 @@
-/* html {
-  background-image: linear-gradient(
-    to right top,
-    #0f4c84,
-    #4973a2,
-    #799cc0,
-    #abc6df,
-    #e0f1ff
-  );
-} */
 .grid-container {
-  /* position: absolute; */
-  /* border: 13px solid black; */
-  /* inset: 0; */
-  /* box-sizing: border-box;
-  min-height: 100%;
-  max-width: 100%; */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
 .frame {
   margin: 0;
-  /* border: 2px solid black; */
 }
 .actualNurse {
   /* background-color: aliceblue; */

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import NavBar from "./components/navBar";
 import { Route, Redirect, Switch } from "react-router-dom";
 import Table from "./components/nursesList/table";
 import Help from "./components/help";
 import Main from "./components/main";
 import NotFound from "./components/notFound";
 import Graph from "./components/graph/graph";
-import LoginForm from "./components/loginForm";
+import LoginForm from "./components/login/loginForm";
 import "./App.css";
 import NextNavigation from "./components/nextNavigation";
 import Users from "./components/users";
