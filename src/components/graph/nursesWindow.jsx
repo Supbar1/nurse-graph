@@ -1,16 +1,13 @@
-import React from "react";
 import "./graph.css";
 
 function NursesWindow() {
   return (
-    <React.Fragment>
-      <div className="nursesWindow">
-        <p>Pracują już:</p>
-        <p>-Beatka</p>
-        <p>-Bożenka</p>
-        <p>-Barbara</p>
-      </div>
-    </React.Fragment>
+    <div className="nursesWindow">
+      <ul>Pracują już :</ul>
+      <li>Beatka</li>
+      <li>Bożenka</li>
+      <li>Barbara</li>
+    </div>
   );
 }
 

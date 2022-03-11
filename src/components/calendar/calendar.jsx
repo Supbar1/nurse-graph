@@ -16,6 +16,11 @@ function Calendar() {
     "Maj",
     "Czerwiec",
     "Lipiec",
+    "Sierpień",
+    "Wrzesien",
+    "Październik",
+    "Listopad",
+    "Grudzień",
   ];
   useEffect(() => {
     const date = new Date();
@@ -75,22 +80,22 @@ function Calendar() {
   }
   function handleMonthSelect() {
     const date = new Date();
-    let miesiac = date.getMonth() + monthChange;
-    // const actualMonth = new Date(date.getFullYear(), date.getMonth());
-    console.log(miesiac);
-    return months[new Date().getMonth() + monthChange];
+    let miesiac = new Date(
+      date.getFullYear(),
+      date.getMonth() + monthChange
+    ).getMonth();
+    return months[miesiac];
   }
   return (
     <Fragment>
       <div className=" actualCalendar">
         <div className="calendar">
           <div className="month">
-            <button onClick={handleMonthSelect}>eluwina</button>
             <i
               onClick={() => setMonthChange(monthChange - 1)}
               className="fas fa-angle-left next"
             ></i>
-            <div className="date">{handleMonthSelect()}</div>
+            <h1>{handleMonthSelect()}</h1>
             <i
               onClick={() => setMonthChange(monthChange + 1)}
               className="fas fa-angle-right next"
@@ -108,7 +113,7 @@ function Calendar() {
 
           <div className="days">
             {prevDays.map((day, index) => (
-              <div key={index} className=" grafButton btna-3 prev-date">
+              <div key={index} className="other-days">
                 {day}
               </div>
             ))}
@@ -117,17 +122,14 @@ function Calendar() {
               <div
                 onClick={() => workDay(day)}
                 key={index}
-                className="grafButton ba-3"
-                // className={`${
-                //   day.day === new Date().getDate() ? "today" : ""
-                // } ${day.special ? "specialDay" : ""}grafButton ba-3`}
+                className="active-days animation"
               >
                 {handleDaySelect(day)}
               </div>
             ))}
 
             {nextDays.map((day, index) => (
-              <div key={index} className="prev-date grafButton btna-3">
+              <div key={index} className="other-days">
                 {day}
               </div>
             ))}

@@ -19,29 +19,25 @@
   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 .month i {
-  font-size: 2.5rem;
+  font-size: 3rem;
   cursor: pointer;
 }
 .month h1 {
   font-size: 3rem;
-  font-weight: 400;
-  letter-spacing: 0.1rem;
-  margin-bottom: 1rem;
-}
-.month p {
-  font-size: 1.4rem;
+  letter-spacing: 0.2rem;
 }
 .weekdays {
   width: 100%;
   height: 10%;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
 }
 .weekdays div {
   font-size: 1.5rem;
   font-weight: 400;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.2rem;
   width: 14%;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,7 +45,7 @@
 }
 .days {
   width: 100%;
-  height: 60%;
+  height: 65%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -59,43 +55,24 @@
   justify-content: center;
   align-items: center;
   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-  transition: background-color 0.2;
 }
 
-.lewy {
-  flex-grow: 1;
-  height: 100%;
-}
-.prawy {
-  flex-grow: 1;
-  height: 100%;
-}
-.prev-date,
-.next-date {
+.other-days {
   opacity: 0.3;
 }
-.today {
-  border-color: rgba(143, 64, 248, 0.5);
-}
 
-.specialDay {
-  color: red;
-}
-.grafButton {
-  padding: 0;
+.active-days {
   font-size: 1.5rem;
   position: relative;
   margin: 1px;
   border-radius: 19px;
 }
-.ba-3 {
+.animation {
   overflow: hidden;
   color: white;
-  box-shadow: 0 0 0 0 rgba(143, 64, 248, 0.5), 0 0 0 0 rgba(39, 200, 255, 0.5);
-  transition: transform 0.3 ease, box-shadow 0.3s ease;
   opacity: 0.9;
 }
-.ba-3::after {
+.animation::after {
   content: "";
   width: 400px;
   height: 400px;
@@ -112,16 +89,13 @@
   z-index: -1;
   transition: transform 0.5s ease;
 }
-.ba-3:hover {
+.animation:hover {
   transform: translate(0, -6px);
   box-shadow: 10px -10px 25px 0 rgba(143, 64, 248, 0.5),
     -10px 10px 25px 0 rgba(39, 200, 255, 0.5);
 }
-.ba-3:hover::after {
+.animation:hover::after {
   transform: rotate(180deg);
-}
-.border {
-  border-radius: 50px;
 }
 .yellow {
   color: yellow;
