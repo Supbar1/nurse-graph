@@ -26,7 +26,6 @@ function Graph() {
       <div className="grid-container">
         <ActualNurse />
         <NursesWindow />
-        <NightButton />
         <Calendar />
         <InfoWindow />
 

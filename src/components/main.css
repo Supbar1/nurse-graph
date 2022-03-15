@@ -1,3 +1,7 @@
+.input {
+  width: 30vw;
+}
+
 .gradient {
   background-image: linear-gradient(
     to left bottom,
@@ -9,16 +13,7 @@
   );
 }
 
-.heyhihello {
-  /* margin: 3em; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-}
-.helloWorld {
-  /* box-sizing: border-box; */
-  /* border: solid 1px rgb(104, 205, 245); */
-}
+
 .hello {
   display: flex;
   align-items: center;

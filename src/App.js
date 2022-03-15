@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   Route,
   Navigate,
@@ -16,11 +16,18 @@ import NextNavigation from "./components/nextNavigation";
 import "./App.css";
 
 function App() {
+  const { pielegniareczka, setPixa } = useState(0);
+  function increment() {
+    {
+      setPixa(pielegniareczka + 1);
+    }
+  }
   return (
     <React.Fragment>
       <div className="main">
         <div className="glass">
           <div className="dashboard ">
+            <button onClick={() => increment()}>{pielegniareczka} asd</button>
             <NextNavigation />
           </div>
           <div className="mainWindow ">

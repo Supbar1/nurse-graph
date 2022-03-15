@@ -10,13 +10,13 @@ function LoginForm() {
     password: Joi.string().required().label("Password"),
   });
 
- 
   function validate() {
     const options = { abortEarly: false };
     const { error } = Joi.validate(account, schema, options);
     if (!error) return null;
-    const errors = {};
-    for (let item of error.datails) errors[item.path[0]] = item.message;
+    let errors = {};
+    if (error.details[0].message) errors = { error };
+    if (error.details[1]) errors = { error };
     return errors;
   }
 
@@ -25,8 +25,8 @@ function LoginForm() {
     const errors = validate();
     setErrors({ errors: errors || {} });
     if (errors) return;
+    if (!errors) return;
   }
-
   function validateProperty({ value, name }) {
     if (name === "username") {
       if (value.trim() === "") return "Username is required";
@@ -37,18 +37,23 @@ function LoginForm() {
   }
 
   function handleChange({ currentTarget: input }) {
+    console.log("change");
+    const errors = { ...errors };
     const errorMessage = validateProperty(input);
     if (errorMessage) errors[input.name] = errorMessage;
     else delete errors[input.name];
+
+    const account = { ...this.state.account };
     account[input.name] = input.value;
-    setAccount({ account });
-    setErrors({ errors });
+    this.setState({ account, errors });
+    console.log(errors.username);
   }
 
+  // const { username, password, errors, account } = this.state;
   return (
-    <div className="margin-auto">
+    <div className="">
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="input" onSubmit={handleSubmit}>
         <Input
           name="username"
           value={account.username}
@@ -69,5 +74,4 @@ function LoginForm() {
     </div>
   );
 }
-
 export default LoginForm;
