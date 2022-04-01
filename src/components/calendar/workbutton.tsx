@@ -7,7 +7,7 @@ function WorkButton() {
   return (
     <React.Fragment>
       {working === false ? (
-        <div onClick={() => setWorking({ working: true })}>
+        <div onClick={() => setWorking(true)}>
           <MorningButton />
           <NightButton />
         </div>

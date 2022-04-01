@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
-const ListGroup = (props) => {
-  const { items } = props;
+const ListGroup = (props : any) => {
   return (
-    <ul className="list-group szerokosc">
+    <ul className="list-group">
       <li className="list-group-item list-group-item-primary">
         Transfuzja Krwi
       </li>
@@ -15,7 +14,6 @@ const ListGroup = (props) => {
       </li>
     </ul>
   );
-  ListGroup.defaultProps = {};
 };
 
 export default ListGroup;

@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router";
 import InfoWindow from "./infoWindow";
 import Calendar from "../calendar/calendar";
 import NursesWindow from "./nursesWindow";
 import ActualNurse from "./actualNurse";
-import ButtonContext from "./buttonContext";
-import NightButton from "../calendar/nightButton";
+import ButtonProvider from "./buttonContext";
 import "./graph.css";
 
 function Graph() {
-  const [name, setName] = useState({ name: "bartosz" });
-  const [count, setCount] = useState(0);
-  const [days, setDays] = useState(0);
-  const [nights, setNights] = useState(0);
 
   const navigate = useNavigate();
   const handleSave = () => {
@@ -20,9 +15,7 @@ function Graph() {
   };
 
   return (
-    <ButtonContext.Provider
-      value={{ days, nights, count, setNights, setDays, name }}
-    >
+    <ButtonProvider>
       <div className="grid-container">
         <ActualNurse />
         <NursesWindow />
@@ -43,7 +36,7 @@ function Graph() {
           Zapisz Zmiany
         </button>
       </div>
-    </ButtonContext.Provider>
+    </ButtonProvider>
   );
 }
 
