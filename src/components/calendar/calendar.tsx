@@ -2,12 +2,17 @@ import React, { useEffect, useState, Fragment } from "react";
 import WorkButton from "./workbutton";
 import "./calendar.css";
 
-function Calendar() {
-  const [daysOfMonth, setDaysOfMonth] = useState([]);
-  const [prevDays, setPrevDays] = useState([]);
-  const [nextDays, setNextDays] = useState([]);
+interface workingDays {
+  day: number,
+  working: boolean;
+}
+
+const Calendar: React.FC = () => {
+  const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
+  const [nextDays, setNextDays] = useState<number[]>([]);
+  const [prevDays, setPrevDays] = useState<number[]>([]);
   const [monthChange, setMonthChange] = useState(0);
-  const [workDays, setworkDays] = useState([]);
+  const [workDays, setworkDays] = useState<workingDays[]>([]);
   const months = [
     "Styczeń",
     "Luty",
@@ -23,6 +28,7 @@ function Calendar() {
     "Grudzień",
   ];
   useEffect(() => {
+    
     const date = new Date();
     date.setUTCDate(1);
 
@@ -36,6 +42,8 @@ function Calendar() {
       date.getMonth() + monthChange,
       0
     ).getDate();
+
+    
 
     let lastDayNumber = new Date(
       date.getFullYear(),
@@ -68,11 +76,11 @@ function Calendar() {
     setNextDays(nextDays);
   }, [monthChange]);
 
-  function workDay(dayObject) {
+  function workDay(dayObject: number) {
     const workDay = [{ day: dayObject, working: true }, ...workDays];
     setworkDays([...workDay]);
   }
-  function handleDaySelect(ddday) {
+  function handleDaySelect(ddday: number) {
     const preFilter = [...workDays];
     for (let key in preFilter)
       if (preFilter[key].day === ddday) return <WorkButton />;
@@ -110,8 +118,9 @@ function Calendar() {
             <div>Sob</div>
             <div>Nie</div>
           </div>
-
           <div className="days">
+
+
             {prevDays.map((day, index) => (
               <div key={index} className="other-days">
                 {day}
@@ -138,6 +147,6 @@ function Calendar() {
       </div>
     </Fragment>
   );
-}
+};
 
 export default Calendar;
