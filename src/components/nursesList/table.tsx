@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-// import { getList } from "./nurseslist";
-import ListGroup from "./listGroup";
 import "./list.css";
-import List from "../help";
+import { NursesList, NursesDataType } from "./interface";
+import { allNurses } from "./nursesList";
+import { useState, useEffect } from "react";
 
 function Table() {
-  const [nurses, setNurses] = useState({});
+  const [nurses, setNurses] = useState<NursesDataType>({ nurses: [] });
 
+  const nursesArray: NursesDataType = allNurses();
   useEffect(() => {
-    setNurses(List());
+    setNurses(nursesArray);
   }, []);
 
-  // function handleDelete(nurse) {
-  //   const nursess = nurses.filter((l) => l._id !== nurse._id);
-  //   setNurses(nursess);
-  //   console.log(nursess);
-  // }
-
-  const navigate = useNavigate();
-  const changeUrl = () => {
-    navigate("/graph");
-  };
-  function klik() {
-    console.log(nurses);
+  function handleDelete(nurse: string) {
+    const deleteNurses = nurses?.nurses.filter((d) => d._id !== nurse);
+    setNurses({nurses: deleteNurses});
+    console.log({nurses: deleteNurses});
   }
+
   return (
-    <List />
-   
+    <>
+      {nurses && (
+        <NursesList
+          nursesData={nurses}
+          handleClick={(nurse) => handleDelete(nurse)}
+        />
+      )}
+    </>
   );
 }
 

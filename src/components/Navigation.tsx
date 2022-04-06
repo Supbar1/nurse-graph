@@ -17,12 +17,12 @@ function Navigation() {
           <div className="nurses"></div>
         </Link>
       </div>
-
       <div className="link">
         <Link className="nav-link" to="/help">
           <div className="question"></div>
         </Link>
       </div>
+
       <div className="link">
         <Link className="nav-link" to="/login">
           <div className="login"></div>
