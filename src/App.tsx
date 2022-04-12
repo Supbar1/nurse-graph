@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Table from "./components/nursesList/table";
-import Help from "./components/help";
-import Main from "./components/main";
+import Help from "./components/help/help";
+import Main from "./components/main/main";
 import Navigation from "./components/Navigation";
 import NotFound from "./components/notFound";
 import Graph from "./components/graph/graph";

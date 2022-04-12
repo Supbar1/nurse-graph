@@ -1,5 +1,5 @@
 import React from "react";
-import { useButtonContext } from "../graph/buttonContext";
+import { useButtonContext } from "../buttonContext";
 
 function MorningButton() {
   const { days, setDays } = useButtonContext();

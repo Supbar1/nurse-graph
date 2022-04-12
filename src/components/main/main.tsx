@@ -1,5 +1,5 @@
 import React from "react";
-import main from "../img/main.png";
+import main from "./main.png";
 import "./main.css";
 
 function Main() {
