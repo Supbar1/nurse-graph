@@ -1,7 +1,9 @@
-import "./list.css";
-import { NursesList, NursesDataType } from "./interface";
-import { allNurses } from "./nursesList";
 import { useState, useEffect } from "react";
+import { allNurses } from "./nursesList";
+import { NursesDataType } from "./tableBody";
+import { TableHeader } from "./tableHeader";
+import { TableBody } from "./tableBody";
+import "./list.css";
 
 function Table() {
   const [nurses, setNurses] = useState<NursesDataType>({ nurses: [] });
@@ -13,19 +15,16 @@ function Table() {
 
   function handleDelete(nurse: string) {
     const deleteNurses = nurses?.nurses.filter((d) => d._id !== nurse);
-    setNurses({nurses: deleteNurses});
-    console.log({nurses: deleteNurses});
+    setNurses({ nurses: deleteNurses });
   }
 
   return (
-    <>
-      {nurses && (
-        <NursesList
-          nursesData={nurses}
-          handleClick={(nurse) => handleDelete(nurse)}
-        />
-      )}
-    </>
+    <div className="scroll">
+      <table className="table">
+        <TableHeader />
+        <TableBody nursesData={nurses} handleDelete={handleDelete} />
+      </table>
+    </div>
   );
 }
 

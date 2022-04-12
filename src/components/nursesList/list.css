@@ -11,7 +11,14 @@
   border-radius: 100vw;
   background: #f97362;
 }
-
-.flex {
-  display: flex;
+table tbody tr:hover,
+table tbody tr {
+  z-index: 1;
 }
+table thead {
+  position: sticky;
+  background-image: linear-gradient(to right, #fa72a1, #d987d7, #9ca0f6);
+  top: -1px;
+  border-radius: 100vw;
+}
+
