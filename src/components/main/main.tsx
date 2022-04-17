@@ -1,25 +1,48 @@
 import React from "react";
 import main from "./main.png";
-import "./main.css";
+import styled from "styled-components";
 
+const Paragraph = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1.1, 1.7);
+  margin: 1em;
+  padding: 0.8em 3em;
+  color: white;
+  font-size: 1.3em;
+  letter-spacing: 0.15em;
+  font-family: Roboto, sans-serif;
+`;
+const Image = styled.div`
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  border-radius: 13em;
+  margin: auto;
+  inset: 0;
+  size: 100px;
+`;
 function Main() {
   return (
     <React.Fragment>
-      <p className="hello">
-        Witamy w Interaktywny Grafiku szpitala Dzieciątka Judasz
-      </p>
-      <p className="hello">
+      <Paragraph>
+        Witamy w Interaktywny Grafiku szpitala Jana Pawła II
+      </Paragraph>
+      <Paragraph>
         U dołu widzą państwo kozacką grafikę z pielęgniarką a u góry pasek
         nawigacyjny
-      </p>
-      <p className="hello">
+      </Paragraph>
+      <Paragraph>
         Proszę z niego skorzystać gdy w końcu nabierzecie ochoty by iść do
         roboty hehe
-      </p>
+      </Paragraph>
 
-      <div className="srodek">
-        <img src={main} alt="pielęgniarka" className=" nurse-img" />
-      </div>
+      <Image>
+        <img src={main} alt="pielęgniarka" />
+      </Image>
     </React.Fragment>
   );
 }

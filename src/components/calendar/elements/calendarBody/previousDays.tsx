@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
-import { useButtonContext } from "../buttonContext";
+import { useButtonContext } from "../../calendarContext";
 import DaysList from "./daysList";
+import styled from "styled-components";
 
-export default function PrevDays() {
+const OtherDays = styled.div`
+  opacity: 0.3;
+`;
+export default function PreviousDays() {
   const [prevDays, setPrevDays] = useState<number[]>([]);
 
   const { monthChange } = useButtonContext();
@@ -14,9 +18,7 @@ export default function PrevDays() {
   return (
     <>
       {prevDays.map((day, index) => (
-        <div key={index} className="other-days">
-          {day}
-        </div>
+        <OtherDays key={index}>{day}</OtherDays>
       ))}
     </>
   );
