@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { ActualDays } from "./elements/actualDays";
-import { useButtonContext } from "./buttonContext";
-import DaysList from "./elements/daysList";
-import WorkButton from "./elements/workbutton";
+import DaysList from "./daysList";
+import WorkButton from "./workbutton";
+import { ActualDays } from "./actualDays";
+import { useButtonContext } from "../../calendarContext";
 
 interface workingDays {
   day: number;
