@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import DaysList from "./daysList";
-import { useButtonContext } from "../../calendarContext";
+import { useButtonContext } from "../../buttonContext";
 import styled from "styled-components";
 
 const OtherDays = styled.div`
-  opacity: 0.3;
+  border-radius: 19px;
+  overflow: hidden;
+  color: white;
 `;
 
 export default function NextDays() {

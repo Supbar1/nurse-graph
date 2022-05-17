@@ -3,20 +3,36 @@ import InfoWindow from "./infoWindow";
 import Calendar from "../calendar/calendar";
 import NursesWindow from "./nursesWindow";
 import ActualNurse from "./actualNurse";
-import ButtonProvider from "../calendar/calendarContext";
+import ButtonProvider from "../calendar/buttonContext";
 import styled from "styled-components";
 
-const GridContainter = styled.div`
+export const GridContainter = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  width: min(60vw, 850px);
+  grid-template-areas:
+    "actual   xxx"
+    "calendar window"
+    "calendar nurses"
+    "backButton saveButton";
 `;
-const BackButton = styled.button`
-  grid-column: 2 / span 2;
-  grid-row: 7;
+
+const Actual = styled.div`
+  grid-area: actual;
+`;
+const CalendarGrid = styled.div`
+  grid-area: calendar;
+`;
+const WindowGrid = styled.div`
+  grid-area: window;
+`;
+const NursesGrid = styled.div`
+  grid-area: nurses;
 `;
 const SaveButton = styled.button`
-  grid-column: 5 / span 2;
-  grid-row: 7;
+  grid-area: saveButton;
+`;
+const BackButton = styled.button`
+  grid-area: backButton;
 `;
 
 function Graph() {
@@ -28,10 +44,21 @@ function Graph() {
   return (
     <ButtonProvider>
       <GridContainter>
-        <ActualNurse />
-        <NursesWindow />
-        <Calendar />
-        <InfoWindow />
+        <Actual>
+          <ActualNurse />
+        </Actual>
+
+        <CalendarGrid>
+          <Calendar />
+        </CalendarGrid>
+
+        <WindowGrid>
+          <InfoWindow />
+        </WindowGrid>
+
+        <NursesGrid>
+          <NursesWindow />
+        </NursesGrid>
 
         <BackButton
           className="btn btn-warning  backButton"
@@ -39,10 +66,7 @@ function Graph() {
         >
           Cofnij
         </BackButton>
-
-        <SaveButton className="btn btn-danger saveButton" onClick={handleSave}>
-          Zapisz Zmiany
-        </SaveButton>
+        {/* <SaveButton onClick={handleSave}>Zapisz Zmiany</SaveButton> */}
       </GridContainter>
     </ButtonProvider>
   );

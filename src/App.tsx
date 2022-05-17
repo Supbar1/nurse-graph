@@ -8,66 +8,65 @@ import NotFound from "./components/notFound";
 import Graph from "./components/graph/graph";
 import NewLogin from "./components/login/newLogin";
 import styled from "styled-components";
+import NurseProvider from "./nurseContext";
 
-
-const MainWindow = styled.div`
-  height: 100%;
-  width: 60vw;
+const Container = styled.div`
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Interface = styled.div`
+  /* border: 2px solid red; */
+  height: 80%;
+  border-radius: 6em;
+  display: flex;
+  /* grid-template-columns: 10vw 80vw; */
+  margin: auto;
+  align-items: center;
+  @media (max-width: 750px) {
+    width: 100%;
+  }
+  @media (max-height: 360px) {
+    height: 100%;
+  }
+  background-color: rgba(255, 255, 255, 0.2);
 `;
 const DashBoard = styled.div`
-  padding: 5vh 0 5vh 0;
-  width: 15%;
-  background-color: blue;
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding: 3vh 0 2vh 0;
+  width: 10vw;
+  border-radius: 2rem;
   background: linear-gradient(
     to left bottom,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.5)
+    rgba(143, 64, 248, 0.5),
+    rgba(39, 200, 255, 0.5)
   );
-  border-radius: 2rem;
+  @media (max-height: 360px) {
+    padding: 2vh;
+    height: 100%;
+    padding: 0;
+    transform: translateX(-42.5vw);
+    width: 15vw;
+  }
 `;
-const GlassInterface = styled.div`
-  min-height: 90vh;
-  width: 80vw;
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.1)
-  );
-  border-radius: 6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const Gradient = styled.div`
-  font-family: "Roboto", sans-serif;
-  min-height: 100vh;
-  background-image: linear-gradient(
-    to right,
-    #f97362,
-    #fa72a1,
-    #d987d7,
-    #9ca0f6,
-    #51b3f8
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+const Margin = styled.div`
+  margin: auto;
 `;
 const App: React.FC = () => {
   return (
     <React.Fragment>
-      <Gradient>
-        <GlassInterface>
+      <Container>
+        <Interface>
           <DashBoard>
             <Navigation />
           </DashBoard>
-          <MainWindow>
+          <Margin>
+          <NurseProvider>
+ 
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/login" element={<NewLogin />} />
@@ -75,10 +74,12 @@ const App: React.FC = () => {
               <Route path="/table" element={<Table />} />
               <Route path="/help" element={<Help />} />
               <Route path="/not-found" element={<NotFound />} />
-            </Routes>
-          </MainWindow>
-        </GlassInterface>
-      </Gradient>
+ 
+           </Routes>
+           </NurseProvider>
+          </Margin>
+        </Interface>
+      </Container>
     </React.Fragment>
   );
 };

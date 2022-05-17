@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import DaysList from "./daysList";
 import WorkButton from "./workbutton";
 import { ActualDays } from "./actualDays";
-import { useButtonContext } from "../../calendarContext";
+import { useButtonContext } from "../../buttonContext";
+
 
 interface workingDays {
   day: number;
@@ -21,6 +22,7 @@ export default function ActiveDays() {
     const workDay = [{ day: day }, ...workDays];
     setworkDays([...workDay]);
   }
+
   function handleDaySelect(day: number) {
     const preFilter = [...workDays];
     for (let key in preFilter)

@@ -1,16 +1,26 @@
 import styled from "styled-components";
+import { useNurseContext } from "../../nurseContext";
 
+import { GridContainter } from "./graph";
 const Nurse = styled.h3`
-  width: 800px;
   margin: auto;
+`;
+const Label = styled.h4`
+  margin: auto;
+`;
+const Flex = styled.div`
   display: flex;
-  align-content: center;
-  justify-content: center;
-  padding: 1em;
-  grid-column: 3 / span 3;
+  padding: 20px;
+  grid-area: label;
 `;
 function ActualNurse() {
-  return <Nurse>Frania Chodnikowska</Nurse>;
+  const { name } = useNurseContext();
+  return (
+    <Flex>
+      <Label>Aktualna pielęgniarka: </Label>
+      <Nurse>{name}</Nurse>
+    </Flex>
+  );
 }
 
 export default ActualNurse;

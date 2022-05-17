@@ -3,22 +3,18 @@ import NextMonth from "./elements/calendarHeader/nextMonth";
 import PrevDays from "./elements/calendarBody/previousDays";
 import WeekDays from "./elements/calendarHeader/weekDays";
 import NextDays from "./elements/calendarBody/nextDays";
-import ActiveDays from "./elements/calendarBody/workingDays";
+import ActiveDays from "./elements/calendarBody/ActiveDays";
 import Month from "./elements/calendarHeader/month";
 import styled from "styled-components";
 
 const CalendarStyled = styled.div`
-  grid-column: 2 / span 5;
-  grid-row: 2;
-  margin: 0;
-  height: 70vh;
-  width: 100%;
-  border-radius: 15%;
-  box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.2);
+  height: 60vh;
+  grid-area: window;
+  border-radius: 12% 12% 5% 5%;
+  box-shadow: 0 0.5rem 3rem rgba(143, 64, 248, 0.4);
 `;
 const MonthStyled = styled.div`
-  width: 100%;
-  height: 25%;
+  height: 15%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,12 +22,15 @@ const MonthStyled = styled.div`
   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 `;
 const Days = styled.div`
-  width: 100%;
-  height: 65%;
+  height: 70%;
   display: flex;
   flex-wrap: wrap;
+  font-size: 1.5em;
+  display: grid;
+  grid-template-columns: repeat(7, 14.25%);
+
   div {
-    width: 14%;
+    margin: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
