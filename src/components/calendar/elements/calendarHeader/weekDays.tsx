@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 const DaysLabel = styled.div`
   width: 100%;
-  height: 10%;
   display: flex;
-  justify-content: space-between;
+  height: 15%;
+  display: grid;
+  grid-template-columns: repeat(7, 14.25%);
+  font-size: 1.5em;
+  white-space: no;
   div {
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.2rem;
-    width: 14%;
-    margin: auto;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    margin: 2px;
   }
 `;
 

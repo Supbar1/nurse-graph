@@ -1,13 +1,13 @@
-import "./list.css";
+import styled from "styled-components";
 
 export function TableHeader() {
   return (
     <thead>
       <tr>
-        <th scope="col">Imie i Nazwisko</th>
-        <th scope="col">Specka</th>
-        <th scope="col">Dni</th>
-        <th scope="col">Noce</th>
+        <th>Imie i Nazwisko</th>
+        <th>Specka</th>
+        <th>Dni</th>
+        <th>Noce</th>
         <th />
         <th />
       </tr>

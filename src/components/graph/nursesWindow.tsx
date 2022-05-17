@@ -4,7 +4,7 @@ const NursesShift = styled.div`
   white-space: nowrap;
   padding: 1em;
   grid-column: 1;
-  grid-row: 2 / span 3;
+  grid-row: 2;
 `;
 
 function NursesWindow() {

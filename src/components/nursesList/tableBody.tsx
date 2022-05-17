@@ -1,9 +1,12 @@
-import { BackButton } from "./backButton";
+import NurseProvider, { useNurseContext } from "../../nurseContext";
+import { DeleteButton } from "./DeleteButton";
+import { GrafButton } from "./GrafButton";
 
 export interface INurse {
   nursesData: NursesDataType;
   handleDelete: (_id: string) => void;
-};
+  // actualNurse: (name: string) => void;
+}
 
 export type NursesDataType = {
   nurses: NursesType[];
@@ -16,27 +19,36 @@ type NursesType = {
 };
 
 export const TableBody: React.FC<INurse> = ({ nursesData, handleDelete }) => {
+  const { setNurseName } = useNurseContext();
+
   return (
-    <tbody>
-      {nursesData.nurses.map((nurse) => (
-        <tr key={nurse._id}>
-          <td>{nurse.name}</td>
-          <td className="line-break">
-            {nurse.courses.RKO === true ? "RKO " : ""}
-            {nurse.courses.bloodTransfusion === true ? "Transfuzja " : ""}
-            {nurse.courses.EKG === true ? "EKG " : ""}
-          </td>
-          <td></td>
-          <td></td>
-          <td>
-            <BackButton />
-          </td>
-          <td>
-            <button onClick={() => handleDelete(nurse._id)}>USUWAŃSKO</button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
+
+      <tbody>
+        {nursesData.nurses.map((nurse) => (
+          <tr key={nurse._id}>
+            <td>{nurse.name}</td>
+            <td className="line-break">
+              {nurse.courses.RKO === true ? "RKO " : ""}
+              {nurse.courses.bloodTransfusion === true ? "Transfuzja " : ""}
+              {nurse.courses.EKG === true ? "EKG " : ""}
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+              <div onClick={() => setNurseName(nurse.name)}>
+                <GrafButton />
+              </div>
+            </td>
+            <td>
+              <DeleteButton
+                onDelete={() => {
+                  handleDelete(nurse._id);
+                }}
+              />
+            </td>
+          </tr>
+        ))}
+      </tbody>
+   
   );
 };
-
