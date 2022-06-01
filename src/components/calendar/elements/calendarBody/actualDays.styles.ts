@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const ActiveDayStyled = styled.div`
   position: relative;
   border-radius: 30%;
+
   overflow: hidden;
   color: black;
-
   opacity: 0.9;
   &:after {
     content: "";
@@ -22,7 +22,8 @@ export const ActiveDayStyled = styled.div`
     transition: transform 0.5s ease;
   }
   &:hover {
-    transform: translate(0, -6px);
+    transform: translate(2px, -6px) scale(1.6);
+    z-index: 2;
     box-shadow: 10px -10px 25px 0 rgba(143, 64, 248, 0.5),
       -10px 10px 25px 0 rgba(39, 200, 255, 0.5);
   }

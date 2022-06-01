@@ -3,7 +3,7 @@ import NextMonth from "./elements/calendarHeader/nextMonth";
 import PrevDays from "./elements/calendarBody/previousDays";
 import WeekDays from "./elements/calendarHeader/weekDays";
 import NextDays from "./elements/calendarBody/nextDays";
-import ActiveDays from "./elements/calendarBody/ActiveDays";
+import ActiveDays from "./elements/calendarBody/activeDays";
 import Month from "./elements/calendarHeader/month";
 import styled from "styled-components";
 
@@ -23,8 +23,7 @@ const MonthStyled = styled.div`
 `;
 const Days = styled.div`
   height: 70%;
-  display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   font-size: 1.5em;
   display: grid;
   grid-template-columns: repeat(7, 14.25%);
@@ -35,6 +34,8 @@ const Days = styled.div`
     justify-content: center;
     align-items: center;
     text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  }
+  div:hover {
   }
 `;
 

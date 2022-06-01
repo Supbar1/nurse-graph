@@ -1,65 +1,41 @@
-import styled from "styled-components";
-
-const GridContainter = styled.div`
-  height: 100%;
-
-  width: min(60vw, 850px);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 5px;
-  justify-content: center;
-  align-items: center;
-`;
-const BackButton = styled.div`
-  border: 1px solid black;
-  grid-column: 3;
-  grid-row: 1;
-  height: 100%;
-  width: 100px;
-  background-color: red;
-`;
-const Calendar = styled.div`
-  grid-column: 2;
-  grid-row: 2;
-  height: 100%;
-  width: 100%;
-  border: 2px solid brown;
-  background-color: red;
-`;
-const Back = styled.div`
-  grid-column: 3;
-  grid-row: 2;
-  /* height: 100%; */
-  width: 100px;
-  background-color: red;
-`;
-const Ccc = styled.div`
-  grid-column: 4;
-  grid-row: 2;
-  height: 100px;
-  width: 100px;
-  background-color: red;
-`;
-const Pielęgniarka = styled.div`
-  grid-column: 2;
-  grid-row: 1;
-  height: fit-content;
-  width: 100px;
-  background-color: green;
-`;
-const SaveButton = styled.button`
-  /* grid-column: 3 / span 1;
-  grid-row: 3; */
-`;
+import "./style.css";
+import fish from "./fish.jpg";
+import React from "react";
+import MorningButton from "./../calendar/elements/calendarBody/morningButton";
 
 export default function Help() {
+  function getBadgeClasses() {
+    let classes = "badge m-2";
+    classes += "warning";
+    return classes;
+  }
   return (
-    <GridContainter>
-      <Pielęgniarka>Anastazja Romanowicz</Pielęgniarka>
-      <BackButton>Back Button</BackButton>
-      <Calendar>Tu jest kalendarz</Calendar>
-      <Back>Back</Back>
-      {/* <Ccc /> */}
-    </GridContainter>
+    <React.Fragment>
+      <div className="container">
+        <div className="card">
+          <div className="imgBox">
+            <img src={fish} alt="cos tu nie gra" />
+            <div className="contentBx">
+              <h2>Say hello to fish! </h2>
+              <div className="size">
+                <h3>I'm fucking fish</h3>
+                <span>R</span>
+                <span>Y</span>
+                <span>B</span>
+                <span>Y</span>
+              </div>
+              <div className="color">
+                <h3>Color :</h3>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+              </div>
+              <a href="#">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        <div className={getBadgeClasses()}></div>
+      </div>
+    </React.Fragment>
   );
 }

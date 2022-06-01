@@ -1,22 +1,43 @@
 import React, { useState } from "react";
 
 type ButtonType = {
-  days: number;
-  nights: number;
+  workHours: number;
+  setWorkHours: React.Dispatch<React.SetStateAction<number>>;
   monthChange: number;
-  setDays: React.Dispatch<React.SetStateAction<number>>;
-  setNights: React.Dispatch<React.SetStateAction<number>>;
   setMonthChange: React.Dispatch<React.SetStateAction<number>>;
+  workDays: Array<{
+    day: number;
+    monthChange: number;
+    workShift: string;
+  }>;
+  setWorkDays: React.Dispatch<
+    React.SetStateAction<
+      Array<{
+        day: number;
+        monthChange: number;
+        workShift: string;
+      }>
+    >
+  >;
 };
 const ButtonContext = React.createContext<ButtonType>({} as ButtonType);
 
 const ButtonProvider: React.FC = ({ children }) => {
-  const [days, setDays] = useState(0);
-  const [nights, setNights] = useState(0);
+  const [workHours, setWorkHours] = useState(0);
   const [monthChange, setMonthChange] = useState(0);
+  const [workDays, setWorkDays] = useState([
+    { day: 0, monthChange: 0, workShift: "" },
+  ]);
   return (
     <ButtonContext.Provider
-      value={{ days, setDays, nights, setNights, monthChange, setMonthChange }}
+      value={{
+        workHours,
+        setWorkHours,
+        monthChange,
+        setMonthChange,
+        workDays,
+        setWorkDays,
+      }}
     >
       {children}
     </ButtonContext.Provider>
