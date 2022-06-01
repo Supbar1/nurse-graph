@@ -1,96 +1,116 @@
-export const allNurses =()=> {
-    return {
+import { date } from "joi";
+
+export const allNurses = () => {
+  const today = new Date();
+  const Stoday = new Date();
+
+  return {
     nurses: [
       {
-        _id: "5b21ca3eeb7f6fbccd471815",
+        id: 101,
         name: "Izabela Kukier",
         courses: { bloodTransfusion: true, RKO: false, EKG: true },
         selfEmplointment: false,
+        workDays: [{ today }],
       },
       {
-        _id: "5b21ca3eeb7f6fbccd472003",
+        id: 102,
         name: "Grażyna Bąk",
         courses: { bloodTransfusion: true, RKO: true, EKG: false },
         selfEmplointment: true,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd479645",
+        id: 103,
         name: "Wojtek Zdun",
         courses: { bloodTransfusion: true, RKO: false, EKG: true },
         selfEmplointment: false,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd499115",
+        id: 104,
         name: "Wioleta Skiendziul",
         courses: { bloodTransfusion: true, RKO: true, EKG: false },
         selfEmplointment: false,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471007",
+        id: 105,
         name: "Beata Wojczulis",
         courses: { bloodTransfusion: true, RKO: true, EKG: true },
         selfEmplointment: false,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471552",
+        id: 106,
         name: "Bożena Brzęczyszczykiewicz",
         courses: { bloodTransfusion: true, RKO: false, EKG: true },
         selfEmplointment: true,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471665",
+        id: 107,
         name: "Marzena Bobrownik",
         courses: { bloodTransfusion: true, RKO: true, EKG: true },
         selfEmplointment: false,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471998",
+        id: 108,
         name: "Kleofas Kumok",
         courses: { bloodTransfusion: true, RKO: true, EKG: true },
         selfEmplointment: true,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd448615",
+        id: 109,
         name: "Karina Kruk",
         courses: { bloodTransfusion: true, RKO: true, EKG: true },
         selfEmplointment: false,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471934",
+        id: 110,
         name: "Fiona Shreka",
         courses: { bloodTransfusion: true, RKO: true, EKG: false },
         selfEmplointment: false,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471756",
+        id: 111,
         name: "Paulina Sikorek",
         courses: { bloodTransfusion: false, RKO: false, EKG: true },
         selfEmplointment: false,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471119",
+        id: 112,
         name: "Renata Dombir",
         courses: { bloodTransfusion: true, RKO: true, EKG: true },
         selfEmplointment: true,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471473",
+        id: 113,
         name: "Krzysztofa Zagórska",
         courses: { bloodTransfusion: true, RKO: true, EKG: true },
         selfEmplointment: false,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471957",
+        id: 114,
         name: "Eleonora Rozeubaum",
         courses: { bloodTransfusion: true, RKO: true, EKG: true },
         selfEmplointment: false,
+        workDays: {},
       },
       {
-        _id: "5b21ca3eeb7f6fbccd471635",
+        id: 115,
         name: "Wiktoria Shmit",
         courses: { bloodTransfusion: false, RKO: false, EKG: true },
         selfEmplointment: false,
+        workDays: {},
       },
     ],
   };
-}
+};

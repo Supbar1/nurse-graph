@@ -1,17 +1,15 @@
+// import styled from "styled-components";
 import { useState, useEffect } from "react";
 import DaysList from "./daysList";
-import WorkButton from "./workbutton";
+
+import WorkButton from "./workButton";
 import { ActualDays } from "./actualDays";
 import { useButtonContext } from "../../buttonContext";
 
-
-interface workingDays {
-  day: number;
-}
 export default function ActiveDays() {
   const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
-  const { monthChange } = useButtonContext();
-  const [workDays, setworkDays] = useState<workingDays[]>([]);
+
+  const { workDays, setWorkDays, monthChange } = useButtonContext();
 
   const List = DaysList();
   useEffect(() => {
@@ -19,14 +17,61 @@ export default function ActiveDays() {
   }, [monthChange]);
 
   function workDay(day: number) {
-    const workDay = [{ day: day }, ...workDays];
-    setworkDays([...workDay]);
+    if (workDays[0].workShift === "none") return;
+    for (let key in workDays) {
+      if (
+        workDays[key].day === day &&
+        workDays[key].monthChange === monthChange
+      )
+        return;
+    }
+    const workDay = [
+      {
+        day: day,
+        monthChange: monthChange,
+        workShift: "none",
+      },
+      ...workDays,
+    ];
+    setWorkDays([...workDay]);
+    console.log(workDay);
   }
 
   function handleDaySelect(day: number) {
     const preFilter = [...workDays];
-    for (let key in preFilter)
-      if (preFilter[key].day === day) return <WorkButton />;
+    for (let key in preFilter) {
+      if (
+        preFilter[key].day === day &&
+        preFilter[key].monthChange === monthChange &&
+        preFilter[key].workShift === "none"
+      )
+        return <WorkButton />;
+    }
+
+    for (let key in preFilter) {
+      if (
+        preFilter[key].day === day &&
+        preFilter[key].monthChange === monthChange &&
+        preFilter[key].workShift === "day"
+      )
+        return <i style={{ color: "yellow" }} className="fa-solid fa-sun"></i>;
+    }
+    for (let key in preFilter) {
+      if (
+        preFilter[key].day === day &&
+        preFilter[key].monthChange === monthChange &&
+        preFilter[key].workShift === "evening"
+      )
+        return <i style={{ color: "silver" }} className="fa-solid fa-moon"></i>;
+    }
+    for (let key in preFilter) {
+      if (
+        preFilter[key].day === day &&
+        preFilter[key].monthChange === monthChange &&
+        preFilter[key].workShift === "morning"
+      )
+        return <i style={{ color: "white" }} className="fa-solid fa-clock"></i>;
+    }
     return day;
   }
   return (

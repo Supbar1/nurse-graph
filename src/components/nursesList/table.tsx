@@ -44,8 +44,8 @@ function Table() {
     setNurses(nursesArray);
   }, []);
 
-  function handleDelete(nurse: string) {
-    const deleteNurses = nurses?.nurses.filter((d) => d._id !== nurse);
+  function handleDelete(nurse: number) {
+    const deleteNurses = nurses?.nurses.filter((d) => d.id !== nurse);
     setNurses({ nurses: deleteNurses });
   }
 
