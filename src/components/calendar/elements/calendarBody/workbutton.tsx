@@ -10,7 +10,6 @@ const BigButton = styled.span`
   justify-content: space-around;
   width: 100%;
   font-size: 13px;
-  border: 3px solid red;
   margin: auto;
   span {
     margin: auto;

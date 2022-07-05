@@ -9,9 +9,7 @@ export default function NightButton() {
 
   function work() {
     workDays[0].workShift = "evening";
-    const workDay = workDays[0].workShift;
 
-    console.log(workDay);
     setWorkHours(workHours + 12);
   }
   return (
@@ -23,5 +21,3 @@ export default function NightButton() {
     </>
   );
 }
-
-
