@@ -1,15 +1,12 @@
-// import styled from "styled-components";
 import { useState, useEffect } from "react";
 import DaysList from "./daysList";
-
 import WorkButton from "./workButton";
 import { ActualDays } from "./actualDays";
 import { useButtonContext } from "../../buttonContext";
 
 export default function ActiveDays() {
-  const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
-
   const { workDays, setWorkDays, monthChange } = useButtonContext();
+  const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
 
   const List = DaysList();
   useEffect(() => {
@@ -18,6 +15,7 @@ export default function ActiveDays() {
 
   function workDay(day: number) {
     if (workDays[0].workShift === "none") return;
+
     for (let key in workDays) {
       if (
         workDays[key].day === day &&
@@ -33,8 +31,8 @@ export default function ActiveDays() {
       },
       ...workDays,
     ];
+
     setWorkDays([...workDay]);
-    console.log(workDay);
   }
 
   function handleDaySelect(day: number) {
@@ -46,25 +44,18 @@ export default function ActiveDays() {
         preFilter[key].workShift === "none"
       )
         return <WorkButton />;
-    }
-
-    for (let key in preFilter) {
       if (
         preFilter[key].day === day &&
         preFilter[key].monthChange === monthChange &&
         preFilter[key].workShift === "day"
       )
         return <i style={{ color: "yellow" }} className="fa-solid fa-sun"></i>;
-    }
-    for (let key in preFilter) {
       if (
         preFilter[key].day === day &&
         preFilter[key].monthChange === monthChange &&
         preFilter[key].workShift === "evening"
       )
         return <i style={{ color: "silver" }} className="fa-solid fa-moon"></i>;
-    }
-    for (let key in preFilter) {
       if (
         preFilter[key].day === day &&
         preFilter[key].monthChange === monthChange &&
@@ -72,8 +63,10 @@ export default function ActiveDays() {
       )
         return <i style={{ color: "white" }} className="fa-solid fa-clock"></i>;
     }
+
     return day;
   }
+
   return (
     <ActualDays
       daysOfMonth={daysOfMonth}

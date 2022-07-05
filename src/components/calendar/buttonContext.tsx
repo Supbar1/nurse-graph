@@ -5,11 +5,7 @@ type ButtonType = {
   setWorkHours: React.Dispatch<React.SetStateAction<number>>;
   monthChange: number;
   setMonthChange: React.Dispatch<React.SetStateAction<number>>;
-  workDays: Array<{
-    day: number;
-    monthChange: number;
-    workShift: string;
-  }>;
+  workDays: WorkDaysType
   setWorkDays: React.Dispatch<
     React.SetStateAction<
       Array<{
@@ -20,6 +16,13 @@ type ButtonType = {
     >
   >;
 };
+
+type WorkDaysType = Array<{
+  day: number;
+  monthChange: number;
+  workShift: string;
+}>
+
 const ButtonContext = React.createContext<ButtonType>({} as ButtonType);
 
 const ButtonProvider: React.FC = ({ children }) => {

@@ -1,11 +1,10 @@
-import NurseProvider, { useNurseContext } from "../../nurseContext";
+import { useNurseContext } from "../../nurseContext";
 import { DeleteButton } from "./DeleteButton";
 import { GrafButton } from "./GrafButton";
 
 export interface INurse {
   nursesData: NursesDataType;
   handleDelete: (id: number) => void;
-  // actualNurse: (name: string) => void;
 }
 
 export type NursesDataType = {

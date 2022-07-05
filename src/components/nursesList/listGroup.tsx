@@ -1,5 +1,5 @@
 
-const ListGroup = (props : any) => {
+const ListGroup = () => {
   return (
     <ul className="list-group">
       <li className="list-group-item list-group-item-primary">
