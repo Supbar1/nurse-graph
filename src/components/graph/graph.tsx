@@ -1,38 +1,18 @@
 import { useNavigate } from "react-router";
-import InfoWindow from "./infoWindow";
-import Calendar from "../calendar/calendar";
-import NursesWindow from "./nursesWindow";
-import ActualNurse from "./actualNurse";
-import ButtonProvider from "../calendar/buttonContext";
 import styled from "styled-components";
+import GridContainer from "./graph-grid/gridContainer";
+import InfoWindow from "./infoWindow";
+import InfoWindowGrid from "./graph-grid/infoWindowGrid";
+import Calendar from "../calendar/calendar";
+import CalendarGrid from "./graph-grid/calendarGrid";
+import NursesWindow from "./nursesWindow";
+import NursesWindowGrid from "./graph-grid/nursesWindowGrid";
+import ActualNurse from "./actualNurse";
+import ActualNurseGrid from "./graph-grid/actualNurseGrid";
+import ButtonProvider from "../calendar/buttonContext";
 
-export const GridContainter = styled.div`
-  display: grid;
-  width: min(60vw, 850px);
-  grid-template-areas:
-    "actual   xxx"
-    "calendar window"
-    "calendar nurses"
-    "backButton saveButton";
-`;
-
-const Actual = styled.div`
-  grid-area: actual;
-`;
-const CalendarGrid = styled.div`
-  grid-area: calendar;
-`;
-const WindowGrid = styled.div`
-  grid-area: window;
-`;
-const NursesGrid = styled.div`
-  grid-area: nurses;
-`;
 const SaveButton = styled.button`
   grid-area: saveButton;
-`;
-const BackButton = styled.button`
-  grid-area: backButton;
 `;
 
 function Graph() {
@@ -43,31 +23,27 @@ function Graph() {
 
   return (
     <ButtonProvider>
-      <GridContainter>
-        <Actual>
+      <GridContainer>
+        <ActualNurseGrid>
           <ActualNurse />
-        </Actual>
+        </ActualNurseGrid>
 
         <CalendarGrid>
           <Calendar />
         </CalendarGrid>
 
-        <WindowGrid>
+        <InfoWindowGrid>
           <InfoWindow />
-        </WindowGrid>
+        </InfoWindowGrid>
 
-        <NursesGrid>
+        <NursesWindowGrid>
           <NursesWindow />
-        </NursesGrid>
+        </NursesWindowGrid>
 
-        <BackButton
-          className="btn btn-warning  backButton"
-          onClick={handleSave}
-        >
-          Cofnij
-        </BackButton>
-        {/* <SaveButton onClick={handleSave}>Zapisz Zmiany</SaveButton> */}
-      </GridContainter>
+        <SaveButton className="btn btn-danger  backButton" onClick={handleSave}>
+          Zapisz Zmiany
+        </SaveButton>
+      </GridContainer>
     </ButtonProvider>
   );
 }

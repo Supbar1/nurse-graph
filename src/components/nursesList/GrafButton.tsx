@@ -7,9 +7,6 @@ const Button = styled.button`
   background-color: rgba(39, 200, 255, 0.5);
   border: 1px solid rgba(39, 200, 255, 1);
 `;
-// type GrafProps = {
-//   actualNurse: (event: React.MouseEvent<HTMLButtonElement>) => void;
-// };
 
 export const GrafButton = () => {
   const navigate = useNavigate();

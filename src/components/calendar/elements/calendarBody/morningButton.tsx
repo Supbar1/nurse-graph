@@ -1,6 +1,5 @@
 import { useButtonContext } from "../../buttonContext";
 import styled from "styled-components";
-import { useState } from "react";
 
 const YellowSun = styled.i`
   color: white;
@@ -11,7 +10,6 @@ function MorningButton() {
   function work() {
     workDays[0].workShift = "morning";
 
-    workDays[0].oneDayAccess = false;
     setWorkHours(workHours + 8);
   }
   return (

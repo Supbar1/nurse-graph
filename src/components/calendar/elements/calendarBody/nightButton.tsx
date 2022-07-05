@@ -1,19 +1,15 @@
 import { useButtonContext } from "../../buttonContext";
 import styled from "styled-components";
-import { useState } from "react";
 
 const SilverMoon = styled.i`
   color: silver;
 `;
-function NightButton() {
+export default function NightButton() {
   const { workHours, setWorkHours, workDays } = useButtonContext();
-  const [working, setWorking] = useState(false);
 
   function work() {
     workDays[0].workShift = "evening";
-    const workDay = workDays[0].workShift;
 
-    console.log(workDay);
     setWorkHours(workHours + 12);
   }
   return (
@@ -25,5 +21,3 @@ function NightButton() {
     </>
   );
 }
-
-export default NightButton;

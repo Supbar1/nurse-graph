@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ActiveDayStyled = styled.div`
   position: relative;
   border-radius: 30%;
-
   overflow: hidden;
   color: black;
   opacity: 0.9;

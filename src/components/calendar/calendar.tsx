@@ -9,7 +9,6 @@ import styled from "styled-components";
 
 const CalendarStyled = styled.div`
   height: 60vh;
-  grid-area: window;
   border-radius: 12% 12% 5% 5%;
   box-shadow: 0 0.5rem 3rem rgba(143, 64, 248, 0.4);
 `;
@@ -23,7 +22,6 @@ const MonthStyled = styled.div`
 `;
 const Days = styled.div`
   height: 70%;
-  /* flex-wrap: wrap; */
   font-size: 1.5em;
   display: grid;
   grid-template-columns: repeat(7, 14.25%);
@@ -34,8 +32,6 @@ const Days = styled.div`
     justify-content: center;
     align-items: center;
     text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-  }
-  div:hover {
   }
 `;
 

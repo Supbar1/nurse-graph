@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 export function TableHeader() {
   return (
     <thead>

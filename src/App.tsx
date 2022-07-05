@@ -19,11 +19,9 @@ const Container = styled.div`
 `;
 
 const Interface = styled.div`
-  /* border: 2px solid red; */
   height: 80%;
   border-radius: 6em;
   display: flex;
-  /* grid-template-columns: 10vw 80vw; */
   margin: auto;
   align-items: center;
   @media (max-width: 750px) {
@@ -65,18 +63,16 @@ const App: React.FC = () => {
             <Navigation />
           </DashBoard>
           <Margin>
-          <NurseProvider>
- 
-            <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/login" element={<NewLogin />} />
-              <Route path="/graph" element={<Graph />} />
-              <Route path="/table" element={<Table />} />
-              <Route path="/help" element={<Help />} />
-              <Route path="/not-found" element={<NotFound />} />
- 
-           </Routes>
-           </NurseProvider>
+            <NurseProvider>
+              <Routes>
+                <Route path="/login" element={<NewLogin />} />
+                <Route path="/graph" element={<Graph />} />
+                <Route path="/table" element={<Table />} />
+                <Route path="/help" element={<Help />} />
+                <Route path="/" element={<Main />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </NurseProvider>
           </Margin>
         </Interface>
       </Container>
