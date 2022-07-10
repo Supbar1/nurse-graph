@@ -1,4 +1,5 @@
 import { ActiveDayStyled } from "./actualDays.styles";
+
 interface ILIST {
   daysOfMonth: number[];
   handleDaySelect(day: number): {} | JSX.Element;
@@ -10,7 +11,6 @@ export const ActualDays: React.FC<ILIST> = ({
   handleDaySelect,
   workDay,
 }) => {
-
   return (
     <>
       {daysOfMonth.map((day, index) => (

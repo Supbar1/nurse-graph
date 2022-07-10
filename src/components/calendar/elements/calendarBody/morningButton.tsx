@@ -1,5 +1,5 @@
-import { useButtonContext } from "../../buttonContext";
 import styled from "styled-components";
+import { useButtonContext } from "../../buttonContext";
 
 const YellowSun = styled.i`
   color: white;

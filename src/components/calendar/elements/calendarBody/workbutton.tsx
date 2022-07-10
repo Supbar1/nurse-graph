@@ -1,8 +1,10 @@
 import React from "react";
+import styled from "styled-components";
+//Components
 import DayButton from "./dayButton";
 import NightButton from "./nightButton";
-import styled from "styled-components";
 import MorningButton from "./morningButton";
+
 const BigButton = styled.span`
   height: 100%;
   display: flex;

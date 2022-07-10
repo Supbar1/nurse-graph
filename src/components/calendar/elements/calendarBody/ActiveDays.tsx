@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+//Components
 import DaysList from "./daysList";
 import WorkButton from "./workButton";
 import { ActualDays } from "./actualDays";
+//Context
 import { useButtonContext } from "../../buttonContext";
 
 export default function ActiveDays() {
