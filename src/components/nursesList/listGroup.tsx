@@ -1,4 +1,3 @@
-
 const ListGroup = () => {
   return (
     <ul className="list-group">

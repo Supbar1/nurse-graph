@@ -1,11 +1,3 @@
-type Nurses = {
-  nursesData: {
-    id: number;
-    name: string;
-    courses: { bloodTransfusion: boolean; RKO: boolean; EKG: boolean };
-    selfEmplointment: boolean;
-  };
-};
 export const allNurses = () => {
   return {
     nurses: [

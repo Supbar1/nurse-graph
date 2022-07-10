@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+//Components
 import { allNurses } from "./nursesList";
 import { NursesDataType } from "./tableBody";
 import { TableHeader } from "./tableHeader";

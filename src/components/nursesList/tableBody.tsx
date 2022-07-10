@@ -1,6 +1,8 @@
-import { useNurseContext } from "../../nurseContext";
+//Components
 import { DeleteButton } from "./DeleteButton";
 import { GrafButton } from "./GrafButton";
+//Context
+import { useNurseContext } from "../../nurseContext";
 
 export interface INurse {
   nursesData: NursesDataType;

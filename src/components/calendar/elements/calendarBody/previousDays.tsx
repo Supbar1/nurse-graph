@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { useButtonContext } from "../../buttonContext";
-import DaysList from "./daysList";
 import styled from "styled-components";
+//Components
+import DaysList from "./daysList";
+//Context
+import { useButtonContext } from "../../buttonContext";
 
 const OtherDays = styled.div`
   border-radius: 19px;
