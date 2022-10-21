@@ -1,5 +1,5 @@
-export function TableHeader() {
-  return (
+const TableHeader=()=> 
+   (
     <thead>
       <tr>
         <th>Imie i Nazwisko</th>
@@ -11,4 +11,5 @@ export function TableHeader() {
       </tr>
     </thead>
   );
-}
+
+export default TableHeader;

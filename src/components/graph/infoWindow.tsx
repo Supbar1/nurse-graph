@@ -1,6 +1,6 @@
 import { useButtonContext } from "../calendar/buttonContext";
 
-function InfoWindow() {
+const InfoWindow=()=> {
   const { workHours } = useButtonContext();
   return (
     <>

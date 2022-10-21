@@ -37,7 +37,7 @@ const Scroll = styled.div`
   }
 `;
 
-function Table() {
+const Table = () => {
   const [nurses, setNurses] = useState<NursesDataType>({ nurses: [] });
 
   const nursesArray: NursesDataType = allNurses();
@@ -45,7 +45,7 @@ function Table() {
     setNurses(nursesArray);
   }, []);
 
-  function handleDelete(nurse: number) {
+  const handleDelete=(nurse: number) =>{
     const deleteNurses = nurses?.nurses.filter((d) => d.id !== nurse);
     setNurses({ nurses: deleteNurses });
   }
@@ -58,6 +58,6 @@ function Table() {
       </table>
     </Scroll>
   );
-}
+};
 
 export default Table;

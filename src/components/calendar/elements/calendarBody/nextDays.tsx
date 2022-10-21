@@ -11,14 +11,14 @@ const OtherDays = styled.div`
   color: white;
 `;
 
-export default function NextDays() {
+const NextDays = () => {
   const [nextDays, setNextDays] = useState<number[]>([]);
   const { monthChange } = useButtonContext();
 
   const List = DaysList();
   useEffect(() => {
     setNextDays(List.nextDays);
-  }, [monthChange]);
+  }, [monthChange, List.nextDays]);
   return (
     <>
       {nextDays.map((day, index) => (
@@ -26,4 +26,5 @@ export default function NextDays() {
       ))}
     </>
   );
-}
+};
+export default NextDays;

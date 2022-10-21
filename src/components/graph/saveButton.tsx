@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Button = styled.button`
   grid-area: saveButton;
 `;
-export default function SaveButton() {
+const SaveButton = () => {
   const navigate = useNavigate();
   const handleSave = () => {
     navigate("/table");
@@ -14,4 +14,5 @@ export default function SaveButton() {
       Zapisz Zmiany
     </Button>
   );
-}
+};
+export default SaveButton;

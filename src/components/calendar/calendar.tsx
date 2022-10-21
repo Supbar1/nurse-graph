@@ -36,24 +36,22 @@ const Days = styled.div`
   }
 `;
 
-const Calendar: React.FC = () => {
-  return (
-    <>
-      <CalendarStyled>
-        <MonthStyled>
-          <PreviousMonth />
-          <Month />
-          <NextMonth />
-        </MonthStyled>
-        <WeekDays />
-        <Days>
-          <PrevDays />
-          <ActiveDays />
-          <NextDays />
-        </Days>
-      </CalendarStyled>
-    </>
-  );
-};
+const Calendar: React.FC = () => (
+  <>
+    <CalendarStyled>
+      <MonthStyled>
+        <PreviousMonth />
+        <Month />
+        <NextMonth />
+      </MonthStyled>
+      <WeekDays />
+      <Days>
+        <PrevDays />
+        <ActiveDays />
+        <NextDays />
+      </Days>
+    </CalendarStyled>
+  </>
+);
 
 export default Calendar;

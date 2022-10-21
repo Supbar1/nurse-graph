@@ -1,12 +1,12 @@
 import { useButtonContext } from "../../buttonContext";
 
-function DayButton() {
+const DayButton = () => {
   const { workHours, setWorkHours, workDays } = useButtonContext();
 
-  function work() {
+  const work = () => {
     workDays[0].workShift = "day";
     setWorkHours(workHours + 12);
-  }
+  };
   return (
     <i
       onClick={() => work()}
@@ -14,6 +14,6 @@ function DayButton() {
       className="fa-solid fa-sun"
     ></i>
   );
-}
+};
 
 export default DayButton;

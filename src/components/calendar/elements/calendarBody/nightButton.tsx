@@ -4,14 +4,14 @@ import { useButtonContext } from "../../buttonContext";
 const SilverMoon = styled.i`
   color: silver;
 `;
-export default function NightButton() {
+const NightButton = () => {
   const { workHours, setWorkHours, workDays } = useButtonContext();
 
-  function work() {
+  const work = () => {
     workDays[0].workShift = "evening";
 
     setWorkHours(workHours + 12);
-  }
+  };
   return (
     <>
       <SilverMoon
@@ -20,4 +20,5 @@ export default function NightButton() {
       ></SilverMoon>
     </>
   );
-}
+};
+export default NightButton;

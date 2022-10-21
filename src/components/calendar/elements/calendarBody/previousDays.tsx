@@ -10,7 +10,7 @@ const OtherDays = styled.div`
   overflow: hidden;
   color: white;
 `;
-export default function PreviousDays() {
+const PreviousDays=()=> {
   const [prevDays, setPrevDays] = useState<number[]>([]);
 
   const { monthChange } = useButtonContext();
@@ -18,7 +18,7 @@ export default function PreviousDays() {
   const List = DaysList();
   useEffect(() => {
     setPrevDays(List.prevDays);
-  }, [monthChange]);
+  }, [monthChange,List.prevDays]);
   return (
     <>
       {prevDays.map((day, index) => (
@@ -27,3 +27,4 @@ export default function PreviousDays() {
     </>
   );
 }
+export default  PreviousDays;
