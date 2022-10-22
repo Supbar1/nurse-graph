@@ -7,7 +7,7 @@ type NurseType = {
 const NurseContext = React.createContext<NurseType>({} as NurseType);
 
 const NurseProvider: React.FC = ({ children }) => {
-  const [name, setNurseName] = useState("");
+  const [name, setNurseName] = useState<string>("");
   return (
     <NurseContext.Provider value={{ name, setNurseName }}>
       {children}

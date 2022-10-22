@@ -3,9 +3,9 @@ import styled from "styled-components";
 //Components
 import { allNurses } from "./nursesList";
 import { NursesDataType } from "./tableBody";
-import { TableHeader } from "./tableHeader";
+import  TableHeader  from "./tableHeader";
 import { TableBody } from "./tableBody";
-
+//---
 const Scroll = styled.div`
   height: 75vh;
   overflow-y: scroll;
@@ -37,7 +37,7 @@ const Scroll = styled.div`
   }
 `;
 
-function Table() {
+const Table = () => {
   const [nurses, setNurses] = useState<NursesDataType>({ nurses: [] });
 
   const nursesArray: NursesDataType = allNurses();
@@ -45,7 +45,7 @@ function Table() {
     setNurses(nursesArray);
   }, []);
 
-  function handleDelete(nurse: number) {
+  const handleDelete=(nurse: number) =>{
     const deleteNurses = nurses?.nurses.filter((d) => d.id !== nurse);
     setNurses({ nurses: deleteNurses });
   }
@@ -58,6 +58,6 @@ function Table() {
       </table>
     </Scroll>
   );
-}
+};
 
 export default Table;

@@ -17,17 +17,14 @@ const BigButton = styled.span`
     margin: auto;
   }
 `;
-function WorkButton() {
- 
-  return (
-    <React.Fragment>
-      <BigButton>
-        <DayButton />
-        <NightButton />
-        <MorningButton />
-      </BigButton>
-    </React.Fragment>
-  );
-}
+const WorkButton = () => (
+  <React.Fragment>
+    <BigButton>
+      <DayButton />
+      <NightButton />
+      <MorningButton />
+    </BigButton>
+  </React.Fragment>
+);
 
 export default WorkButton;

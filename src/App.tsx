@@ -56,30 +56,28 @@ const DashBoard = styled.div`
 const Margin = styled.div`
   margin: auto;
 `;
-const App: React.FC = () => {
-  return (
-    <React.Fragment>
-      <Container>
-        <Interface>
-          <DashBoard>
-            <Navigation />
-          </DashBoard>
-          <Margin>
-            <NurseProvider>
-              <Routes>
-                <Route path="/login" element={<NewLogin />} />
-                <Route path="/graph" element={<Graph />} />
-                <Route path="/table" element={<Table />} />
-                <Route path="/help" element={<Help />} />
-                <Route path="/" element={<Main />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </NurseProvider>
-          </Margin>
-        </Interface>
-      </Container>
-    </React.Fragment>
-  );
-};
+const App: React.FC = () => (
+  <React.Fragment>
+    <Container>
+      <Interface>
+        <DashBoard>
+          <Navigation />
+        </DashBoard>
+        <Margin>
+          <NurseProvider>
+            <Routes>
+              <Route path="/login" element={<NewLogin />} />
+              <Route path="/graph" element={<Graph />} />
+              <Route path="/table" element={<Table />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/" element={<Main />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </NurseProvider>
+        </Margin>
+      </Interface>
+    </Container>
+  </React.Fragment>
+);
 
 export default App;

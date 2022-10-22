@@ -10,6 +10,6 @@ const Button = styled.button`
 type ButtonProps = {
   onDelete: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
-export const DeleteButton = (props: ButtonProps) => {
-  return <Button onClick={props.onDelete}>Zatwierdź</Button>;
-};
+export const DeleteButton = (props: ButtonProps) => (
+  <Button onClick={props.onDelete}>Zatwierdź</Button>
+);

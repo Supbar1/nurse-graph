@@ -1,5 +1,4 @@
-export const allNurses = () => {
-  return {
+export const allNurses = () => ({
     nurses: [
       {
         id: 101,
@@ -92,5 +91,4 @@ export const allNurses = () => {
         selfEmplointment: false,
       },
     ],
-  };
-};
+  });

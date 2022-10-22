@@ -5,15 +5,15 @@ const Pointer = styled.i`
   cursor: pointer;
   font-size: 3rem;
 `;
-function PreviousMonth() {
+const PreviousMonth = () => {
   const { monthChange, setMonthChange } = useButtonContext();
 
   return (
     <Pointer
       onClick={() => setMonthChange(monthChange - 1)}
       className="fas fa-angle-left next"
-    ></Pointer>
+    />
   );
-}
+};
 
 export default PreviousMonth;

@@ -14,32 +14,30 @@ import ButtonGrid from "./graph-grid/buttonGrid";
 //Context
 import ButtonProvider from "../calendar/buttonContext";
 
-function Graph() {
-  return (
-    <ButtonProvider>
-      <GridContainer>
-        <ActualNurseGrid>
-          <ActualNurse />
-        </ActualNurseGrid>
+const Graph = () => (
+  <ButtonProvider>
+    <GridContainer>
+      <ActualNurseGrid>
+        <ActualNurse />
+      </ActualNurseGrid>
 
-        <CalendarGrid>
-          <Calendar />
-        </CalendarGrid>
+      <CalendarGrid>
+        <Calendar />
+      </CalendarGrid>
 
-        <InfoWindowGrid>
-          <InfoWindow />
-        </InfoWindowGrid>
+      <InfoWindowGrid>
+        <InfoWindow />
+      </InfoWindowGrid>
 
-        <NursesWindowGrid>
-          <NursesWindow />
-        </NursesWindowGrid>
+      <NursesWindowGrid>
+        <NursesWindow />
+      </NursesWindowGrid>
 
-        <ButtonGrid>
-          <SaveButton />
-        </ButtonGrid>
-      </GridContainer>
-    </ButtonProvider>
-  );
-}
+      <ButtonGrid>
+        <SaveButton />
+      </ButtonGrid>
+    </GridContainer>
+  </ButtonProvider>
+);
 
 export default Graph;

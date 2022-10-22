@@ -52,26 +52,24 @@ const Login = styled.div`
   }
 `;
 
-function Navigation() {
-  return (
-    <Centered>
-      <Link to="/">
-        <Main />
-      </Link>
-      <Link to="/graph">
-        <Graph />
-      </Link>
-      <Link to="/table">
-        <Nurses />
-      </Link>
-      <Link to="/help">
-        <Help />
-      </Link>
-      <Link to="/login">
-        <Login />
-      </Link>
-    </Centered>
-  );
-}
+const Navigation = () => (
+  <Centered>
+    <Link to="/">
+      <Main />
+    </Link>
+    <Link to="/graph">
+      <Graph />
+    </Link>
+    <Link to="/table">
+      <Nurses />
+    </Link>
+    <Link to="/help">
+      <Help />
+    </Link>
+    <Link to="/login">
+      <Login />
+    </Link>
+  </Centered>
+);
 
 export default Navigation;

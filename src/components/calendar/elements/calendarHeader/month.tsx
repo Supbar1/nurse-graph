@@ -6,7 +6,7 @@ const Header = styled.h1`
   letter-spacing: 0.2rem;
 `;
 
-export default function Month() {
+const Month = () => {
   const months = [
     "Styczeń",
     "Luty",
@@ -24,13 +24,14 @@ export default function Month() {
 
   const { monthChange } = useButtonContext();
 
-  function handleMonthSelect() {
+  const handleMonthSelect = () => {
     const date = new Date();
     let miesiac = new Date(
       date.getFullYear(),
       date.getMonth() + monthChange
     ).getMonth();
     return months[miesiac];
-  }
+  };
   return <Header>{handleMonthSelect()}</Header>;
-}
+};
+export default Month;

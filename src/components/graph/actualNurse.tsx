@@ -12,7 +12,7 @@ const Flex = styled.div`
   display: flex;
   padding: 20px;
 `;
-function ActualNurse() {
+const ActualNurse=() =>{
   const { name } = useNurseContext();
   return (
     <Flex>

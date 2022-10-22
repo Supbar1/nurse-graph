@@ -5,15 +5,13 @@ const NursesShift = styled.div`
   padding: 1em;
 `;
 
-function NursesWindow() {
-  return (
-    <NursesShift>
-      <ul>Pracują już :</ul>
-      <li>Beatka</li>
-      <li>Bożenka</li>
-      <li>Barbara</li>
-    </NursesShift>
-  );
-}
+const NursesWindow = () => (
+  <NursesShift>
+    <ul>Pracują już :</ul>
+    <li>Beatka</li>
+    <li>Bożenka</li>
+    <li>Barbara</li>
+  </NursesShift>
+);
 
 export default NursesWindow;

@@ -10,8 +10,7 @@ export const ActualDays: React.FC<ILIST> = ({
   daysOfMonth,
   handleDaySelect,
   workDay,
-}) => {
-  return (
+}) =>  (
     <>
       {daysOfMonth.map((day, index) => (
         <ActiveDayStyled onClick={() => workDay(day)} key={index}>
@@ -20,4 +19,3 @@ export const ActualDays: React.FC<ILIST> = ({
       ))}
     </>
   );
-};

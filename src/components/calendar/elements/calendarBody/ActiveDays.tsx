@@ -6,16 +6,16 @@ import { ActualDays } from "./actualDays";
 //Context
 import { useButtonContext } from "../../buttonContext";
 
-export default function ActiveDays() {
+const ActiveDays = () => {
   const { workDays, setWorkDays, monthChange } = useButtonContext();
   const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
 
   const List = DaysList();
   useEffect(() => {
     setDaysOfMonth(List.daysOfMonth);
-  }, [monthChange]);
+  }, [monthChange, List.daysOfMonth]);
 
-  function workDay(day: number) {
+  const workDay = (day: number) => {
     if (workDays[0].workShift === "none") return;
 
     for (let key in workDays) {
@@ -35,10 +35,11 @@ export default function ActiveDays() {
     ];
 
     setWorkDays([...workDay]);
-  }
+  };
 
-  function handleDaySelect(day: number) {
+  const handleDaySelect = (day: number) => {
     const preFilter = [...workDays];
+
     for (let key in preFilter) {
       if (
         preFilter[key].day === day &&
@@ -67,7 +68,7 @@ export default function ActiveDays() {
     }
 
     return day;
-  }
+  };
 
   return (
     <ActualDays
@@ -76,4 +77,5 @@ export default function ActiveDays() {
       handleDaySelect={handleDaySelect}
     />
   );
-}
+};
+export default ActiveDays;
