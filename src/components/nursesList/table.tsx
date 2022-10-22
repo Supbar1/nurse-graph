@@ -3,7 +3,7 @@ import styled from "styled-components";
 //Components
 import { allNurses } from "./nursesList";
 import { NursesDataType } from "./tableBody";
-import { TableHeader } from "./tableHeader";
+import  TableHeader  from "./tableHeader";
 import { TableBody } from "./tableBody";
 
 const Scroll = styled.div`
