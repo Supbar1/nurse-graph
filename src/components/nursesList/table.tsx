@@ -5,7 +5,7 @@ import { allNurses } from "./nursesList";
 import { NursesDataType } from "./tableBody";
 import  TableHeader  from "./tableHeader";
 import { TableBody } from "./tableBody";
-
+//---
 const Scroll = styled.div`
   height: 75vh;
   overflow-y: scroll;
