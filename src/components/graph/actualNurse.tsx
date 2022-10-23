@@ -1,6 +1,6 @@
 import styled from "styled-components";
 //Context
-import { useNurseContext } from "../../nurseContext";
+import { useNurseContext } from "../../NurseContext";
 
 const Nurse = styled.h3`
   margin: auto;
@@ -12,7 +12,7 @@ const Flex = styled.div`
   display: flex;
   padding: 20px;
 `;
-const ActualNurse=() =>{
+const ActualNurse = () => {
   const { name } = useNurseContext();
   return (
     <Flex>
@@ -20,6 +20,6 @@ const ActualNurse=() =>{
       <Nurse>{name}</Nurse>
     </Flex>
   );
-}
+};
 
 export default ActualNurse;

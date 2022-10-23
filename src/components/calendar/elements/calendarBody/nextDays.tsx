@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 //Components
-import DaysList from "./daysList";
+import DaysList from "./DaysList";
 //Context
-import { useButtonContext } from "../../buttonContext";
+import { useButtonContext } from "../../ButtonContext";
 
 const OtherDays = styled.div`
   border-radius: 19px;
@@ -18,7 +18,7 @@ const NextDays = () => {
   const List = DaysList();
   useEffect(() => {
     setNextDays(List.nextDays);
-  }, [monthChange, List.nextDays]);
+  }, [monthChange]);
   return (
     <>
       {nextDays.map((day, index) => (

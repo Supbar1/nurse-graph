@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 //Components
-import DaysList from "./daysList";
-import WorkButton from "./workButton";
-import { ActualDays } from "./actualDays";
+import DaysList from "./DaysList";
+import WorkButton from "./Workbutton";
+import { ActualDays } from "./ActualDays";
 //Context
-import { useButtonContext } from "../../buttonContext";
+import { useButtonContext } from "../../ButtonContext";
 
 const ActiveDays = () => {
   const { workDays, setWorkDays, monthChange } = useButtonContext();
@@ -13,7 +13,7 @@ const ActiveDays = () => {
   const List = DaysList();
   useEffect(() => {
     setDaysOfMonth(List.daysOfMonth);
-  }, [monthChange, List.daysOfMonth]);
+  }, [monthChange]);
 
   const workDay = (day: number) => {
     if (workDays[0].workShift === "none") return;

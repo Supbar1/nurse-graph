@@ -2,15 +2,15 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 //Components
-import Table from "./components/nursesList/table";
-import Help from "./components/help/help";
-import Main from "./components/main/main";
+import Table from "./components/nursesList/Table";
+import Help from "./components/help/Help";
+import Main from "./components/main/Main";
 import Navigation from "./components/Navigation";
-import NotFound from "./components/notFound";
-import Graph from "./components/graph/graph";
-import NewLogin from "./components/login/newLogin";
+import NotFound from "./components/NotFound";
+import Graph from "./components/graph/Graph";
+import NewLogin from "./components/login/NewLogin";
 //Context
-import NurseProvider from "./nurseContext";
+import NurseProvider from "./NurseContext";
 
 const Container = styled.div`
   font-family: "Roboto", sans-serif;

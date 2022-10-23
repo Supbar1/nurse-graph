@@ -6,14 +6,7 @@ type ButtonType = {
   monthChange: number;
   setMonthChange: React.Dispatch<React.SetStateAction<number>>;
   workDays: WorkDaysType
-  setWorkDays: React.Dispatch<
-    React.SetStateAction<
-      Array<{
-        day: number;
-        monthChange: number;
-        workShift: string;
-      }>
-    >
+  setWorkDays: React.Dispatch<React.SetStateAction<WorkDaysType>
   >;
 };
 

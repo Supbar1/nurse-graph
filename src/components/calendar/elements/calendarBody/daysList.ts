@@ -1,12 +1,12 @@
-import { useButtonContext } from "../../buttonContext";
+import { useButtonContext } from "../../ButtonContext";
 
-const DaysList=()=> {
+const DaysList = () => {
   const { monthChange } = useButtonContext();
 
   const date = new Date();
   date.setUTCDate(1);
 
-// Need to improve this index
+  // Need to improve this index
 
   let firstDayIndex =
     new Date(date.getFullYear(), date.getMonth() + monthChange, 0).getDay() + 7;
@@ -46,5 +46,5 @@ const DaysList=()=> {
   }
   const daysToRender = { prevDays, daysOfMonth, nextDays };
   return daysToRender;
-}
-export default  DaysList;
+};
+export default DaysList;

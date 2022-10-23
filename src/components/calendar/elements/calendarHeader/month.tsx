@@ -1,4 +1,4 @@
-import { useButtonContext } from "../../buttonContext";
+import { useButtonContext } from "../../ButtonContext";
 import styled from "styled-components";
 
 const Header = styled.h1`
