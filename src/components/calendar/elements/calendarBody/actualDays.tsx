@@ -1,4 +1,4 @@
-import { ActiveDayStyled } from "./actualDays.styles";
+import { ActiveDayStyled } from "./ActualDays.styles";
 
 interface ILIST {
   daysOfMonth: number[];

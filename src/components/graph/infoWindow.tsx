@@ -1,6 +1,6 @@
-import { useButtonContext } from "../calendar/buttonContext";
+import { useButtonContext } from "../calendar/ButtonContext";
 
-const InfoWindow=()=> {
+const InfoWindow = () => {
   const { workHours } = useButtonContext();
   return (
     <>
@@ -8,5 +8,5 @@ const InfoWindow=()=> {
       <p>Razem godzin: {workHours}</p>
     </>
   );
-}
+};
 export default InfoWindow;

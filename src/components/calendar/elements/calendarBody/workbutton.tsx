@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 //Components
-import DayButton from "./dayButton";
-import NightButton from "./nightButton";
-import MorningButton from "./morningButton";
+import DayButton from "./DayButton";
+import NightButton from "./NightButton";
+import MorningButton from "./MorningButton";
 
 const BigButton = styled.span`
   height: 100%;

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 //Components
-import PreviousMonth from "./elements/calendarHeader/previousMonth";
-import NextMonth from "./elements/calendarHeader/nextMonth";
-import PrevDays from "./elements/calendarBody/previousDays";
-import WeekDays from "./elements/calendarHeader/weekDays";
-import NextDays from "./elements/calendarBody/nextDays";
-import ActiveDays from "./elements/calendarBody/activeDays";
-import Month from "./elements/calendarHeader/month";
+import PreviousMonth from "./elements/calendarHeader/PreviousMonth";
+import NextMonth from "./elements/calendarHeader/NextMonth";
+import PrevDays from "./elements/calendarBody/PreviousDays";
+import WeekDays from "./elements/calendarHeader/WeekDays";
+import NextDays from "./elements/calendarBody/NextDays";
+import ActiveDays from "./elements/calendarBody/ActiveDays";
+import Month from "./elements/calendarHeader/Month";
 
 const CalendarStyled = styled.div`
   height: 60vh;

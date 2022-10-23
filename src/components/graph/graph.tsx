@@ -1,9 +1,9 @@
 //Components
-import InfoWindow from "./infoWindow";
-import Calendar from "../calendar/calendar";
-import NursesWindow from "./nursesWindow";
-import ActualNurse from "./actualNurse";
-import SaveButton from "./saveButton";
+import InfoWindow from "./InfoWindow";
+import Calendar from "../calendar/Calendar";
+import NursesWindow from "./NursesWindow";
+import ActualNurse from "./ActualNurse";
+import SaveButton from "./SaveButton";
 //Styling
 import GridContainer from "./graph-grid/gridContainer";
 import InfoWindowGrid from "./graph-grid/infoWindowGrid";
@@ -12,7 +12,7 @@ import ActualNurseGrid from "./graph-grid/actualNurseGrid";
 import CalendarGrid from "./graph-grid/calendarGrid";
 import ButtonGrid from "./graph-grid/buttonGrid";
 //Context
-import ButtonProvider from "../calendar/buttonContext";
+import ButtonProvider from "../calendar/ButtonContext";
 
 const Graph = () => (
   <ButtonProvider>

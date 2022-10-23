@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 //Components
-import { allNurses } from "./nursesList";
-import { NursesDataType } from "./tableBody";
-import TableHeader from "./tableHeader";
-import { TableBody } from "./tableBody";
+import { allNurses } from "./NursesList";
+import { NursesDataType } from "./TableBody";
+import TableHeader from "./TableHeader";
+import { TableBody } from "./TableBody";
 // heyhey
 const Scroll = styled.div`
   height: 75vh;

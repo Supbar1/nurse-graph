@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useButtonContext } from "../../buttonContext";
+import { useButtonContext } from "../../ButtonContext";
 
 const SilverMoon = styled.i`
   color: silver;

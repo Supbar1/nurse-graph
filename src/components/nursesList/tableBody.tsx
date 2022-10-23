@@ -2,7 +2,7 @@
 import { DeleteButton } from "./DeleteButton";
 import { GrafButton } from "./GrafButton";
 //Context
-import { useNurseContext } from "../../nurseContext";
+import { useNurseContext } from "../../NurseContext";
 
 export interface INurse {
   nursesData: NursesDataType;

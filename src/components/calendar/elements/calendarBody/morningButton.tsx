@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useButtonContext } from "../../buttonContext";
+import { useButtonContext } from "../../ButtonContext";
 
 const YellowSun = styled.i`
   color: white;
@@ -12,9 +12,7 @@ const MorningButton = () => {
 
     setWorkHours(workHours + 8);
   };
-  return (
-    <YellowSun onClick={() => work()} className="fa-solid fa-clock" />
-  );
+  return <YellowSun onClick={() => work()} className="fa-solid fa-clock" />;
 };
 
 export default MorningButton;
