@@ -20,7 +20,7 @@ type NursesType = {
 };
 
 export const TableBody: React.FC<INurse> = ({ nursesData, handleDelete }) => {
-  const { setNurseName } = useNurseContext();
+  // const { setNurseName } = useNurseContext();
 
   return (
     <tbody>
@@ -35,9 +35,9 @@ export const TableBody: React.FC<INurse> = ({ nursesData, handleDelete }) => {
           <td></td>
           <td></td>
           <td>
-            <div onClick={() => setNurseName(nurse.name)}>
+            {/* <div onClick={() => setNurseName(nurse.name)}> */}
               <GrafButton />
-            </div>
+            {/* </div> */}
           </td>
           <td>
             <DeleteButton

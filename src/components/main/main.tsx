@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import http from "../../services/httpService";
 import config from "../../services/config.json";
+import { useNurseContext } from "../../NurseContext";
 const Container = styled.div`
   width: min(60vw, 850px);
 `;
@@ -30,38 +31,34 @@ interface WorkDayType {
 interface NurseType {
   firstName?: string;
   lastName?: string;
-  // name: NameType;
   picture?: string;
   id?: number;
   workDays?: WorkDayType[];
 }
 //Number(element_name)
 const Main = () => {
-  const [nurses, setNurses] = useState<NurseType[]>([] as NurseType[]);
+  // const [nurses, setNurses] = useState<NurseType[]>([] as NurseType[]);
+  const { nurses } = useNurseContext();
 
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
     for (let i = 0; i <= 3; i++) {
       const { data } = await http.get(config.apiNurses);
-      const { results } = data;
-
-      // const
-      container.push(...results);
-
-      // fetchRandomData().then(({ results }) => {
-      // });
+      container.push(...data.results);
     }
     let nurse = [];
     for (let item of container) {
-      const nurseName = item.name.first;
-      const nurseSurname = item.name.last;
-      const picture = item.picture.thumbnail;
-      console.log(picture);
-      const nurseObject = { firstName: nurseName, lastName: nurseSurname };
-      // console.log(nurseObject);
+      const nurseObject = {
+        firstName: item.name.first,
+        lastName: item.name.last,
+        picture: item.picture.thumbnail,
+        id: item.location.street.number,
+        workDays: [],
+      };
+      console.log(nurseObject);
       nurse.push(nurseObject);
     }
-    setNurses(nurse);
+    // setNurses(nurse);
   };
 
   useEffect(() => {
@@ -70,14 +67,11 @@ const Main = () => {
 
   return (
     <Container>
-      <button onClick={() => console.log(nurses)}>Button</button>
-      {/* {nurses && JSON.stringify(nurses)} */}
       {nurses &&
         nurses.map((item: any, index: number) => (
           <div key={index}>
-            {item.name}
-            {/* {item.name.last}{" "} */}
-            {/* <img alt="sorry" src={item.picture.large} /> */}
+            {item.firstName} &nbsp; {item.lastName}&nbsp;
+            <img alt="sorry" src={item.picture} />
           </div>
         ))}
     </Container>
