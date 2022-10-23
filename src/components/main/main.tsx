@@ -37,7 +37,6 @@ interface NurseType {
 }
 //Number(element_name)
 const Main = () => {
-  // const [nurses, setNurses] = useState<NurseType[]>([] as NurseType[]);
   const { nurses } = useNurseContext();
 
   const apiNurses = async (): Promise<any> => {
