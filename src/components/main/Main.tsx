@@ -75,7 +75,7 @@ const Main = () => {
       {nurses &&
         nurses.map((item: any, index: number) => (
           <div key={index}>
-            {item.name}
+            {item.firstName}
             {/* {item.name.last}{" "} */}
             {/* <img alt="sorry" src={item.picture.large} /> */}
           </div>

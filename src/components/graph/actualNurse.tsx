@@ -13,11 +13,11 @@ const Flex = styled.div`
   padding: 20px;
 `;
 const ActualNurse = () => {
-  const { name } = useNurseContext();
+  const { nurses } = useNurseContext();
   return (
     <Flex>
       <Label>Aktualna pielęgniarka: </Label>
-      <Nurse>{name}</Nurse>
+      <Nurse>{nurses[0]?.firstName}</Nurse>
     </Flex>
   );
 };

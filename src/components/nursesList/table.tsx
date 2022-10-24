@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 //Components
-import { allNurses } from "./NursesList";
+import { allNurses } from "./Nurseslist";
 import { NursesDataType } from "./TableBody";
 import TableHeader from "./TableHeader";
 import { TableBody } from "./TableBody";
