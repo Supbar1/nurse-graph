@@ -3,6 +3,7 @@ import styled from "styled-components";
 const NursesShift = styled.div`
   white-space: nowrap;
   padding: 1em;
+  grid-area: nurses;
 `;
 
 const NursesWindow = () => (

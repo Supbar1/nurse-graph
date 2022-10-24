@@ -38,9 +38,10 @@ const ActiveDays = () => {
   };
 
   const handleDaySelect = (day: number) => {
+    
     const preFilter = [...workDays];
 
-    for (let key in preFilter) {
+    for (let key in workDays) {
       if (
         preFilter[key].day === day &&
         preFilter[key].monthChange === monthChange &&
