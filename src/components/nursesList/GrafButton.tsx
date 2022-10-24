@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-// import { GrafButton } from './GrafButton';
 
 const Button = styled.button`
   padding: 1.3vh;
@@ -8,14 +7,12 @@ const Button = styled.button`
   background-color: rgba(39, 200, 255, 0.5);
   border: 1px solid rgba(39, 200, 255, 1);
 `;
-interface GrafButtonType{
-  id: number;
-}
+
 export const GrafButton = () => {
   const navigate = useNavigate();
   const changeUrl = () => {
     navigate("/graph");
   };
 
-  return <Button onClick={()=>changeUrl}>Grafik</Button>;
+  return <Button onClick={changeUrl}>Grafik</Button>;
 };

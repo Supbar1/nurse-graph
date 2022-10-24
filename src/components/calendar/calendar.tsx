@@ -9,7 +9,6 @@ import ActiveDays from "./elements/calendarBody/ActiveDays";
 import Month from "./elements/calendarHeader/Month";
 
 const CalendarStyled = styled.div`
-  grid-area: calendar;
   height: 60vh;
   border-radius: 12% 12% 5% 5%;
   box-shadow: 0 0.5rem 3rem rgba(143, 64, 248, 0.4);
@@ -38,19 +37,21 @@ const Days = styled.div`
 `;
 
 const Calendar: React.FC = () => (
-  <CalendarStyled>
-    <MonthStyled>
-      <PreviousMonth />
-      <Month />
-      <NextMonth />
-    </MonthStyled>
-    <WeekDays />
-    <Days>
-      <PrevDays />
-      <ActiveDays />
-      <NextDays />
-    </Days>
-  </CalendarStyled>
+  <>
+    <CalendarStyled>
+      <MonthStyled>
+        <PreviousMonth />
+        <Month />
+        <NextMonth />
+      </MonthStyled>
+      <WeekDays />
+      <Days>
+        <PrevDays />
+        <ActiveDays />
+        <NextDays />
+      </Days>
+    </CalendarStyled>
+  </>
 );
 
 export default Calendar;

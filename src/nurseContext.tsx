@@ -1,41 +1,44 @@
 import React, { useState, useEffect, createContext } from "react";
 import http from "./services/httpService";
 import config from "./services/config.json";
-interface WorkDay{
+
+interface NurseGraphProviderProps {
+  children: React.ReactNode;
+}
+
+interface WorkDayType {
   day: number;
+  month: number;
   shift: string;
 }
-export interface WorkDayType {
-  month: number;
-  workDays: WorkDay[];
-}
 //question marks to remove without workDays
-export interface NurseType {
+interface NurseType {
   firstName?: string;
   lastName?: string;
   picture?: string;
   id?: number;
   workDays?: WorkDayType[];
-}
-export interface NurseGraphContext {
-  nurses: NurseType[];
-  setNurses: React.Dispatch<React.SetStateAction<NurseType[]>>;
-  actualNurse: NurseType;
-  setActualNurse: React.Dispatch<React.SetStateAction<NurseType>>;
-}
 
+}
+interface NurseGraphContext {
+  nurses: NurseType[];
+}
 const NurseContext = createContext({} as NurseGraphContext);
 
 const NurseProvider = ({ children }: any) => {
   const [nurses, setNurses] = useState<NurseType[]>([] as NurseType[]);
-  const [actualNurse, setActualNurse] = useState<NurseType>({} as NurseType);
 
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
-    for (let i = 0; i <= 9; i++) {
+    for (let i = 0; i <= 3; i++) {
       const { data } = await http.get(config.apiNurses);
       const { results } = data;
+
+      // const
       container.push(...results);
+
+      // fetchRandomData().then(({ results }) => {
+      // });
     }
     let nurse = [];
     for (let item of container) {
@@ -46,6 +49,7 @@ const NurseProvider = ({ children }: any) => {
         id: item.location.street.number,
         workDays: [],
       };
+      console.log(nurseObject);
       nurse.push(nurseObject);
     }
     setNurses(nurse);
@@ -54,13 +58,7 @@ const NurseProvider = ({ children }: any) => {
   useEffect(() => {
     apiNurses();
   }, []);
-  return (
-    <NurseContext.Provider
-      value={{ nurses, setNurses, actualNurse, setActualNurse }}
-    >
-      {children}
-    </NurseContext.Provider>
-  );
+  return <NurseContext.Provider value={{nurses}}>{children}</NurseContext.Provider>;
 };
 
 export default NurseProvider;

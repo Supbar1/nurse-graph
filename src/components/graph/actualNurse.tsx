@@ -2,29 +2,23 @@ import styled from "styled-components";
 //Context
 import { useNurseContext } from "../../NurseContext";
 
+const Nurse = styled.h3`
+  margin: auto;
+`;
 const Label = styled.h4`
   margin: auto;
 `;
-const Image = styled.img`
-  border-radius: 20px;
-`;
-const Container = styled.div`
-  grid-area: actual;
+const Flex = styled.div`
   display: flex;
-  justify-content: center;
   padding: 20px;
-  align-items: center;
 `;
 const ActualNurse = () => {
-  const { actualNurse } = useNurseContext();
+  const { nurses } = useNurseContext();
   return (
-    <Container>
+    <Flex>
       <Label>Aktualna pielęgniarka: </Label>
-      <Label>
-        {actualNurse.firstName}&nbsp;{actualNurse.lastName}&nbsp;
-        <Image alt="nurse picture" src={actualNurse.picture} />
-      </Label>
-    </Container>
+      <Nurse>{nurses[0]?.firstName}</Nurse>
+    </Flex>
   );
 };
 

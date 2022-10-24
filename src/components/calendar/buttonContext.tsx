@@ -16,7 +16,6 @@ type WorkDaysType = Array<{
   workShift: string;
 }>
 
-
 const ButtonContext = React.createContext<ButtonType>({} as ButtonType);
 
 const ButtonProvider: React.FC = ({ children }) => {
