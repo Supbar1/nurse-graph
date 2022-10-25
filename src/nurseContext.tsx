@@ -5,28 +5,32 @@ import config from "./services/config.json";
 interface NurseGraphProviderProps {
   children: React.ReactNode;
 }
-
-interface WorkDayType {
+interface SingleShift {
   day: number;
-  month: number;
   shift: string;
+}
+interface WorkDayType {
+  month: number;
+  workDays: SingleShift[];
 }
 //question marks to remove without workDays
 interface NurseType {
+  id?: number;
   firstName?: string;
   lastName?: string;
   picture?: string;
-  id?: number;
   workDays?: WorkDayType[];
-
 }
 interface NurseGraphContext {
   nurses: NurseType[];
+  actualNurse: NurseType ;
+  setActualNurse: React.Dispatch<React.SetStateAction<NurseType>>;
 }
 const NurseContext = createContext({} as NurseGraphContext);
 
 const NurseProvider = ({ children }: any) => {
   const [nurses, setNurses] = useState<NurseType[]>([] as NurseType[]);
+  const [actualNurse, setActualNurse] = useState<NurseType>({} as NurseType);
 
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
@@ -58,7 +62,11 @@ const NurseProvider = ({ children }: any) => {
   useEffect(() => {
     apiNurses();
   }, []);
-  return <NurseContext.Provider value={{nurses}}>{children}</NurseContext.Provider>;
+  return (
+    <NurseContext.Provider value={{ nurses, actualNurse, setActualNurse }}>
+      {children}
+    </NurseContext.Provider>
+  );
 };
 
 export default NurseProvider;
