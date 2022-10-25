@@ -16,7 +16,7 @@ const ActualNurse = () => {
   const { nurses, actualNurse } = useNurseContext();
   return (
     <Flex>
-      {/* <Label>Aktualna pielęgniarka: </Label> */}
+      <Label>Aktualna pielęgniarka: </Label>
       <Nurse>{actualNurse?.firstName}</Nurse>
     </Flex>
   );
