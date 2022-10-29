@@ -1,12 +1,5 @@
-import { useButtonContext } from "../../ButtonContext";
-
 const DayButton = () => {
-  const { workHours, setWorkHours, workDays } = useButtonContext();
-
-  const work = () => {
-    workDays[0].workShift = "day";
-    setWorkHours(workHours + 12);
-  };
+  const work = () => {};
   return (
     <i
       onClick={() => work()}

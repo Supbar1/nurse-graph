@@ -12,10 +12,10 @@ import ActualNurseGrid from "./graph-grid/actualNurseGrid";
 import CalendarGrid from "./graph-grid/calendarGrid";
 import ButtonGrid from "./graph-grid/buttonGrid";
 //Context
-import ButtonProvider from "../calendar/ButtonContext";
+import NurseProvider from "../../NurseContext";
 
 const Graph = () => (
-  <ButtonProvider>
+  <NurseProvider>
     <GridContainer>
       <ActualNurseGrid>
         <ActualNurse />
@@ -37,7 +37,7 @@ const Graph = () => (
         <SaveButton />
       </ButtonGrid>
     </GridContainer>
-  </ButtonProvider>
+  </NurseProvider>
 );
 
 export default Graph;

@@ -1,15 +1,14 @@
-import { useButtonContext } from "../../ButtonContext";
+import {useNurseContext} from "../../../../NurseContext"
 
 const DaysList = () => {
-  const { monthChange } = useButtonContext();
-
+const {monthChange}= useNurseContext();
   const date = new Date();
   date.setUTCDate(1);
 
   // Need to improve this index
 
   let firstDayIndex =
-    new Date(date.getFullYear(), date.getMonth() + monthChange, 0).getDay() + 7;
+    new Date(date.getFullYear(), date.getMonth() + monthChange , 0).getDay() + 7;
   firstDayIndex > 7 ? (firstDayIndex -= 7) : (firstDayIndex = firstDayIndex);
 
   const lastPreviousDay = new Date(

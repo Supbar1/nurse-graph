@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useNurseContext } from "../../../../NurseContext";
 //Components
 import DaysList from "./DaysList";
 //Context
-import { useButtonContext } from "../../ButtonContext";
 
 const OtherDays = styled.div`
   border-radius: 19px;
@@ -12,8 +12,7 @@ const OtherDays = styled.div`
 `;
 const PreviousDays = () => {
   const [prevDays, setPrevDays] = useState<number[]>([]);
-
-  const { monthChange } = useButtonContext();
+  const { monthChange} =useNurseContext();
 
   const List = DaysList();
   useEffect(() => {
