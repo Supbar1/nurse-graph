@@ -1,48 +1,66 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, ReactNode } from "react";
 import http from "./services/httpService";
 import config from "./services/config.json";
 
+interface NurseProviderProps {
+  children: ReactNode;
+}
 interface NurseGraphProviderProps {
   children: React.ReactNode;
 }
-interface SingleShift {
-  day: number;
-  shift: string;
+
+export interface allShifts {
+  morningShift?: string[];
+  dayShift?: string[];
+  nightShift?: string[];
 }
-interface WorkDayType {
-  month: number;
-  workDays: SingleShift[];
+
+export interface DayOfMonthType {
+  [day: number]: (number | undefined)[];
 }
-//question marks to remove without workDays
+
+export interface WorkScheduleType {
+  [month: string]: DayOfMonthType[];
+  // [month: string]: DayOfMonthType[];
+}
 interface NurseType {
   id?: number;
   firstName?: string;
   lastName?: string;
   picture?: string;
-  workDays?: WorkDayType[];
 }
 interface NurseGraphContext {
   nurses: NurseType[];
-  actualNurse: NurseType ;
+  actualNurse: NurseType;
   setActualNurse: React.Dispatch<React.SetStateAction<NurseType>>;
+  month: number;
+  setMonth: React.Dispatch<React.SetStateAction<number>>;
+  addDay: () => void;
+  workSchedule: WorkScheduleType;
+  setWorkSchedule: React.Dispatch<React.SetStateAction<WorkScheduleType>>;
+  monthChange: number;
+  setMonthChange: React.Dispatch<React.SetStateAction<number>>;
 }
+
 const NurseContext = createContext({} as NurseGraphContext);
 
-const NurseProvider = ({ children }: any) => {
+const NurseProvider = ({ children }: NurseProviderProps) => {
   const [nurses, setNurses] = useState<NurseType[]>([] as NurseType[]);
   const [actualNurse, setActualNurse] = useState<NurseType>({} as NurseType);
+  const [month, setMonth] = useState<number>(0);
+  const [monthChange, setMonthChange] = useState<number>(0);
 
+  const [workSchedule, setWorkSchedule] = useState<WorkScheduleType>(
+    {} as WorkScheduleType
+  );
+
+  const addDay = () => {};
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
-    for (let i = 0; i <= 3; i++) {
+    for (let i = 0; i <= 9; i++) {
       const { data } = await http.get(config.apiNurses);
       const { results } = data;
-
-      // const
       container.push(...results);
-
-      // fetchRandomData().then(({ results }) => {
-      // });
     }
     let nurse = [];
     for (let item of container) {
@@ -51,19 +69,30 @@ const NurseProvider = ({ children }: any) => {
         lastName: item.name.last,
         picture: item.picture.thumbnail,
         id: item.location.street.number,
-        workDays: [],
       };
-      console.log(nurseObject);
       nurse.push(nurseObject);
     }
     setNurses(nurse);
   };
-
   useEffect(() => {
     apiNurses();
   }, []);
+
   return (
-    <NurseContext.Provider value={{ nurses, actualNurse, setActualNurse }}>
+    <NurseContext.Provider
+      value={{
+        nurses,
+        actualNurse,
+        setActualNurse,
+        month,
+        setMonth,
+        addDay,
+        workSchedule,
+        setWorkSchedule,
+        monthChange,
+        setMonthChange,
+      }}
+    >
       {children}
     </NurseContext.Provider>
   );

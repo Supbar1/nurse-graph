@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import NewNursesList from "../../NewNursesList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import http from "../../services/httpService";

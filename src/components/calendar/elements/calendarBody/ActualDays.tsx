@@ -1,3 +1,4 @@
+import { useNurseContext } from "../../../../NurseContext";
 import { ActiveDayStyled } from "./ActualDays.styles";
 
 interface ILIST {
@@ -10,12 +11,18 @@ export const ActualDays: React.FC<ILIST> = ({
   daysOfMonth,
   handleDaySelect,
   workDay,
-}) =>  (
+}) => {
+  const { workSchedule, setWorkSchedule,actualNurse } = useNurseContext();
+
+
+
+  return (
     <>
-      {daysOfMonth.map((day, index) => (
-        <ActiveDayStyled onClick={() => workDay(day)} key={index}>
+      {daysOfMonth.map((day) => (
+        <ActiveDayStyled onClick={() => workDay(day)} key={day}>
           {handleDaySelect(day)}
         </ActiveDayStyled>
       ))}
     </>
   );
+};

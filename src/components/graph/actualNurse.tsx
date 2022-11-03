@@ -17,7 +17,7 @@ const ActualNurse = () => {
   return (
     <Flex>
       <Label>Aktualna pielęgniarka: </Label>
-      <Nurse>{actualNurse?.firstName}</Nurse>
+      <Nurse>{actualNurse?.id}</Nurse>
     </Flex>
   );
 };

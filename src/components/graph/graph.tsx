@@ -12,32 +12,29 @@ import ActualNurseGrid from "./graph-grid/actualNurseGrid";
 import CalendarGrid from "./graph-grid/calendarGrid";
 import ButtonGrid from "./graph-grid/buttonGrid";
 //Context
-import ButtonProvider from "../calendar/ButtonContext";
 
 const Graph = () => (
-  <ButtonProvider>
-    <GridContainer>
-      <ActualNurseGrid>
-        <ActualNurse />
-      </ActualNurseGrid>
+  <GridContainer>
+    <ActualNurseGrid>
+      <ActualNurse />
+    </ActualNurseGrid>
 
-      <CalendarGrid>
-        <Calendar />
-      </CalendarGrid>
+    <CalendarGrid>
+      <Calendar />
+    </CalendarGrid>
 
-      <InfoWindowGrid>
-        <InfoWindow />
-      </InfoWindowGrid>
+    <InfoWindowGrid>
+      <InfoWindow />
+    </InfoWindowGrid>
 
-      <NursesWindowGrid>
-        <NursesWindow />
-      </NursesWindowGrid>
+    <NursesWindowGrid>
+      <NursesWindow />
+    </NursesWindowGrid>
 
-      <ButtonGrid>
-        <SaveButton />
-      </ButtonGrid>
-    </GridContainer>
-  </ButtonProvider>
+    <ButtonGrid>
+      <SaveButton />
+    </ButtonGrid>
+  </GridContainer>
 );
 
 export default Graph;
