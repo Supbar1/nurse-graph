@@ -24,9 +24,9 @@ const WorkButton = ({activeDay}: any,) => {
   return (
     <React.Fragment>
       <BigButton>
-        {/* <DayButton activeDay={activeDay} /> */}
-        {/* <NightButton activeDay={activeDay} /> */}
         <MorningButton activeDay={activeDay} />
+        <DayButton activeDay={activeDay} />
+        <NightButton activeDay={activeDay} />
       </BigButton>
     </React.Fragment>
   );

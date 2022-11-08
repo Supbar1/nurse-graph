@@ -8,7 +8,7 @@ import {
 // import MorningButton from './MorningButton';
 
 const MorningButtonIcon = styled.i`
-  color: white;
+  color: yellow;
 `;
 interface MorningButtonType {
   log: () => void;
@@ -40,25 +40,30 @@ const MorningButton = ({ activeDay }: any) => {
   };
 
   const work = () => {
+    // const arrayOfActiveDay: any = ;
 
-    const arrayOfDay: any = [...Object.values(activeDay)];
-    const shiftsObject = arrayOfDay.flat(1)[0];
-    let experimentalArray = [...shiftsObject["morningShift"], actualNurse.id];
-    let experimentalObject: any = {};
-    experimentalObject = { ...shiftsObject };
-    experimentalObject["morningShift"] = [...experimentalArray];
+    const shiftsObject: any = [...Object.values(activeDay)].flat(1)[0];
+    const shiftWithActualNurse = [
+      ...shiftsObject["morningShift"],
+      actualNurse.id,
+    ];
+    const wholeWorkDay: allShifts = { ...shiftsObject };
 
-    const day = Number(Object.keys(activeDay));
+    wholeWorkDay["morningShift"] = [...shiftWithActualNurse];
+
+    const dayDigit = Number(Object.keys(activeDay));
     const workScheduleObject = { ...workSchedule };
+    //==========NOT SURE WHY ONLY THIS WAY WORKS ============
+    //=====================DOUBLE SPREAD========== ============
+    const newSchedule: any = { ...workScheduleObject };
 
+    newSchedule[handleMonthSelect()][dayDigit - 1] = {
+      [dayDigit]: [wholeWorkDay],
+    };
 
-    let justObject: any = { ...workScheduleObject };
-
-    justObject[handleMonthSelect()][day-1] = { [day]: [experimentalObject] };
-
-    setWorkSchedule(justObject)
+    setWorkSchedule(newSchedule);
   };
-  return <MorningButtonIcon onClick={work} className="fa-solid fa-clock" />;
+  return <MorningButtonIcon onClick={work} className="fa-solid fa-sun" />;
 };
 
 export default MorningButton;

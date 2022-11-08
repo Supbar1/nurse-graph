@@ -1,7 +1,8 @@
 import React, { useState, useEffect, createContext, ReactNode } from "react";
 import http from "./services/httpService";
 import config from "./services/config.json";
-import ChangeMobileToHorizontalDimension from "./Information";
+import DaysList from "./components/calendar/elements/calendarBody/DaysList";
+
 const months = [
   "January",
   "February",
@@ -34,7 +35,7 @@ export interface DayOfMonthType {
 }
 
 export interface WorkScheduleType {
-  [month: string]: DayOfMonthType[] ;
+  [month: string]: DayOfMonthType[];
 }
 interface NurseType {
   id?: number;
@@ -53,8 +54,9 @@ interface NurseGraphContext {
   setWorkSchedule: React.Dispatch<React.SetStateAction<WorkScheduleType>>;
   monthChange: number;
   setMonthChange: React.Dispatch<React.SetStateAction<number>>;
-  activeDay:DayOfMonthType;
-   setActiveDay: React.Dispatch<React.SetStateAction<DayOfMonthType>>;
+  activeDay: DayOfMonthType;
+  setActiveDay: React.Dispatch<React.SetStateAction<DayOfMonthType>>;
+  daysOfMonth: number[];
 }
 
 const NurseContext = createContext({} as NurseGraphContext);
@@ -119,7 +121,6 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
       nightShift: [],
     } as allShifts;
     for (let i = 1; i <= lastDayNumber; i++) {
-      
       monthDays.push({ [i]: [threeShifts] });
     }
     console.log("DLACZEGO SIE ODPALASZ JA SIE PYTAM!?");
@@ -134,13 +135,17 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
     // threeMonthsSchedule[handleMonthSelect()] = monthDays
   }
   // console.log(threeMonthsSchedule, "after big array");
-  
+
   useEffect(() => {
     apiNurses();
     setWorkSchedule(threeMonthsSchedule);
-    console.log("USE-EFFECT");
-    
   }, []);
+
+  const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
+  const List = DaysList();
+  useEffect(() => {
+    setDaysOfMonth(List.daysOfMonth);
+  }, [monthChange]);
 
   return (
     <NurseContext.Provider
@@ -155,7 +160,9 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
         setWorkSchedule,
         monthChange,
         setMonthChange,
-        activeDay, setActiveDay
+        activeDay,
+        setActiveDay,
+        daysOfMonth,
       }}
     >
       {children}

@@ -1,5 +1,7 @@
 import { useNurseContext, WorkScheduleType } from "../../../../NurseContext";
 import { ActiveDayStyled } from "./ActualDays.styles";
+import DaysList from "./DaysList";
+import { useState, useEffect } from "react";
 const months = [
   "January",
   "February",
@@ -25,13 +27,21 @@ export const ActualDays = ({
   handleDaySelect,
   workDay,
 }: ActualDaysProps) => {
-  const { workSchedule, monthChange } = useNurseContext();
-
+  const { monthChange } = useNurseContext();
+  // console.log(daysOfMonth, " ++++++++++++++++");
 
   // for (let i =1; i< workSchedule[handleMonthSelect()].length;i++){
   // }
+  // const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
+  // const List = DaysList();
+
+  // useEffect(() => {
+  //   console.log(daysOfMonth, "THIS IS MY TIME YOU FOOLS!");
+    
+  //   setDaysOfMonth(List.daysOfMonth);
+  // }, [monthChange]);
   return (
-    <>
+    <><button onClick={()=>console.log(daysOfMonth)}>Button</button>
       {daysOfMonth.map((day) => (
         <ActiveDayStyled onClick={() => workDay(day)} key={day}>
           {handleDaySelect(day)}
