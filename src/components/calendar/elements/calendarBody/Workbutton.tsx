@@ -17,14 +17,19 @@ const BigButton = styled.span`
     margin: auto;
   }
 `;
-const WorkButton = () => (
-  <React.Fragment>
-    <BigButton>
-      <DayButton />
-      <NightButton />
-      <MorningButton />
-    </BigButton>
-  </React.Fragment>
-);
+interface WorkButtonType {
+  day: number;
+}
+const WorkButton = ({activeDay}: any,) => {
+  return (
+    <React.Fragment>
+      <BigButton>
+        {/* <DayButton activeDay={activeDay} /> */}
+        {/* <NightButton activeDay={activeDay} /> */}
+        <MorningButton activeDay={activeDay} />
+      </BigButton>
+    </React.Fragment>
+  );
+};
 
 export default WorkButton;

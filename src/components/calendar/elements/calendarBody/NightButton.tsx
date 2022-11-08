@@ -1,16 +1,15 @@
 import styled from "styled-components";
 import { useButtonContext } from "../../ButtonContext";
+import { useNurseContext } from "./../../../../NurseContext";
 
 const SilverMoon = styled.i`
   color: silver;
 `;
 const NightButton = () => {
-  const { workHours, setWorkHours, workDays } = useButtonContext();
+  const { workSchedule, setWorkSchedule } = useNurseContext();
 
   const work = () => {
-    workDays[0].workShift = "evening";
-
-    setWorkHours(workHours + 12);
+    console.log("night");
   };
   return (
     <>

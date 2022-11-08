@@ -11,71 +11,42 @@ import Graph from "./components/graph/Graph";
 import NewLogin from "./components/login/NewLogin";
 //Context
 import NurseProvider from "./NurseContext";
+import ChangeMobileToHorizontalDimension from "./Information";
 
 const Container = styled.div`
   font-family: "Roboto", sans-serif;
   height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+const WorkSpace = styled.div`
+  height: max(400px, 80%);
+  width: 70vw;
+  @media (max-height: 400px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
-const Interface = styled.div`
-  height: 80%;
-  border-radius: 6em;
-  display: flex;
-  margin: auto;
-  align-items: center;
-  @media (max-width: 750px) {
-    width: 100%;
-  }
-  @media (max-height: 360px) {
-    height: 100%;
-  }
-  background-color: rgba(255, 255, 255, 0.2);
-`;
-const DashBoard = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 3vh 0 2vh 0;
-  width: 10vw;
-  border-radius: 2rem;
-  background: linear-gradient(
-    to left bottom,
-    rgba(143, 64, 248, 0.5),
-    rgba(39, 200, 255, 0.5)
-  );
-  @media (max-height: 360px) {
-    padding: 2vh;
-    height: 100%;
-    padding: 0;
-    transform: translateX(-42.5vw);
-    width: 15vw;
-  }
-`;
-const Margin = styled.div`
-  margin: auto;
-`;
 const App: React.FC = () => (
   <React.Fragment>
+    <ChangeMobileToHorizontalDimension />
     <Container>
-      <Interface>
-        <DashBoard>
-          <Navigation />
-        </DashBoard>
-        <Margin>
-          <NurseProvider>
-            <Routes>
-              <Route path="/login" element={<NewLogin />} />
-              <Route path="/graph" element={<Graph />} />
-              <Route path="/table" element={<Table />} />
-              <Route path="/help" element={<Help />} />
-              <Route path="/" element={<Main />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </NurseProvider>
-        </Margin>
-      </Interface>
+      <Navigation />
+      <NurseProvider>
+        <WorkSpace>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/graph" element={<Graph />} />
+            <Route path="/table" element={<Table />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/login" element={<NewLogin />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </WorkSpace>
+      </NurseProvider>
     </Container>
   </React.Fragment>
 );

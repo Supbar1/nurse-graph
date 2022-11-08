@@ -8,10 +8,10 @@ import { TableBody } from "./TableBody";
 import { useNurseContext } from "../../NurseContext";
 // heyhey
 const Scroll = styled.div`
-  height: 75vh;
+  height: 100%;
   overflow-y: scroll;
+  width: 100%;
 
-  width: min(60vw, 850px);
   &::-webkit-scrollbar {
     width: 0.8em;
   }

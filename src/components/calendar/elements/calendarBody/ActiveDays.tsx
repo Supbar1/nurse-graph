@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-//Components
+import styled from "styled-components";
 import DaysList from "./DaysList";
-import WorkButton from "./Workbutton";
 import { ActualDays } from "./ActualDays";
 //Context
 import {
@@ -10,8 +9,9 @@ import {
   allShifts,
   WorkScheduleType,
 } from "../../../../NurseContext";
-import { getValue } from "@testing-library/user-event/dist/utils";
-import { object } from "joi";
+import MorningButton from "./MorningButton";
+import WorkButton from "./Workbutton";
+// import { WorkScheduleType } from './../../../../NurseContext';
 
 const months = [
   "January",
@@ -30,13 +30,18 @@ const months = [
 
 const ActiveDays = () => {
   const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
-  const [activeButton, isActiveButton] = useState<boolean>(false);
-  const { monthChange, actualNurse, workSchedule, setWorkSchedule } =
-    useNurseContext();
-  const List = DaysList();
-  useEffect(() => {
-    setDaysOfMonth(List.daysOfMonth);
-  }, [monthChange]);
+  // const [activeDay, setActiveDay] = useState<DayOfMonthType>(
+  //   {} as DayOfMonthType
+  // );
+  const {
+    monthChange,
+    actualNurse,
+    workSchedule,
+    setWorkSchedule,
+    activeDay,
+    setActiveDay,
+  } = useNurseContext();
+
   const handleMonthSelect = () => {
     const date = new Date();
     let miesiac = new Date(
@@ -45,109 +50,87 @@ const ActiveDays = () => {
     ).getMonth();
     return months[miesiac];
   };
+  // let daysOfMonth2 = Object.keys(workSchedule[handleMonthSelect()]).map(
+  //   (i) => Number(i) + 1
+  // );
+
+  const List = DaysList();
+
+  useEffect(() => {
+    setDaysOfMonth(List.daysOfMonth);
+  }, [monthChange]);
 
   const addWorkDay = (day: number) => {
-    console.log("---------------------------------");
+    const workScheduleObject = workSchedule;
 
-    let workScheduleObject = workSchedule;
-
-    if (!workScheduleObject[handleMonthSelect()]) {
-      // If sprawdzający czy miesiąc istnieje
-      workScheduleObject[handleMonthSelect()] = [];
-    }
-    let newMonthArray = [...workScheduleObject[handleMonthSelect()]];
-    // console.log([...workScheduleObject[handleMonthSelect()]]);
-
-    const index = newMonthArray.findIndex(
-      (object) => Number(Object.keys(object)) === day
-    );
-
-    if (index !== -1) {
-      // console.log("sprawdzamy to");
-      const nursesAlreadyAttachedToClickedDay = Object.values(
-        workScheduleObject[handleMonthSelect()][index]
-      ).flat(1);
-
-      // console.log(nursesAlreadyAttachedToClickedDay);
-      const isActualNurseIncluded = nursesAlreadyAttachedToClickedDay.find(
-        (particularId) => particularId === actualNurse.id
-      );
-      if (isActualNurseIncluded === undefined) {
-        // console.log("NIE MA TAKIEJ JESZCZE WIEC LECIMY DALEJ");
-      }
-      if (isActualNurseIncluded !== undefined) {
-        console.log(
-          isActualNurseIncluded,
-          "JEST TAKA I WYGLADA TAK WIEC RETURN"
-        );
-        return;
-      }
-    }
-
-    console.log(newMonthArray, "to dostaję na warsztat");
-
-    let newDayObject = {} as DayOfMonthType;
-
-    if (newMonthArray.length > 0) {
-      for (let element of newMonthArray) {
-
-        if (Number(Object.keys(element)) === day) {
-          const extraArray = Object.values(newMonthArray[index]).flat(1);
-
-          extraArray.push(actualNurse.id);
-          const clickedDay = Number(Object.keys(newMonthArray[index]));
-
-          newDayObject = {
-            [clickedDay]: extraArray,
-          } as DayOfMonthType;
-
-          newMonthArray[index] = newDayObject; //=================
-          workScheduleObject[handleMonthSelect()] = newMonthArray;
-          setWorkSchedule(workScheduleObject);
-          return
-        }
-      }
-      newDayObject = { [day]: [actualNurse.id] };
-      workScheduleObject[handleMonthSelect()].push(newDayObject);
-      setWorkSchedule(workScheduleObject);
-      return;
-    }
-    if (newMonthArray.length === 0) {
-      newDayObject = { [day]: [actualNurse.id] };
-      workScheduleObject[handleMonthSelect()].push(newDayObject); //
-      setWorkSchedule(workScheduleObject);
-      return;
-    }
-    setWorkSchedule(workScheduleObject);
+    setActiveDay(workScheduleObject[handleMonthSelect()].flat(1)[day - 1]);
+    console.log("addWorkDay");
   };
-
-  const handleDaySelect = (day: number) => {
-    const handleMonthSelect = () => {
-      const date = new Date();
-      let miesiac = new Date(
-        date.getFullYear(),
-        date.getMonth() + monthChange
-      ).getMonth();
-      return months[miesiac];
-    };
-
-    if (workSchedule[handleMonthSelect()]) {
-      for (let index of workSchedule[handleMonthSelect()]) {
-        // for (let element in index) {
-        //   if (Number(element) === day) return "dupczik";
-        // }
+  const ShiftsButton = styled.div`
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    i {
+      font-size: 1rem;
+    }
+    div {
+      flex-direction: column;
+      margin: 0 auto;
+      line-height: 1;
+      div {
+        flex-direction: row;
       }
     }
-    return day;
+  `;
+  const handleDaySelect = (day: number) => {
+    console.log("=================");
+    if (Number(Object.keys(activeDay)) === day) {
+      return <WorkButton activeDay={activeDay} />;
+    }
+
+    // console.log(
+    //   workSchedule[handleMonthSelect()][day - 1][day][0].morningShift?.length
+    // );
+
+    return (
+      <ShiftsButton>
+        <div>{day}</div>
+        <div>
+          <div>
+            {
+              workSchedule[handleMonthSelect()][day - 1][day][0].dayShift
+                ?.length
+            }{" "}
+            <i style={{ color: "yellow" }} className="fa-solid fa-sun" />
+          </div>
+          <div>
+            {
+              workSchedule[handleMonthSelect()][day - 1][day][0].morningShift
+                ?.length
+            }{" "}
+            <i style={{ color: "white" }} className="fa-solid fa-clock" />
+          </div>
+          <div>
+            {
+              workSchedule[handleMonthSelect()][day - 1][day][0].nightShift
+                ?.length
+            }{" "}
+            <i className="fa-solid fa-moon silver" />
+          </div>
+        </div>
+      </ShiftsButton>
+    );
   };
 
   return (
     <>
-      <button onClick={() => setWorkSchedule({})}>Zerowanie</button>
-      <button onClick={() => console.log(workSchedule)}>Caly grafik</button>
+      <button onClick={() => console.log(activeDay)}>Reset</button>
+      <button onClick={() => console.log(workSchedule)}>Whole graph</button>
       <button onClick={() => console.log(...workSchedule[handleMonthSelect()])}>
-        Grafik ten miesiac
+        Actual Days
       </button>
+
       <ActualDays
         daysOfMonth={daysOfMonth}
         workDay={addWorkDay}

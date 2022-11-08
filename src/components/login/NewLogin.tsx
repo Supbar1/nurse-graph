@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 const Container = styled.form`
+  border: 1px solid blue;
   width: min(60vw, 850px);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   flex-direction: column;
-  transform: translateX(-40%);
+  /* transform: translateX(-40%); */
 `;
 const NewLogin = () => (
   <Container>

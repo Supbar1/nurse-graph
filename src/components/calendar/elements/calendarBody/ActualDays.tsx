@@ -1,21 +1,35 @@
-import { useNurseContext } from "../../../../NurseContext";
+import { useNurseContext, WorkScheduleType } from "../../../../NurseContext";
 import { ActiveDayStyled } from "./ActualDays.styles";
-
-interface ILIST {
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+interface ActualDaysProps {
   daysOfMonth: number[];
   handleDaySelect(day: number): {} | JSX.Element;
   workDay: (day: number) => void;
 }
 
-export const ActualDays: React.FC<ILIST> = ({
+export const ActualDays = ({
   daysOfMonth,
   handleDaySelect,
   workDay,
-}) => {
-  const { workSchedule, setWorkSchedule,actualNurse } = useNurseContext();
+}: ActualDaysProps) => {
+  const { workSchedule, monthChange } = useNurseContext();
 
 
-
+  // for (let i =1; i< workSchedule[handleMonthSelect()].length;i++){
+  // }
   return (
     <>
       {daysOfMonth.map((day) => (
