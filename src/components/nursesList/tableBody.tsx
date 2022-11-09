@@ -1,8 +1,4 @@
 import { useNavigate } from "react-router";
-import { ReactNode } from "react";
-import { DeleteButton } from "./DeleteButton";
-import { GrafButton } from "./GrafButton";
-//Context
 import { useNurseContext } from "../../NurseContext";
 
 export interface INurse {
@@ -43,22 +39,16 @@ export const TableBody = ({ handleDelete }: TabloBodyType) => {
             &nbsp;
             {nurse?.firstName}&nbsp;{nurse?.lastName}
           </td>
-          {/* <td className="line-break">
-            {nurse.courses.RKO === true ? "RKO " : ""}
-            {nurse.courses.bloodTransfusion === true ? "Transfuzja " : ""}
-            {nurse.courses.EKG === true ? "EKG " : ""}
-          </td> */}
           <td></td>
-          <td>empty now</td>
+          <td></td>
+          <td></td>
           <td>
-            empty now
-            {/* <div onClick={() => setNurseName(nurse.name)}>
-              <GrafButton />
-            </div> */}
-          </td>
-          <td>
-            <button onClick={() => changeUrl(nurse.id)}>Button</button>
-            {/* </td> */}
+            <button
+              style={{ border: "0", backgroundColor: "lightBlue" }}
+              onClick={() => changeUrl(nurse.id)}
+            >
+              Ustaw grafik
+            </button>
           </td>
         </tr>
       ))}

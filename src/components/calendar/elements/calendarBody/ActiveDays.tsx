@@ -1,18 +1,26 @@
 import { useState, useEffect } from "react";
+import { ActiveDayStyled } from "./ActualDays.styles";
 import styled from "styled-components";
 import DaysList from "./DaysList";
-import { ActualDays } from "./ActualDays";
-//Context
-import {
-  useNurseContext,
-  DayOfMonthType,
-  allShifts,
-  WorkScheduleType,
-} from "../../../../NurseContext";
-import MorningButton from "./MorningButton";
+import { useNurseContext } from "../../../../NurseContext";
 import WorkButton from "./Workbutton";
-// import { WorkScheduleType } from './../../../../NurseContext';
 
+const ShiftsButton = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  i {
+    font-size: 1rem;
+  }
+  div {
+    flex-direction: column;
+    margin: 0 auto;
+    line-height: 1;
+    div {
+      flex-direction: row;
+    }
+  }
+`;
 const months = [
   "January",
   "February",
@@ -29,19 +37,8 @@ const months = [
 ];
 
 const ActiveDays = () => {
-  // const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
-  // const { daysOfMonth } = useNurseContext();
-  // const [activeDay, setActiveDay] = useState<DayOfMonthType>(
-  //   {} as DayOfMonthType
-  // );
-  const {
-    monthChange,
-    actualNurse,
-    workSchedule,
-    setWorkSchedule,
-    activeDay,
-    setActiveDay,
-  } = useNurseContext();
+  const { monthChange, actualNurse, workSchedule, activeDay, setActiveDay } =
+    useNurseContext();
 
   const handleMonthSelect = () => {
     const date = new Date();
@@ -66,25 +63,8 @@ const ActiveDays = () => {
     setActiveDay(workScheduleObject[handleMonthSelect()].flat(1)[day - 1]);
     console.log("addWorkDay");
   };
-  const ShiftsButton = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    i {
-      font-size: 1rem;
-    }
-    div {
-      flex-direction: column;
-      margin: 0 auto;
-      line-height: 1;
-      div {
-        flex-direction: row;
-      }
-    }
-  `;
-  const handleDaySelect = (day: number) => {
-    // console.log("=================");
 
+  const handleDaySelect = (day: number) => {
     if (handleMonthSelect() === "November" && day > 30) return <></>;
     //==================LINE UPSTREAM NEED TO BE CHANGED==============
     //==================ERROR: DAY 31 DOESNT EXIST IN NOVEMBER===========
@@ -97,15 +77,10 @@ const ActiveDays = () => {
     const morning =
       workSchedule[handleMonthSelect()][day - 1][day][0].morningShift?.length;
 
-
-
-
-
-      
     let x = workSchedule[handleMonthSelect()][day - 1][day][0].nightShift?.find(
       (index) => index === actualNurse.id
     );
-    if (x && night && night > 0){
+    if (x && night && night > 0) {
       console.log("kkkkkkkkkkkkuururrrwaarraarrarara");
       return <i style={{ color: "silver" }} className="fa-solid fa-moon" />;
     }
@@ -169,17 +144,11 @@ const ActiveDays = () => {
 
   return (
     <>
-      <button onClick={() => console.log(activeDay)}>Reset</button>
-      <button onClick={() => console.log(workSchedule)}>Whole graph</button>
-      <button onClick={() => console.log(...workSchedule[handleMonthSelect()])}>
-        Actual Days
-      </button>
-
-      <ActualDays
-        daysOfMonth={daysOfMonth}
-        workDay={addWorkDay}
-        handleDaySelect={handleDaySelect}
-      />
+      {daysOfMonth.map((day) => (
+        <ActiveDayStyled onClick={() => addWorkDay(day)} key={day}>
+          {handleDaySelect(day)}
+        </ActiveDayStyled>
+      ))}
     </>
   );
 };

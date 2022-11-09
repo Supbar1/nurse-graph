@@ -6,8 +6,6 @@ const Centered = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: max(360px, 50%);
-  width: max(40px, 10%);
   border-radius: 2rem;
   font: var(--fa-font-solid);
   font-size: calc(2vh + 2.5rem);
@@ -18,6 +16,7 @@ const Centered = styled.div`
   );
   @media (max-height: 400px) {
     font-size: calc(15vh);
+    width: 15vw;
     border-radius: 0;
     height: 100%;
   }
@@ -33,7 +32,6 @@ const Main = styled.div`
   }
 `;
 const Graph = styled.div`
-  /* border: 1px solid black; */
   padding: 1.5vh;
   :before {
     display: inline-block;
@@ -45,7 +43,6 @@ const Table = styled.div`
   padding: 1.5vh;
   /* height: 150px; */
   :before {
-    /* border: 1px solid black; */
     display: inline-block;
     content: "\f0c0";
     color: linear-gradient(rgba(143, 64, 248, 0.5), rgba(39, 200, 255, 0.5));
