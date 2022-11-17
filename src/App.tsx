@@ -11,7 +11,7 @@ import Graph from "./components/graph/Graph";
 import NewLogin from "./components/login/Login";
 //Context
 import NurseProvider from "./context/NurseContext";
-import ChangeMobileToHorizontalDimension from "./Information";
+import ChangeMobileToHorizontalDimension from "./components/main/Information";
 import NursesWindow from "./components/graph/NursesWindow";
 
 const Container = styled.div`
