@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useNurseContext } from "../../../../NurseContext";
+import { useNurseContext } from "../../../../context/NurseContext";
 
 const Pointer = styled.i`
   cursor: pointer;

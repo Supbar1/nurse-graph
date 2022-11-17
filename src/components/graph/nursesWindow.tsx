@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import HandleMonthSelect from "../calendar/elements/calendarBody/months";
-import { useNurseContext } from "./../../NurseContext";
+import { useNurseContext } from "../../context/NurseContext";
 
 const Container = styled.table`
   display: grid;

@@ -1,6 +1,5 @@
-
 import styled from "styled-components";
-import { useNurseContext } from "../../../../NurseContext";
+import { useNurseContext } from "../../../../context/NurseContext";
 
 const Header = styled.h1`
   font-size: 3rem;
@@ -23,7 +22,7 @@ const Month = () => {
     "Grudzień",
   ];
 
-  const {monthChange}= useNurseContext();
+  const { monthChange } = useNurseContext();
 
   const handleMonthSelect = () => {
     const date = new Date();

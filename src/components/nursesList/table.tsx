@@ -5,7 +5,7 @@ import { allNurses } from "./Nurseslist";
 import { NursesDataType } from "./TableBody";
 import TableHeader from "./TableHeader";
 import { TableBody } from "./TableBody";
-import { useNurseContext } from "../../NurseContext";
+import { useNurseContext } from "../../context/NurseContext";
 
 const Scroll = styled.div`
   height: 100%;

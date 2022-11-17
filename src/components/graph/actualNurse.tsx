@@ -1,6 +1,6 @@
 import styled from "styled-components";
 //Context
-import { useNurseContext } from "../../NurseContext";
+import { useNurseContext } from "../../context/NurseContext";
 
 const Container = styled.div`
   grid-area: actualNurse;

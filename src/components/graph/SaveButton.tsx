@@ -1,17 +1,16 @@
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import { useNurseContext } from './../../NurseContext';
+import { useNurseContext } from "../../context/NurseContext";
 
 const Button = styled.button`
-
   grid-area: saveButton;
 `;
 const SaveButton = () => {
-  const {setActualNurse} =useNurseContext();
+  const { setActualNurse } = useNurseContext();
   const navigate = useNavigate();
   const handleSave = () => {
     navigate("/table");
-    setActualNurse({})
+    setActualNurse({});
   };
   return (
     <Button className="btn btn-danger  backButton" onClick={handleSave}>

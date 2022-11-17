@@ -4,7 +4,7 @@ import {
   DayOfMonthType,
   allShifts,
   WorkScheduleType,
-} from "../../../../NurseContext";
+} from "../../../../context/NurseContext";
 // import MorningButton from './MorningButton';
 
 const NightButtonIcon = styled.i`
@@ -63,9 +63,7 @@ const NightButton = ({ activeDay }: any) => {
 
     setWorkSchedule(newSchedule);
   };
-  return (
-    <NightButtonIcon onClick={work} className="fa solid fa-moon " />
-  );
+  return <NightButtonIcon onClick={work} className="fa solid fa-moon " />;
 };
 
 export default NightButton;

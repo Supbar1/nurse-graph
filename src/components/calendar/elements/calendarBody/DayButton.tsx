@@ -4,7 +4,7 @@ import {
   DayOfMonthType,
   allShifts,
   WorkScheduleType,
-} from "../../../../NurseContext";
+} from "../../../../context/NurseContext";
 // import MorningButton from './MorningButton';
 
 const DayButtonIcon = styled.i`

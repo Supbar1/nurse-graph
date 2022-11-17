@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useNurseContext } from "../../NurseContext";
+import { useNurseContext } from "../../context/NurseContext";
 
 export interface INurse {
   nursesData: NursesDataType;

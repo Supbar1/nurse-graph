@@ -10,7 +10,7 @@ import NotFound from "./components/NotFound";
 import Graph from "./components/graph/Graph";
 import NewLogin from "./components/login/Login";
 //Context
-import NurseProvider from "./NurseContext";
+import NurseProvider from "./context/NurseContext";
 import ChangeMobileToHorizontalDimension from "./Information";
 import NursesWindow from "./components/graph/NursesWindow";
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 //Components
 import DaysList from "./DaysList";
 //Context
-import { useNurseContext } from "../../../../NurseContext";
+import { useNurseContext } from "../../../../context/NurseContext";
 
 const OtherDays = styled.div`
   border-radius: 19px;

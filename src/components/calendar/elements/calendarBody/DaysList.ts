@@ -1,7 +1,7 @@
-import {useNurseContext} from "../../../../NurseContext"
+import { useNurseContext } from "../../../../context/NurseContext";
 
 const DaysList = () => {
-const {monthChange}= useNurseContext();
+  const { monthChange } = useNurseContext();
 
   const date = new Date();
   date.setUTCDate(1);

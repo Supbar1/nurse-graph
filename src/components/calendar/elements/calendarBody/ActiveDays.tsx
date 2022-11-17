@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ActiveDayStyled } from "./ActualDays.styles";
 import styled from "styled-components";
 import DaysList from "./DaysList";
-import { useNurseContext } from "../../../../NurseContext";
+import { useNurseContext } from "../../../../context/NurseContext";
 import WorkButton from "./Workbutton";
 
 const ShiftsButton = styled.div`
