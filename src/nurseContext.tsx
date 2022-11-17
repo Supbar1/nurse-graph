@@ -123,7 +123,6 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
     for (let i = 1; i <= lastDayNumber; i++) {
       monthDays.push({ [i]: [threeShifts] });
     }
-    console.log("DLACZEGO SIE ODPALASZ JA SIE PYTAM!?");
     // threeMonthsSchedule[];
     threeMonthsSchedule[handleMonthSelect()] = monthDays;
     // let singleMonth ={ [handleMonthSelect()]: monthDays }

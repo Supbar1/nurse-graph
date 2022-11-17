@@ -1,33 +1,31 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import http from "../../services/httpService";
-import config from "../../services/config.json";
-
 const Container = styled.div`
-  width: min(80vw, 1100px);
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  img {
-    /* overflow: hidden; */
+  background-image: "https://assets.contenthub.wolterskluwer.com/api/public/content/3023bc9eed3f455f9ce4c036a8e3ca71?v=43d7453f";
 
-    /* overflow-y: hidden; */
-    /* height: 100%; */
-    opacity: 0.15;
-    border-radius: 3rem;
-    width: calc(150vh);
+  h1 {
+    transform: translateY(-30vh);
+    font-size: min(15vh, 6rem);
+    /* font-weight: bold; */
+    letter-spacing: 3px;
+    word-spacing: 2px;
+    background: linear-gradient(
+      to left bottom,
+      rgba(143, 64, 248, 0.8),
+      rgba(39, 200, 255, 0.8)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;
 
 const Main = () => {
   return (
     <Container>
-      <img
-        src="https://assets.contenthub.wolterskluwer.com/api/public/content/3023bc9eed3f455f9ce4c036a8e3ca71?v=43d7453f"
-        alt="nurses crew"
-      />
+      <h1>NURSE GRAPH</h1>
     </Container>
   );
 };

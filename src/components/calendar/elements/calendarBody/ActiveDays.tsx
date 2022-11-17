@@ -53,7 +53,6 @@ const ActiveDays = () => {
   const List = DaysList();
 
   useEffect(() => {
-    console.log(daysOfMonth, "THIS IS MY TIME YOU FOOLS!");
     setDaysOfMonth(List.daysOfMonth);
   }, [monthChange]);
 
@@ -61,7 +60,6 @@ const ActiveDays = () => {
     const workScheduleObject = workSchedule;
 
     setActiveDay(workScheduleObject[handleMonthSelect()].flat(1)[day - 1]);
-    console.log("addWorkDay");
   };
 
   const handleDaySelect = (day: number) => {
@@ -81,7 +79,6 @@ const ActiveDays = () => {
       (index) => index === actualNurse.id
     );
     if (x && night && night > 0) {
-      console.log("kkkkkkkkkkkkuururrrwaarraarrarara");
       return <i style={{ color: "silver" }} className="fa-solid fa-moon" />;
     }
 

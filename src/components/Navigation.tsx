@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Centered = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   border-radius: 2rem;
   font: var(--fa-font-solid);
-  font-size: calc(2vh + 2.5rem);
+  font-size: calc(2vh + 2.4rem);
   background: linear-gradient(
     to left bottom,
     rgba(143, 64, 248, 0.5),
@@ -68,7 +68,7 @@ const Login = styled.div`
 `;
 
 const Navigation = () => (
-  <Centered>
+  <Container>
     <Link to="/">
       <Main />
     </Link>
@@ -84,7 +84,7 @@ const Navigation = () => (
     <Link to="/login">
       <Login />
     </Link>
-  </Centered>
+  </Container>
 );
 
 export default Navigation;

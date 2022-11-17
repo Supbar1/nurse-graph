@@ -8,26 +8,35 @@ import Main from "./components/main/Main";
 import Navigation from "./components/Navigation";
 import NotFound from "./components/NotFound";
 import Graph from "./components/graph/Graph";
-import NewLogin from "./components/login/NewLogin";
+import NewLogin from "./components/login/Login";
 //Context
 import NurseProvider from "./NurseContext";
 import ChangeMobileToHorizontalDimension from "./Information";
 import NursesWindow from "./components/graph/NursesWindow";
 
 const Container = styled.div`
-  font-family: "Roboto", sans-serif;
+  font-family: "Trocchi", sans-serif;
+  letter-spacing: 2px;
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* background: linear-gradient(
+    to left bottom,
+    rgba(143, 64, 248, 1),
+    rgba(39, 200, 255, 1)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
 `;
 const WorkSpace = styled.div`
-  height: 100%;
+  height: max(80vh, 380px);
+  /* border: 1px solid blue; */
 
-  @media (max-height: 400px) {
+  width: min(70vw, 900px);
+  @media (max-width: 1000px) {
     width: 90vw;
-    /* width: 100%; */
     height: 100%;
   }
 `;

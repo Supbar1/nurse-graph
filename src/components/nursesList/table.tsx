@@ -6,7 +6,7 @@ import { NursesDataType } from "./TableBody";
 import TableHeader from "./TableHeader";
 import { TableBody } from "./TableBody";
 import { useNurseContext } from "../../NurseContext";
-// heyhey
+
 const Scroll = styled.div`
   height: 100%;
   overflow-y: scroll;
@@ -39,17 +39,17 @@ const Scroll = styled.div`
 `;
 
 const Table = () => {
-  const { nurses } = useNurseContext();
-  // const [nurses, setNurses] = useState<NursesDataType>({ nurses: [] });
+  // const { nurses } = useNurseContext();
+  const [nurses, setNurses] = useState<NursesDataType>({ nurses: [] });
 
-  // const nursesArray: NursesDataType = allNurses();
-  // useEffect(() => {
-  //   setNurses(nursesArray);
-  // }, []);
+  const nursesArray: NursesDataType = allNurses();
+  useEffect(() => {
+    setNurses(nursesArray);
+  }, []);
 
   const handleDelete = (nurse: number) => {
-    // const deleteNurses = nurses?.nurses.filter((d) => d.id !== nurse);
-    // setNurses({ nurses: deleteNurses });
+    const deleteNurses = nurses?.nurses.filter((d) => d.id !== nurse);
+    setNurses({ nurses: deleteNurses });
   };
 
   return (

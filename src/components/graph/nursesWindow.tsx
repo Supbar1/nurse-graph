@@ -19,7 +19,6 @@ const NursesWindow = () => {
   const { activeDay, nurses } = useNurseContext();
   if (!activeDay[Number(Object.keys(activeDay))]) return <></>;
 
-  console.log("==================");
   let actualMorning = [...Object.values(activeDay)[0][0].morningShift];
   let morningContainer: any = [];
   for (let index of actualMorning) {
@@ -47,7 +46,9 @@ const NursesWindow = () => {
         </tr>
       </thead>
       <tbody>
-        <th>Dzien:</th>
+        <tr>
+          <th>Dzien:</th>
+        </tr>
         <tr>
           {morningContainer.map((item: any) => (
             <tr key={item.id}>
@@ -55,16 +56,20 @@ const NursesWindow = () => {
             </tr>
           ))}
         </tr>
-        {/* <th>Doba:</th>
-      <tr>
-        {dayContainer.map((item: any) => (
-          <tr key={item.id}>
-          {item.firstName}&nbsp;{item.lastName}
-          </tr>
-          ))}
-        </tr> */}
+        <tr>
+          <th>Doba:</th>
+        </tr>
 
-        <th>Noc:</th>
+        <tr>
+          {dayContainer.map((item: any) => (
+            <tr key={item.id}>
+              {item.firstName}&nbsp;{item.lastName}
+            </tr>
+          ))}
+        </tr>
+        <tr>
+          <th>Noc:</th>
+        </tr>
         {nightContainer.map((item: any) => (
           <tr key={item.id}>
             {item.firstName}&nbsp;{item.lastName}
