@@ -28,8 +28,13 @@ const months = [
   "December",
 ];
 const NightButton = ({ activeDay }: any) => {
-  const { monthChange, workSchedule, actualNurse, setWorkSchedule } =
-    useNurseContext();
+  const {
+    monthChange,
+    workSchedule,
+    actualNurse,
+    setWorkSchedule,
+    setActiveDay,
+  } = useNurseContext();
   const handleMonthSelect = () => {
     const date = new Date();
     let miesiac = new Date(
@@ -62,6 +67,7 @@ const NightButton = ({ activeDay }: any) => {
     };
 
     setWorkSchedule(newSchedule);
+    setActiveDay({});
   };
   return <NightButtonIcon onClick={work} className="fa solid fa-moon " />;
 };

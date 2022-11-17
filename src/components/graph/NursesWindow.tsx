@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import HandleMonthSelect from "../calendar/elements/calendarBody/Months";
 import { useNurseContext } from "../../context/NurseContext";
 
 const Container = styled.table`
@@ -49,30 +48,33 @@ const NursesWindow = () => {
         <tr>
           <th>Dzien:</th>
         </tr>
-        <tr>
-          {morningContainer.map((item: any) => (
-            <tr key={item.id}>
+        {morningContainer.map((item: any) => (
+          <tr key={item.id}>
+            <td>
               {item.firstName}&nbsp;{item.lastName}
-            </tr>
-          ))}
-        </tr>
+            </td>
+          </tr>
+        ))}
         <tr>
           <th>Doba:</th>
         </tr>
 
-        <tr>
-          {dayContainer.map((item: any) => (
-            <tr key={item.id}>
+        {dayContainer.map((item: any) => (
+          <tr key={item.id}>
+            <td>
               {item.firstName}&nbsp;{item.lastName}
-            </tr>
-          ))}
-        </tr>
+            </td>
+          </tr>
+        ))}
+
         <tr>
           <th>Noc:</th>
         </tr>
         {nightContainer.map((item: any) => (
           <tr key={item.id}>
-            {item.firstName}&nbsp;{item.lastName}
+            <td>
+              {item.firstName}&nbsp;{item.lastName}
+            </td>
           </tr>
         ))}
       </tbody>

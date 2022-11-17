@@ -28,7 +28,7 @@ const months = [
   "December",
 ];
 const MorningButton = ({ activeDay }: any) => {
-  const { monthChange, workSchedule, actualNurse, setWorkSchedule } =
+  const { monthChange, workSchedule, actualNurse, setWorkSchedule,  setActiveDay } =
     useNurseContext();
   const handleMonthSelect = () => {
     const date = new Date();
@@ -62,6 +62,7 @@ const MorningButton = ({ activeDay }: any) => {
     };
 
     setWorkSchedule(newSchedule);
+    setActiveDay({})
   };
   return <MorningButtonIcon onClick={work} className="fa-solid fa-sun" />;
 };

@@ -78,13 +78,10 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
 
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
-    // for (let i = 0; i <= 9; i++) {
-    //   console.log(config.apiNurses);
-      const { data } = await http.get("https://randomuser.me/api/?results=7");
+    const { data } = await http.get("https://randomuser.me/api/?results=10");
+    const { results } = data;
+    container.push(...results);
 
-      const { results } = data;
-      container.push(...results);
-    // }
     let nurse = [];
     for (let item of container) {
       const nurseObject = {
