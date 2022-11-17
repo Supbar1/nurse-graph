@@ -75,10 +75,13 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
   );
 
   const addDay = () => {};
+  
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
     for (let i = 0; i <= 9; i++) {
+      console.log(config.apiNurses);
       const { data } = await http.get(config.apiNurses);
+      
       const { results } = data;
       container.push(...results);
     }
