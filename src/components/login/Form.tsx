@@ -1,6 +1,7 @@
 import Input from "./Input";
 import Buttons from "./Buttons";
 import styled from "styled-components";
+import { useNurseContext } from './../../context/NurseContext';
 
 const ContentBox = styled.div`
   border: 1px solid red;
@@ -48,15 +49,15 @@ const Form = ({
   errors,
   setAccount,
 }: FormProps) => {
+  const {setUsername} = useNurseContext();
   const Joi = require(`joi`);
 
   const validate = () => {
-    const result = Joi.validate(account, schema, { abortEarly: false });
+    const result = schema.validate(account);
     if (!result.error) return null;
     const validateErrors = {} as any;
     for (let item of result.error.details)
       validateErrors[item.path[0]] = item.message;
-
     return validateErrors;
   };
 
@@ -68,10 +69,7 @@ const Form = ({
     if (!errors) return;
   };
 
-  const validateProperty = ({
-    name,
-    value,
-  }: EventTarget & HTMLInputElement) => {
+  const validateProperty = ({name,value,}: EventTarget & HTMLInputElement) => {
     const obj = { [name]: value };
     const rule = schema.extract(name);
     const propertySchema = Joi.object({ [name]: rule });

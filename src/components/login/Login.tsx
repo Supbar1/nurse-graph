@@ -31,7 +31,10 @@ interface LoginProps {
   password: string;
 }
 const Login = () => {
-  const [account, setAccount] = useState({} as LoginProps);
+  const [account, setAccount] = useState({
+    username: "",
+    password: "",
+  } as LoginProps);
   const [errors, setErrors] = useState({} as LoginProps);
   const Joi = require(`joi`);
 

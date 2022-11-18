@@ -22,13 +22,6 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: linear-gradient(
-    to left bottom,
-    rgba(143, 64, 248, 1),
-    rgba(39, 200, 255, 1)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
 `;
 const WorkSpace = styled.div`
   height: max(80vh, 380px);
