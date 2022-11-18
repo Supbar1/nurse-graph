@@ -16,7 +16,8 @@ const OneDayButton = styled.button`
   z-index: 1;
   white-space: nowrap;
   position: relative;
-  border: 3px solid rgba(39, 200, 255, 1);
+  /* border: 3px solid rgba(39, 200, 255, 1); */
+  border: 3px solid white;
 
   :hover {
     cursor: pointer;
@@ -51,7 +52,7 @@ const Button = styled.div`
   justify-content: space-between;
   /* border: none; */
   background-color: rgba(255, 255, 255, 0);
-  font-family: "Source Sans Pro";
+  font-family: "Roboto";
 `;
 const WithdrawButton = () => {
   const { setActualNurse } = useNurseContext();
