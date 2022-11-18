@@ -4,7 +4,7 @@ import Calendar from "../calendar/Calendar";
 import NursesWindow from "./NursesWindow";
 import ActualNurse from "./ActualNurse";
 import SaveButton from "./SaveButton";
-import WithdrawButton from "./WithdrawButton"
+import WithdrawButton from "./WithdrawButton";
 //Styling
 import styled from "styled-components";
 

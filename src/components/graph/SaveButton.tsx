@@ -14,7 +14,7 @@ const SaveButton = () => {
   };
   return (
       <Button className="btn btn-danger  backButton" onClick={handleSave}>
-        sadadssd Zapisz Zmiany
+      Zapisz Zmiany
       </Button>
   );
 };
