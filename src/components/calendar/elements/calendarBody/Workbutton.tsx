@@ -5,7 +5,7 @@ import DayButton from "./DayButton";
 import NightButton from "./NightButton";
 import MorningButton from "./MorningButton";
 
-const BigButton = styled.span`
+const Container = styled.span`
   height: 100%;
   display: flex;
   align-items: center;
@@ -20,15 +20,13 @@ const BigButton = styled.span`
 interface WorkButtonType {
   day: number;
 }
-const WorkButton = ({activeDay}: any,) => {
+const WorkButton = ({ activeDay }: any) => {
   return (
-    <React.Fragment>
-      <BigButton>
-        <MorningButton activeDay={activeDay} />
-        <DayButton activeDay={activeDay} />
-        <NightButton activeDay={activeDay} />
-      </BigButton>
-    </React.Fragment>
+    <Container>
+      <MorningButton activeDay={activeDay} />
+      <DayButton activeDay={activeDay} />
+      <NightButton activeDay={activeDay} />
+    </Container>
   );
 };
 

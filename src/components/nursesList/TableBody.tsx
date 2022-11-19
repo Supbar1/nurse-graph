@@ -95,7 +95,7 @@ export const TableBody = ({ handleDelete }: TabloBodyType) => {
             <td>{mornings(nurse.id)}</td>
             <td>{days(nurse.id)}</td>
             <td>{nights(nurse.id)}</td>
-            <td>{hours(nurse.id)}h</td>
+            <td>{hours(nurse.id)}h/140h</td>
             <td>
               <button
                 style={{ border: "0", backgroundColor: "lightBlue" }}

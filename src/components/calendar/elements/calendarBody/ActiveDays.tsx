@@ -22,7 +22,20 @@ const ShiftsButton = styled.div`
     }
   }
 `;
-
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 const ActiveDays = () => {
   const { monthChange, actualNurse, workSchedule, activeDay, setActiveDay } =
     useNurseContext();
@@ -30,6 +43,14 @@ const ActiveDays = () => {
   const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
   const List = DaysList();
 
+  const handleMonthSelect = () => {
+    const date = new Date();
+    let miesiac = new Date(
+      date.getFullYear(),
+      date.getMonth() + monthChange
+    ).getMonth();
+    return months[miesiac];
+  };
   useEffect(() => {
     setDaysOfMonth(List.daysOfMonth);
   }, [monthChange]);
@@ -37,40 +58,43 @@ const ActiveDays = () => {
   const addWorkDay = (day: number) => {
     const workScheduleObject = workSchedule;
     setActiveDay(
-      workScheduleObject[HandleMonthSelect(monthChange)].flat(1)[day - 1]
+      workScheduleObject[handleMonthSelect()].flat(1)[day - 1]
     );
   };
 
   const handleDaySelect = (day: number) => {
-    if (HandleMonthSelect(monthChange) === "November" && day > 30) return <></>;
+    if (handleMonthSelect() === "November" && day > 30) return <></>;
     //==================LINE UPSTREAM NEED TO BE CHANGED==============
     //==================ERROR: DAY 31 DOESNT EXIST IN NOVEMBER===========
+    console.log("==================");
+    // console.log(workSchedule[handleMonthSelect()]);
+    console.log(workSchedule);
     const night =
-      workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0].nightShift
+      workSchedule[handleMonthSelect()][day - 1][day][0].nightShift
         ?.length;
 
     const wholeDay =
-      workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0].dayShift
+      workSchedule[handleMonthSelect()][day - 1][day][0].dayShift
         ?.length;
 
     const morning =
-      workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0].morningShift
+      workSchedule[handleMonthSelect()][day - 1][day][0].morningShift
         ?.length;
 
-    let x = workSchedule[HandleMonthSelect(monthChange)][day - 1][
+    let x = workSchedule[handleMonthSelect()][day - 1][
       day
     ][0].nightShift?.find((index) => index === actualNurse.id);
     if (x && night && night > 0) {
       return <i style={{ color: "silver" }} className="fa-solid fa-moon" />;
     }
 
-    let y = workSchedule[HandleMonthSelect(monthChange)][day - 1][
+    let y = workSchedule[handleMonthSelect()][day - 1][
       day
     ][0].dayShift?.find((index) => index === actualNurse.id);
     if (y && wholeDay && wholeDay > 0)
       return <i style={{ color: "white" }} className="fa-solid fa-clock" />;
 
-    let z = workSchedule[HandleMonthSelect(monthChange)][day - 1][
+    let z = workSchedule[handleMonthSelect()][day - 1][
       day
     ][0].morningShift?.find((index) => index === actualNurse.id);
     if (z && morning && morning > 0)
@@ -86,7 +110,7 @@ const ActiveDays = () => {
           {morning && morning > 0 ? (
             <div>
               {
-                workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
+                workSchedule[handleMonthSelect()][day - 1][day][0]
                   .morningShift?.length
               }{" "}
               <i style={{ color: "yellow" }} className="fa-solid fa-sun" />
@@ -97,7 +121,7 @@ const ActiveDays = () => {
           {wholeDay && wholeDay > 0 ? (
             <div>
               {
-                workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
+                workSchedule[handleMonthSelect()][day - 1][day][0]
                   .dayShift?.length
               }{" "}
               <i style={{ color: "white" }} className="fa-solid fa-clock" />
@@ -108,7 +132,7 @@ const ActiveDays = () => {
           {night && night > 0 ? (
             <div>
               {
-                workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
+                workSchedule[handleMonthSelect()][day - 1][day][0]
                   .nightShift?.length
               }{" "}
               <i className="fa-solid fa-moon silver" />

@@ -6,7 +6,20 @@ import HandleMonthSelect from "../services/Months";
 interface NurseProviderProps {
   children: ReactNode;
 }
-
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 export interface allShifts {
   morningShift?: number[];
   dayShift?: number[];
@@ -32,7 +45,7 @@ interface NurseGraphContext {
   setActualNurse: React.Dispatch<React.SetStateAction<NurseType>>;
   month: number;
   setMonth: React.Dispatch<React.SetStateAction<number>>;
-  addDay: () => void;
+  
   workSchedule: WorkScheduleType;
   setWorkSchedule: React.Dispatch<React.SetStateAction<WorkScheduleType>>;
   monthChange: number;
@@ -60,7 +73,14 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
     {} as WorkScheduleType
   );
 
-  const addDay = () => {};
+  const handleMonthSelect = () => {
+    const date = new Date();
+    let miesiac = new Date(
+      date.getFullYear(),
+      date.getMonth() + monthChange
+    ).getMonth();
+    return months[miesiac];
+  };
 
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
@@ -99,7 +119,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
     for (let i = 1; i <= lastDayNumber; i++) {
       monthDays.push({ [i]: [threeShifts] });
     }
-    threeMonthsSchedule[HandleMonthSelect(monthChange)] = monthDays;
+    threeMonthsSchedule[handleMonthSelect()] = monthDays;
   }
 
   useEffect(() => {
@@ -121,7 +141,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
         setActualNurse,
         month,
         setMonth,
-        addDay,
+    
         workSchedule,
         setWorkSchedule,
         monthChange,
