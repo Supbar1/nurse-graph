@@ -1,32 +1,10 @@
 import styled from "styled-components";
-import {
-  useNurseContext,
-  DayOfMonthType,
-  allShifts,
-  WorkScheduleType,
-} from "../../../../context/NurseContext";
-// import MorningButton from './MorningButton';
+import { useNurseContext, allShifts } from "../../../../context/NurseContext";
+import HandleMonthSelect from "../../../../services/Months";
 
 const NightButtonIcon = styled.i`
   color: darkblue;
 `;
-interface MorningButtonType {
-  log: () => void;
-}
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
 const NightButton = ({ activeDay }: any) => {
   const {
     monthChange,
@@ -35,14 +13,6 @@ const NightButton = ({ activeDay }: any) => {
     setWorkSchedule,
     setActiveDay,
   } = useNurseContext();
-  const handleMonthSelect = () => {
-    const date = new Date();
-    let miesiac = new Date(
-      date.getFullYear(),
-      date.getMonth() + monthChange
-    ).getMonth();
-    return months[miesiac];
-  };
 
   const work = () => {
     // const arrayOfActiveDay: any = ;
@@ -62,7 +32,7 @@ const NightButton = ({ activeDay }: any) => {
     //=====================DOUBLE SPREAD========== ============
     const newSchedule: any = { ...workScheduleObject };
 
-    newSchedule[handleMonthSelect()][dayDigit - 1] = {
+    newSchedule[HandleMonthSelect(monthChange)][dayDigit - 1] = {
       [dayDigit]: [wholeWorkDay],
     };
 

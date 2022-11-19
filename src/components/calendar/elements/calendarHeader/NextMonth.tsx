@@ -1,16 +1,22 @@
 import styled from "styled-components";
 import { useNurseContext } from "../../../../context/NurseContext";
-
-const Pointer = styled.i`
+import HandleMonthSelect from "../../../../services/Months";
+const NextMonthArrow = styled.i`
   cursor: pointer;
   font-size: 3rem;
 `;
+
 const NextMonth = () => {
   const { monthChange, setMonthChange } = useNurseContext();
 
+  const changeToPreviousMonth = () => {
+    if (HandleMonthSelect(monthChange) === "January") return;
+    setMonthChange(monthChange + 1);
+  };
+
   return (
-    <Pointer
-      onClick={() => setMonthChange(monthChange + 1)}
+    <NextMonthArrow
+      onClick={changeToPreviousMonth}
       className="fas fa-angle-right next"
     />
   );

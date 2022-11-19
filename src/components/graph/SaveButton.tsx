@@ -12,6 +12,7 @@ const SaveButton = () => {
     navigate("/table");
     setActualNurse({});
   };
+  
   return (
       <Button className="btn btn-danger  backButton" onClick={handleSave}>
       Zapisz Zmiany

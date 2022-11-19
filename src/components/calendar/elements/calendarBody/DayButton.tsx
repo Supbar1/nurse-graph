@@ -28,9 +28,14 @@ const months = [
   "December",
 ];
 const DayButton = ({ activeDay }: any) => {
-  const { monthChange, workSchedule, actualNurse, setWorkSchedule,setActiveDay } =
-    useNurseContext();
-  const handleMonthSelect = () => {
+  const {
+    monthChange,
+    workSchedule,
+    actualNurse,
+    setWorkSchedule,
+    setActiveDay,
+  } = useNurseContext();
+  const MonthSelect = () => {
     const date = new Date();
     let miesiac = new Date(
       date.getFullYear(),
@@ -54,12 +59,12 @@ const DayButton = ({ activeDay }: any) => {
     //=====================DOUBLE SPREAD========== ============
     const newSchedule: any = { ...workScheduleObject };
 
-    newSchedule[handleMonthSelect()][dayDigit - 1] = {
+    newSchedule[MonthSelect()][dayDigit - 1] = {
       [dayDigit]: [wholeWorkDay],
     };
 
     setWorkSchedule(newSchedule);
-    setActiveDay({})
+    setActiveDay({});
   };
   return <DayButtonIcon onClick={work} className="fa solid fa-clock " />;
 };

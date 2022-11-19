@@ -6,7 +6,7 @@ import PrevDays from "./elements/calendarBody/PreviousDays";
 import WeekDays from "./elements/calendarHeader/WeekDays";
 import NextDays from "./elements/calendarBody/NextDays";
 import ActiveDays from "./elements/calendarBody/ActiveDays";
-import Month from "./elements/calendarHeader/Month";
+import Month from "./elements/calendarHeader/MonthLabel";
 
 const Container = styled.div`
   grid-area: calendar;

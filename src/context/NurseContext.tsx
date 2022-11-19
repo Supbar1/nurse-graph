@@ -2,26 +2,9 @@ import React, { useState, useEffect, createContext, ReactNode } from "react";
 import http from "../services/httpService";
 import config from "../services/config.json";
 import DaysList from "../components/calendar/elements/calendarBody/DaysList";
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import HandleMonthSelect from "../services/Months";
 interface NurseProviderProps {
   children: ReactNode;
-}
-interface NurseGraphProviderProps {
-  children: React.ReactNode;
 }
 
 export interface allShifts {
@@ -81,7 +64,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
 
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
-    const { data } = await http.get("https://randomuser.me/api/?results=10");
+    const { data } = await http.get(config.apiNurses);
     const { results } = data;
     container.push(...results);
 
@@ -99,17 +82,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
   };
 
   let threeMonthsSchedule = {} as WorkScheduleType;
-  // ...Object.values(workSchedule)
   for (let i = 0; i <= 2; i++) {
-    const handleMonthSelect = () => {
-      const date = new Date();
-      let miesiac = new Date(
-        date.getFullYear(),
-        date.getMonth() + i
-      ).getMonth();
-      return months[miesiac];
-    };
-    // threeMonthsSchedule.push({[handleMonthSelect()]: []})
     const date = new Date();
     date.setUTCDate(1);
     let lastDayNumber = new Date(
@@ -126,17 +99,8 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
     for (let i = 1; i <= lastDayNumber; i++) {
       monthDays.push({ [i]: [threeShifts] });
     }
-    // threeMonthsSchedule[];
-    threeMonthsSchedule[handleMonthSelect()] = monthDays;
-    // let singleMonth ={ [handleMonthSelect()]: monthDays }
-    //     workSchedule[threeMonthsSchedule] =singleMonth
-    // threeMonthsSchedule.push({ [handleMonthSelect()]: monthDays });
-    // console.log(threeMonthsSchedule);
-
-    // console.log({ [handleMonthSelect()]: monthDays });
-    // threeMonthsSchedule[handleMonthSelect()] = monthDays
+    threeMonthsSchedule[HandleMonthSelect(monthChange)] = monthDays;
   }
-  // console.log(threeMonthsSchedule, "after big array");
 
   useEffect(() => {
     apiNurses();
@@ -165,7 +129,8 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
         activeDay,
         setActiveDay,
         daysOfMonth,
-        userName, setUsername
+        userName,
+        setUsername,
       }}
     >
       {children}

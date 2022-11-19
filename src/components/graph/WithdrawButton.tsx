@@ -56,15 +56,14 @@ const Button = styled.div`
 `;
 const WithdrawButton = () => {
   const { setActualNurse } = useNurseContext();
-  const navigate = useNavigate();
-  const handleSave = () => {
-    navigate("/table");
+
+  const handleDelete = () => {
     setActualNurse({});
   };
   return (
     <Button>
-      <OneDayButton onClick={handleSave}>Cofnij dzień</OneDayButton>
-      <OneDayButton onClick={handleSave}>Cofnij wszystko</OneDayButton>
+      <OneDayButton onClick={handleDelete}>Cofnij dzień</OneDayButton>
+      <OneDayButton onClick={()=>console.log("siema")}>Cofnij wszystko</OneDayButton>
     </Button>
   );
 };
