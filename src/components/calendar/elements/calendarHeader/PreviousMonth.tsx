@@ -10,7 +10,7 @@ const PreviousMonth = () => {
   const { monthChange, setMonthChange } = useNurseContext();
 
   const changeToNextMonth = () => {
-    // if (HandleMonthSelect(monthChange) === "November") return;
+    if (HandleMonthSelect(monthChange) === "November") return;
     setMonthChange(monthChange - 1);
   };
   return (

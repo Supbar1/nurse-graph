@@ -6,24 +6,11 @@ import HandleMonthSelect from "../services/Months";
 interface NurseProviderProps {
   children: ReactNode;
 }
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+
 export interface allShifts {
-  morningShift?: number[];
-  dayShift?: number[];
-  nightShift?: number[];
+  [key:string]: number[];
+  // dayShift?: number[];
+  // nightShift?: number[];
 }
 
 export interface DayOfMonthType {
@@ -45,7 +32,7 @@ interface NurseGraphContext {
   setActualNurse: React.Dispatch<React.SetStateAction<NurseType>>;
   month: number;
   setMonth: React.Dispatch<React.SetStateAction<number>>;
-  
+
   workSchedule: WorkScheduleType;
   setWorkSchedule: React.Dispatch<React.SetStateAction<WorkScheduleType>>;
   monthChange: number;
@@ -69,18 +56,6 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
     {} as DayOfMonthType
   );
 
-  const [workSchedule, setWorkSchedule] = useState<WorkScheduleType>(
-    {} as WorkScheduleType
-  );
-
-  const handleMonthSelect = () => {
-    const date = new Date();
-    let miesiac = new Date(
-      date.getFullYear(),
-      date.getMonth() + monthChange
-    ).getMonth();
-    return months[miesiac];
-  };
 
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
@@ -119,7 +94,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
     for (let i = 1; i <= lastDayNumber; i++) {
       monthDays.push({ [i]: [threeShifts] });
     }
-    threeMonthsSchedule[handleMonthSelect()] = monthDays;
+    threeMonthsSchedule[HandleMonthSelect(i)] = monthDays;
   }
 
   useEffect(() => {
@@ -132,6 +107,9 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
   useEffect(() => {
     setDaysOfMonth(List.daysOfMonth);
   }, [monthChange]);
+  const [workSchedule, setWorkSchedule] = useState<WorkScheduleType>({
+    ...threeMonthsSchedule,
+  } as WorkScheduleType);
 
   return (
     <NurseContext.Provider
@@ -141,7 +119,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
         setActualNurse,
         month,
         setMonth,
-    
+
         workSchedule,
         setWorkSchedule,
         monthChange,

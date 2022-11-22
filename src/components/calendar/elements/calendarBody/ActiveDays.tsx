@@ -4,7 +4,9 @@ import styled from "styled-components";
 import DaysList from "./DaysList";
 import { useNurseContext } from "../../../../context/NurseContext";
 import WorkButton from "./Workbutton";
-import HandleMonthSelect from "../../../../services/Months";
+import HandleMonthSelect, { months } from "../../../../services/Months";
+import InfoButton from "./InfoButton";
+import { workerData } from "worker_threads";
 
 const ShiftsButton = styled.div`
   width: 100%;
@@ -22,126 +24,112 @@ const ShiftsButton = styled.div`
     }
   }
 `;
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+
 const ActiveDays = () => {
-  const { monthChange, actualNurse, workSchedule, activeDay, setActiveDay } =
-    useNurseContext();
+  const {
+    monthChange,
+    actualNurse,
+    workSchedule,
+    activeDay,
+    setActiveDay,
+    setWorkSchedule,
+  } = useNurseContext();
 
   const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
   const List = DaysList();
 
-  const handleMonthSelect = () => {
-    const date = new Date();
-    let miesiac = new Date(
-      date.getFullYear(),
-      date.getMonth() + monthChange
-    ).getMonth();
-    return months[miesiac];
-  };
   useEffect(() => {
     setDaysOfMonth(List.daysOfMonth);
+    setActiveDay({});
   }, [monthChange]);
 
   const addWorkDay = (day: number) => {
     const workScheduleObject = workSchedule;
     setActiveDay(
-      workScheduleObject[handleMonthSelect()].flat(1)[day - 1]
+      workScheduleObject[HandleMonthSelect(monthChange)].flat(1)[day - 1]
     );
   };
 
   const handleDaySelect = (day: number) => {
-    if (handleMonthSelect() === "November" && day > 30) return <></>;
+    if (HandleMonthSelect(monthChange) === "November" && day > 30) return <></>;
     //==================LINE UPSTREAM NEED TO BE CHANGED==============
     //==================ERROR: DAY 31 DOESNT EXIST IN NOVEMBER===========
-    console.log("==================");
-    // console.log(workSchedule[handleMonthSelect()]);
-    console.log(workSchedule);
-    const night =
-      workSchedule[handleMonthSelect()][day - 1][day][0].nightShift
-        ?.length;
+    const actualDayObject =
+      workSchedule[HandleMonthSelect(monthChange)][day - 1];
 
-    const wholeDay =
-      workSchedule[handleMonthSelect()][day - 1][day][0].dayShift
-        ?.length;
+    const actualDayShifts = actualDayObject[day][0];
 
-    const morning =
-      workSchedule[handleMonthSelect()][day - 1][day][0].morningShift
-        ?.length;
+    const morningNurses: number | undefined =
+      actualDayShifts.morningShift?.length;
 
-    let x = workSchedule[handleMonthSelect()][day - 1][
-      day
-    ][0].nightShift?.find((index) => index === actualNurse.id);
-    if (x && night && night > 0) {
-      return <i style={{ color: "silver" }} className="fa-solid fa-moon" />;
+    const dayNurses: number | undefined = actualDayShifts.dayShift?.length;
+
+    const nightNurses: number | undefined = actualDayShifts.nightShift?.length;
+
+    // shiftNames.forEach(shiftName => console.log( actualDayShifts["nightShift"]));
+
+    const isActualNurseAtThisNight = actualDayShifts["nightShift"]?.find(
+      (index) => index === actualNurse.id
+    );
+
+    if (
+      Number(Object.keys(activeDay)) === day &&
+      (Object.values(activeDay)[0][0].morningShift.find(
+        (index: number) => index === actualNurse.id
+      )|| Object.values(activeDay)[0][0].nightShift.find(
+        (index: number) => index === actualNurse.id
+      ) || Object.values(activeDay)[0][0].dayShift.find(
+        (index: number) => index === actualNurse.id
+      ))
+    ) {
+      const back = () => {
+        const shiftNames: string[] = ["morningShift", "dayShift", "nightShift"];
+        shiftNames.forEach((shiftName) => {
+          let index = actualDayShifts[shiftName].findIndex(
+            (id: number) => id === actualNurse.id
+          );
+          if (index > -1) {
+            console.log(index);
+            console.log(actualDayShifts[shiftName]);
+            actualDayShifts[shiftName].splice(index, 1);
+          }
+        });
+      };
+      return <i onClick={() => back()} className="fa fa-undo" />;
     }
 
-    let y = workSchedule[handleMonthSelect()][day - 1][
-      day
-    ][0].dayShift?.find((index) => index === actualNurse.id);
-    if (y && wholeDay && wholeDay > 0)
+    if (isActualNurseAtThisNight && nightNurses && nightNurses > 0) {
+      return (
+        <i
+          style={{ color: "silver" }}
+          className="fa-solid fa-moon"
+        />
+      );
+    }
+
+    const isActualNurseAtThisDay = actualDayShifts.dayShift?.find(
+      (index) => index === actualNurse.id
+    );
+    if (isActualNurseAtThisDay && dayNurses && dayNurses > 0)
       return <i style={{ color: "white" }} className="fa-solid fa-clock" />;
 
-    let z = workSchedule[handleMonthSelect()][day - 1][
-      day
-    ][0].morningShift?.find((index) => index === actualNurse.id);
-    if (z && morning && morning > 0)
+    let isActualNurseAtThisMorning = actualDayShifts.morningShift?.find(
+      (index) => index === actualNurse.id
+    );
+
+    if (isActualNurseAtThisMorning && morningNurses && morningNurses > 0)
       return <i style={{ color: "yellow" }} className="fa-solid fa-sun" />;
 
     if (Number(Object.keys(activeDay)) === day) {
       return <WorkButton activeDay={activeDay} />;
     }
     return (
-      <ShiftsButton>
-        <div>{day}</div>
-        <div>
-          {morning && morning > 0 ? (
-            <div>
-              {
-                workSchedule[handleMonthSelect()][day - 1][day][0]
-                  .morningShift?.length
-              }{" "}
-              <i style={{ color: "yellow" }} className="fa-solid fa-sun" />
-            </div>
-          ) : (
-            <></>
-          )}
-          {wholeDay && wholeDay > 0 ? (
-            <div>
-              {
-                workSchedule[handleMonthSelect()][day - 1][day][0]
-                  .dayShift?.length
-              }{" "}
-              <i style={{ color: "white" }} className="fa-solid fa-clock" />
-            </div>
-          ) : (
-            <></>
-          )}
-          {night && night > 0 ? (
-            <div>
-              {
-                workSchedule[handleMonthSelect()][day - 1][day][0]
-                  .nightShift?.length
-              }{" "}
-              <i className="fa-solid fa-moon silver" />
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
-      </ShiftsButton>
+      <InfoButton
+        day={day}
+        morningNurses={morningNurses}
+        dayNurses={dayNurses}
+        nightNurses={nightNurses}
+      />
     );
   };
 

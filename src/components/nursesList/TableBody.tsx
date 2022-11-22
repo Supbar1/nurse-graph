@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router";
 import { useNurseContext } from "../../context/NurseContext";
-import ActualNurse from "./../graph/ActualNurse";
 
 export interface INurse {
   nursesData: NursesDataType;
@@ -25,13 +24,13 @@ export const TableBody = ({ handleDelete }: TabloBodyType) => {
 
   const navigate = useNavigate();
 
-  const changeUrl = (id: number | undefined) => {
+  const changeUrl = (id?: number ) => {
     let actualNurse = { ...nurses.find((item) => item.id === id) };
     setActualNurse(actualNurse);
     setActiveDay({});
     navigate("/graph");
   };
-  const hours = (id: number | undefined) => {
+  const hours = (id?: number) => {
     let hours = 0;
     for (let element in workSchedule) {
       for (let day in workSchedule[element]) {
@@ -39,49 +38,24 @@ export const TableBody = ({ handleDelete }: TabloBodyType) => {
         for (let element in singleDay) {
           if (singleDay[element].find((nurseId: number) => nurseId === id))
             hours += 12;
-          // return console.log(singleDay[element]);
         }
       }
     }
     return hours;
   };
-  const mornings = (id: number | undefined) => {
-    let mornings = 0;
+
+  const displayShiftsAmmount = (shift: string, id?: number) => {
+    let ammountOfShifts = 0;
     for (let element in workSchedule) {
       for (let day in workSchedule[element]) {
         const singleDay = Object.values(workSchedule[element][day])[0][0];
-        if (singleDay.morningShift.find((nurse: number) => nurse === id)) {
-          mornings++;
+        if (singleDay[shift].find((nurse: number) => nurse === id)) {
+          ammountOfShifts++;
         }
       }
     }
-    return mornings;
+    return ammountOfShifts;
   };
-  const days = (id: number | undefined) => {
-    let days = 0;
-    for (let element in workSchedule) {
-      for (let day in workSchedule[element]) {
-        const singleDay = Object.values(workSchedule[element][day])[0][0];
-        if (singleDay.dayShift.find((nurse: number) => nurse === id)) {
-          days++;
-        }
-      }
-    }
-    return days;
-  };
-  const nights = (id: number | undefined) => {
-    let nights = 0;
-    for (let element in workSchedule) {
-      for (let day in workSchedule[element]) {
-        const singleDay = Object.values(workSchedule[element][day])[0][0];
-        if (singleDay.nightShift.find((nurse: number) => nurse === id)) {
-          nights++;
-        }
-      }
-    }
-    return nights;
-  };
-  // days(undefined);
   return (
     <>
       <tbody>
@@ -92,9 +66,9 @@ export const TableBody = ({ handleDelete }: TabloBodyType) => {
               &nbsp;
               {nurse?.firstName}&nbsp;{nurse?.lastName}
             </td>
-            <td>{mornings(nurse.id)}</td>
-            <td>{days(nurse.id)}</td>
-            <td>{nights(nurse.id)}</td>
+            <td>{displayShiftsAmmount("morningShift", nurse.id)}</td>
+            <td>{displayShiftsAmmount("dayShift", nurse.id)}</td>
+            <td>{displayShiftsAmmount("nightShift", nurse.id)}</td>
             <td>{hours(nurse.id)}h/140h</td>
             <td>
               <button
