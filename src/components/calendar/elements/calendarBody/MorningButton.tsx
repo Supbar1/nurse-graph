@@ -16,8 +16,6 @@ const MorningButton = ({ activeDay }: any) => {
   } = useNurseContext();
 
   const work = () => {
-    // const arrayOfActiveDay: any = ;
-
     const shiftsObject: any = [...Object.values(activeDay)].flat(1)[0];
     const shiftWithActualNurse = [
       ...shiftsObject["morningShift"],
@@ -28,17 +26,17 @@ const MorningButton = ({ activeDay }: any) => {
     wholeWorkDay["morningShift"] = [...shiftWithActualNurse];
 
     const dayDigit = Number(Object.keys(activeDay));
-    const workScheduleObject = { ...workSchedule };
+    // const workScheduleObject = { ...workSchedule };
     //==========NOT SURE WHY ONLY THIS WAY WORKS ============
     //=====================DOUBLE SPREAD========== ============
-    const newSchedule: any = { ...workScheduleObject };
+    // const newSchedule: any = { ...workScheduleObject };
 
-    newSchedule[HandleMonthSelect(monthChange)][dayDigit - 1] = {
+    workSchedule[HandleMonthSelect(monthChange)][dayDigit - 1] = {
       [dayDigit]: [wholeWorkDay],
     };
 
-    setWorkSchedule(newSchedule);
-    setActiveDay({});
+    // setWorkSchedule(newSchedule);
+    // setActiveDay({});
   };
   return <MorningButtonIcon onClick={work} className="fa-solid fa-sun" />;
 };

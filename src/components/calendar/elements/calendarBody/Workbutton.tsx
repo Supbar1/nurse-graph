@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DayButton from "./DayButton";
 import NightButton from "./NightButton";
 import MorningButton from "./MorningButton";
+import {DayOfMonthType} from "../../../../context/NurseContext"
 
 const Container = styled.span`
   height: 100%;
@@ -18,11 +19,12 @@ const Container = styled.span`
   }
 `;
 interface WorkButtonType {
-  day: number;
+  activeDay: DayOfMonthType;
+  handleClick: ()=> void;
 }
-const WorkButton = ({ activeDay }: any) => {
+const WorkButton = ({ activeDay,handleClick }: WorkButtonType) => {
   return (
-    <Container>
+    <Container onClick={handleClick}>
       <MorningButton activeDay={activeDay} />
       <DayButton activeDay={activeDay} />
       <NightButton activeDay={activeDay} />

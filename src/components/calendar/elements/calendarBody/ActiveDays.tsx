@@ -7,6 +7,7 @@ import WorkButton from "./Workbutton";
 import HandleMonthSelect, { months } from "../../../../services/Months";
 import InfoButton from "./InfoButton";
 import { workerData } from "worker_threads";
+import UndoButton from "./UndoButton";
 
 const ShiftsButton = styled.div`
   width: 100%;
@@ -36,6 +37,7 @@ const ActiveDays = () => {
   } = useNurseContext();
 
   const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
+  const [gate, setGate] = useState<boolean>(false);
   const List = DaysList();
 
   useEffect(() => {
@@ -44,13 +46,13 @@ const ActiveDays = () => {
   }, [monthChange]);
 
   const addWorkDay = (day: number) => {
-    const workScheduleObject = workSchedule;
-    setActiveDay(
-      workScheduleObject[HandleMonthSelect(monthChange)].flat(1)[day - 1]
-    );
+   if (gate) return;
+    setActiveDay(workSchedule[HandleMonthSelect(monthChange)].flat(1)[day - 1]);
   };
 
   const handleDaySelect = (day: number) => {
+    console.log("new log");
+
     if (HandleMonthSelect(monthChange) === "November" && day > 30) return <></>;
     //==================LINE UPSTREAM NEED TO BE CHANGED==============
     //==================ERROR: DAY 31 DOESNT EXIST IN NOVEMBER===========
@@ -76,35 +78,21 @@ const ActiveDays = () => {
       Number(Object.keys(activeDay)) === day &&
       (Object.values(activeDay)[0][0].morningShift.find(
         (index: number) => index === actualNurse.id
-      )|| Object.values(activeDay)[0][0].nightShift.find(
-        (index: number) => index === actualNurse.id
-      ) || Object.values(activeDay)[0][0].dayShift.find(
-        (index: number) => index === actualNurse.id
-      ))
+      ) ||
+        Object.values(activeDay)[0][0].nightShift.find(
+          (index: number) => index === actualNurse.id
+        ) ||
+        Object.values(activeDay)[0][0].dayShift.find(
+          (index: number) => index === actualNurse.id
+        ))
     ) {
-      const back = () => {
-        const shiftNames: string[] = ["morningShift", "dayShift", "nightShift"];
-        shiftNames.forEach((shiftName) => {
-          let index = actualDayShifts[shiftName].findIndex(
-            (id: number) => id === actualNurse.id
-          );
-          if (index > -1) {
-            console.log(index);
-            console.log(actualDayShifts[shiftName]);
-            actualDayShifts[shiftName].splice(index, 1);
-          }
-        });
-      };
-      return <i onClick={() => back()} className="fa fa-undo" />;
+      return (
+        <UndoButton day={day} handleClick={() => console.log(activeDay)} />
+      );
     }
 
     if (isActualNurseAtThisNight && nightNurses && nightNurses > 0) {
-      return (
-        <i
-          style={{ color: "silver" }}
-          className="fa-solid fa-moon"
-        />
-      );
+      return <i style={{ color: "silver" }} className="fa-solid fa-moon" />;
     }
 
     const isActualNurseAtThisDay = actualDayShifts.dayShift?.find(
@@ -118,10 +106,10 @@ const ActiveDays = () => {
     );
 
     if (isActualNurseAtThisMorning && morningNurses && morningNurses > 0)
-      return <i style={{ color: "yellow" }} className="fa-solid fa-sun" />;
+      return <i onClick={()=>setGate(true)} style={{ color: "yellow" }} className="fa-solid fa-sun" />;
 
     if (Number(Object.keys(activeDay)) === day) {
-      return <WorkButton activeDay={activeDay} />;
+      return <WorkButton handleClick={()=>setGate(false)} activeDay={activeDay} />;
     }
     return (
       <InfoButton
@@ -129,6 +117,7 @@ const ActiveDays = () => {
         morningNurses={morningNurses}
         dayNurses={dayNurses}
         nightNurses={nightNurses}
+        handleClick={()=>setGate(true)}
       />
     );
   };
@@ -140,6 +129,7 @@ const ActiveDays = () => {
           {handleDaySelect(day)}
         </ActiveDayStyled>
       ))}
+      <button onClick={() => setActiveDay({})}>Button</button>
     </>
   );
 };
