@@ -3,12 +3,18 @@ import { useNurseContext } from "./../../../../context/NurseContext";
 
 interface UndoButtonProps {
   day: number;
-  handleClick: () => void;
 }
 
-const UndoButton = ({ day, handleClick }: UndoButtonProps) => {
-  const { workSchedule, monthChange, actualNurse, setActiveDay, activeDay } =
-    useNurseContext();
+const UndoButton = ({ day,  }: UndoButtonProps) => {
+  const {
+    workSchedule,
+    monthChange,
+    actualNurse,
+    setActiveDay,
+    activeDay,
+    undoDay,
+    setUndoDay,
+  } = useNurseContext();
 
   const actualDayObject = workSchedule[HandleMonthSelect(monthChange)][day - 1];
 
@@ -16,23 +22,24 @@ const UndoButton = ({ day, handleClick }: UndoButtonProps) => {
 
   const undo = () => {
     const shiftNames: string[] = ["morningShift", "dayShift", "nightShift"];
+    console.log("undoButtn");
     shiftNames.forEach((shiftName) => {
       let index = actualDayShifts[shiftName].findIndex(
         (id: number) => id === actualNurse.id
       );
       const shiftsObject: any = [...Object.values(activeDay)].flat(1)[0];
       if (index > -1) {
-        console.log(index);
-        console.log(actualDayShifts[shiftName]);
         shiftsObject[shiftName].splice(index, 1);
         const dayDigit = Number(Object.keys(activeDay));
         workSchedule[HandleMonthSelect(monthChange)][dayDigit - 1] = {
           [dayDigit]: [shiftsObject],
         };
         setActiveDay({});
-        console.log(workSchedule);
+
       }
     });
+    setUndoDay(0);
+    console.log("undoDay", undoDay);
   };
   return (
     <>

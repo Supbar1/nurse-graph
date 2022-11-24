@@ -42,6 +42,8 @@ interface NurseGraphContext {
   daysOfMonth: number[];
   userName: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
+  undoDay: number;
+  setUndoDay: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const NurseContext = createContext({} as NurseGraphContext);
@@ -55,7 +57,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
   const [activeDay, setActiveDay] = useState<DayOfMonthType>(
     {} as DayOfMonthType
   );
-
+const [undoDay, setUndoDay] = useState<number>(0)
 
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
@@ -129,6 +131,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
         daysOfMonth,
         userName,
         setUsername,
+        undoDay, setUndoDay
       }}
     >
       {children}

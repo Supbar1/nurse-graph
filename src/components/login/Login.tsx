@@ -3,20 +3,17 @@ import styled from "styled-components";
 import Form from "./Form";
 
 const Container = styled.div`
-  /* position: relative; */
-  display: flex;
-  /* justify-content: space-around; */
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid black;
   height: 100%;
+  display: grid;
+  grid-template-rows: 20% 80%;
+  /* align-items: baseline; */
 `;
-const Header = styled.h1`
-  transform: translateY(5vh);
+
+const HeaderSpace = styled.h1`
   white-space: nowrap;
-  font-size: min(15vh, 5rem);
-  height: 30%;
-  letter-spacing: 6px;
+  font-size: min(15vh, 6rem);
+  text-align: center;
+  letter-spacing: 3px;
   word-spacing: 2px;
   background: linear-gradient(
     to left bottom,
@@ -25,6 +22,20 @@ const Header = styled.h1`
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+`;
+const ContentBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(-10%);
+  text-align: center;
+
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 60em) {
+    width: 100%;
+  }
 `;
 interface LoginProps {
   username: string;
@@ -48,18 +59,20 @@ const Login = () => {
 
   return (
     <Container>
-      <Header>NURSE-GRAPH</Header>
-      <Form
-        account={account}
-        setAccount={setAccount}
-        errors={errors}
-        setErrors={setErrors}
-        schema={schema}
-        username={account.username}
-        usernameErrors={errors.username}
-        password={account.password}
-        passwordErrors={errors.password}
-      />
+      <HeaderSpace>NURSE GRAPH</HeaderSpace>
+      <ContentBox>
+        <Form
+          account={account}
+          setAccount={setAccount}
+          errors={errors}
+          setErrors={setErrors}
+          schema={schema}
+          username={account.username}
+          usernameErrors={errors.username}
+          password={account.password}
+          passwordErrors={errors.password}
+        />
+      </ContentBox>
     </Container>
   );
 };

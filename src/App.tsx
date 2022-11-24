@@ -12,7 +12,7 @@ import NewLogin from "./components/login/Login";
 //Context
 import NurseProvider from "./context/NurseContext";
 import ChangeMobileToHorizontalDimension from "./components/main/Information";
-import NursesWindow from "./components/graph/NursesWindow";
+
 
 const Container = styled.div`
   font-family: "Trocchi", sans-serif;
@@ -25,7 +25,6 @@ const Container = styled.div`
 `;
 const WorkSpace = styled.div`
   height: max(80vh, 380px);
-  /* border: 1px solid blue; */
 
   width: min(70vw, 900px);
   @media (max-width: 1000px) {

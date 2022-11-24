@@ -16,7 +16,7 @@ const OneDayButton = styled.button`
   z-index: 1;
   white-space: nowrap;
   position: relative;
-  /* border: 3px solid rgba(39, 200, 255, 1); */
+  border: 3px solid rgba(39, 200, 255, 1);
   border: 3px solid white;
 
   :hover {
@@ -45,7 +45,7 @@ const OneDayButton = styled.button`
   }
   letter-spacing: 1px;
 `;
-const Button = styled.div`
+const Container = styled.div`
   grid-area: withdrawButton;
   display: flex;
   align-items: center;
@@ -61,10 +61,12 @@ const WithdrawButton = () => {
     setActualNurse({});
   };
   return (
-    <Button>
+    <Container>
       <OneDayButton onClick={handleDelete}>Cofnij dzień</OneDayButton>
-      <OneDayButton onClick={()=>console.log("siema")}>Cofnij wszystko</OneDayButton>
-    </Button>
+      <OneDayButton onClick={() => console.log("siema")}>
+        Cofnij wszystko
+      </OneDayButton>
+    </Container>
   );
 };
 export default WithdrawButton;

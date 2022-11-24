@@ -1,22 +1,11 @@
 import Input from "./Input";
 import Buttons from "./Buttons";
 import styled from "styled-components";
-import { useNurseContext } from './../../context/NurseContext';
+import { useNurseContext } from "./../../context/NurseContext";
 
-const ContentBox = styled.div`
-  border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-  transform: translateY(5vh);
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  @media (max-width: 60em) {
-    width: 100%;
-  }
-`;
+
 const FormBox = styled.form`
-  width: min(40%, 300px);
+  width: min(70%, 200px);
   @media (max-width: 600px) {
     width: 80%;
   }
@@ -49,7 +38,7 @@ const Form = ({
   errors,
   setAccount,
 }: FormProps) => {
-  const {setUsername} = useNurseContext();
+  const { setUsername } = useNurseContext();
   const Joi = require(`joi`);
 
   const validate = () => {
@@ -69,7 +58,10 @@ const Form = ({
     if (!errors) return;
   };
 
-  const validateProperty = ({name,value,}: EventTarget & HTMLInputElement) => {
+  const validateProperty = ({
+    name,
+    value,
+  }: EventTarget & HTMLInputElement) => {
     const obj = { [name]: value };
     const rule = schema.extract(name);
     const propertySchema = Joi.object({ [name]: rule });
@@ -94,7 +86,6 @@ const Form = ({
   };
 
   return (
-    <ContentBox>
       <FormBox onSubmit={handleSubmit}>
         <Input
           name="username"
@@ -116,7 +107,6 @@ const Form = ({
         />
         <Buttons />
       </FormBox>
-    </ContentBox>
   );
 };
 export default Form;
