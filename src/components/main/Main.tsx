@@ -38,7 +38,7 @@ const TextArea = styled.div`
 const Text = styled.p`
   transform: scale(0.9, 1.2);
   line-height: 2.5rem;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   word-spacing: 1px;
   letter-spacing: 1px;
 `;

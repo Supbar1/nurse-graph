@@ -5,7 +5,7 @@ const Information = styled.div`
   @media (max-width: 739px) {
     justify-content: center;
     color: white;
-    font-size: 2rem;
+    /* font-size: 2rem; */
     display: flex;
     align-items: center;
     position: absolute;

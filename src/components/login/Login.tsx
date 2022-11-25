@@ -6,7 +6,6 @@ const Container = styled.div`
   height: 100%;
   display: grid;
   grid-template-rows: 20% 80%;
-  /* align-items: baseline; */
 `;
 
 const HeaderSpace = styled.h1`
@@ -25,6 +24,7 @@ const HeaderSpace = styled.h1`
 `;
 const ContentBox = styled.div`
   width: 100%;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

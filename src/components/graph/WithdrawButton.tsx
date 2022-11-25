@@ -1,29 +1,31 @@
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { useNurseContext } from "../../context/NurseContext";
+import ClearSchedule from "./../../context/clearSchedule";
 
-const OneDayButton = styled.button`
+interface ButtonProps {
+  warning?: boolean;
+}
+
+const OneDayButton = styled.button<ButtonProps>`
   background-color: rgba(255, 255, 255, 0);
   padding: 8px;
   border: none;
   font-weight: bold;
   color: rgba(143, 64, 248, 1);
-
+  width: 100%;
   border-radius: 4px;
-  transition: ease-out 0.3s;
-  font-size: 1rem;
+  transition: ease-out 0.5s;
   outline: none;
   z-index: 1;
   white-space: nowrap;
   position: relative;
-  border: 3px solid rgba(39, 200, 255, 1);
-  border: 3px solid white;
-
+  border: 1px solid rgba(255, 255, 255, 0);
   :hover {
     cursor: pointer;
     color: black;
 
-    border: 3px solid rgba(39, 200, 255, 0.5);
+    border: 1px solid rgba(143, 64, 248, 0.5);
   }
   ::before {
     transition: 0.5s all ease;
@@ -34,7 +36,9 @@ const OneDayButton = styled.button`
     bottom: 0;
     opacity: 0;
     content: "";
-    background-color: rgba(143, 64, 248, 0.5);
+    background-color: ${(props) =>
+      props.warning ? "palevioletred" : "rgba(39, 200, 255, 0.5)"};
+    /* background-color: rgba(143, 64, 248, 0.5); */
   }
   :hover::before {
     transition: 0.5s all ease;
@@ -44,26 +48,43 @@ const OneDayButton = styled.button`
     z-index: -1;
   }
   letter-spacing: 1px;
+  @media (max-width: 980px) {
+    font-size: 0.7rem;
+    padding: 4px;
+  }
 `;
 const Container = styled.div`
-  grid-area: withdrawButton;
+  grid-area: buttons;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* border: none; */
   background-color: rgba(255, 255, 255, 0);
-  font-family: "Roboto";
+
+  @media (max-width: 900px) {
+    /* flex-direction: column; */
+  }
 `;
 const WithdrawButton = () => {
-  const { setActualNurse } = useNurseContext();
+  const { setActualNurse, setWorkSchedule, setActiveDay } = useNurseContext();
 
-  const handleDelete = () => {
+  const navigate = useNavigate();
+  const handleSave = () => {
+    navigate("/table");
     setActualNurse({});
   };
   return (
     <Container>
-      <OneDayButton onClick={handleDelete}>Cofnij dzień</OneDayButton>
-      <OneDayButton onClick={() => console.log("siema")}>
+      <OneDayButton onClick={handleSave}>Zapisz Zmiany</OneDayButton>
+      {/* <OneDayButton warning onClick={handleDelete}>
+        Cofnij dzień
+      </OneDayButton> */}
+      <OneDayButton
+        warning
+        onClick={() => {
+          setWorkSchedule(ClearSchedule());
+          setActiveDay({});
+        }}
+      >
         Cofnij wszystko
       </OneDayButton>
     </Container>

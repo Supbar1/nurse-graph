@@ -6,27 +6,26 @@ export const ActiveDayStyled = styled.div`
   border-radius: 18%;
   overflow: hidden;
   color: black;
-  opacity: 1;
+  /* height: 80px; */
+  /* width: 80px; */
   &:after {
     content: "";
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
     position: absolute;
-    top: -50px;
+    top: -70px;
     left: -100px;
     background: linear-gradient(
       to left bottom,
-      rgba(143, 64, 248, 0.3),
-      rgba(39, 200, 255, 0.3)
+      rgba(143, 64, 248, 0.5),
+      rgba(39, 200, 255, 0.5)
     );
     z-index: -1;
-    transition: transform 0.5s ease;
+    transition: transform 0.2s ease;
   }
   &:hover {
-    transform:scale(1.3);
-    z-index: 2;
-    box-shadow: 8px -8px 21px 0 rgba(143, 64, 248, 0.3),
-      8px -8px 21px 0 rgba(39, 200, 255, 0.3);
+    box-shadow: 3px -3px 3px 0 rgba(39, 200, 255, 0.2),
+      -3px 3px 3px 0 rgba(143, 64, 248, 0.2);
   }
   &:hover::after {
     transform: rotate(180deg);

@@ -7,12 +7,10 @@ const Container = styled.div`
 const InputBox = styled.div`
   margin-bottom: 5px;
   display: inline-block;
-  color: var(--clr-primary-400);
   font-weight: 300;
   letter-spacing: 1px;
-  font-size: var(--fs-body);
   @media (max-width: 60em) {
-    font-size: var(--fs-400);
+    /* font-size: var(--fs-400); */
   }
 `;
 const SingleInput = styled.input`
@@ -28,18 +26,21 @@ const SingleInput = styled.input`
 `;
 const Alert = styled.div`
   height: 50px;
-  background-color: var(--clr-accent-300);
+  background: linear-gradient(
+    to left bottom,
+    rgba(143, 64, 248, 0.3),
+    rgba(39, 200, 255, 0.3)
+  );
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--fs-400);
+  
   @media (max-width: 60em) {
-    font-size: var(--fs-300);
+  
   }
 `;
 interface InputProps {
   name: string;
-  // label: string;
   placeholder: string;
   error: string;
   type: string;
@@ -49,7 +50,6 @@ interface InputProps {
 }
 const Input = ({
   name,
-  // label,
   placeholder,
   value,
   error,
@@ -59,7 +59,6 @@ const Input = ({
 }: InputProps) => (
   <Container>
     <InputBox>
-      {/* <label htmlFor={name}></label> */}
       <SingleInput
         value={value}
         onChange={onChange}

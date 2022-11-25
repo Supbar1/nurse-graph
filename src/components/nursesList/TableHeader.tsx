@@ -1,15 +1,34 @@
+import styled from "styled-components";
+
+const TableHeaderStyled = styled.thead`
+  height: 4rem;
+  padding: 9rem;
+  border-radius: 4rem;
+  line-height: 3rem;
+  z-index: 1;
+`;
+
+const Cell = styled.th`
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  text-align: center;
+  /* border: 1px solid black; */
+`;
+
 const TableHeader = () => (
-  <thead>
+  <TableHeaderStyled>
     <tr>
       <th>Imie i Nazwisko</th>
-      <th>Ranki</th>
-      <th>Dni</th>
-      <th>Noce</th>
+      <Cell>Ranki</Cell>
+      <Cell>Dni</Cell>
+      <Cell>Noce</Cell>
 
-      <th>Razem</th>
-      <th />
+      <Cell>Razem</Cell>
+      <Cell />
     </tr>
-  </thead>
+  </TableHeaderStyled>
 );
 
 export default TableHeader;

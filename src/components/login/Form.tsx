@@ -1,14 +1,18 @@
 import Input from "./Input";
 import Buttons from "./Buttons";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { useNurseContext } from "./../../context/NurseContext";
-
+import { ActiveDayStyled } from "./../calendar/elements/calendarBody/ActualDays.styles";
 
 const FormBox = styled.form`
-  width: min(70%, 200px);
+  width: min(70%, 300px);
   @media (max-width: 600px) {
     width: 80%;
   }
+`;
+const ActiveDayStyledWide = styled(ActiveDayStyled)`
+  padding: 2rem;
 `;
 
 interface LoginProps {
@@ -38,8 +42,19 @@ const Form = ({
   errors,
   setAccount,
 }: FormProps) => {
-  const { setUsername } = useNurseContext();
+  const { setUsername, userName } = useNurseContext();
   const Joi = require(`joi`);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    // function that prevents full page reload
+    e.preventDefault();
+    const submitErrors = validate();
+    setErrors(submitErrors || {});
+    if (submitErrors) return;
+    setUsername(username);
+    navigate("/main");
+  };
 
   const validate = () => {
     const result = schema.validate(account);
@@ -48,14 +63,6 @@ const Form = ({
     for (let item of result.error.details)
       validateErrors[item.path[0]] = item.message;
     return validateErrors;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    // function that prevents full page reload
-    e.preventDefault();
-    const submitErrors = validate();
-    setErrors(submitErrors || {});
-    if (!errors) return;
   };
 
   const validateProperty = ({
@@ -85,28 +92,34 @@ const Form = ({
     setAccount(newAccount);
   };
 
-  return (
-      <FormBox onSubmit={handleSubmit}>
-        <Input
-          name="username"
-          value={username}
-          placeholder="Użytkownik"
-          onChange={handleChange}
-          type="text"
-          error={usernameErrors}
-          autoFocus={true}
-        />
-        <Input
-          name="password"
-          value={password}
-          placeholder="Hasło"
-          onChange={handleChange}
-          type="password"
-          error={passwordErrors}
-          autoFocus={false}
-        />
-        <Buttons />
-      </FormBox>
+  return userName ? (
+    <div>
+      <ActiveDayStyledWide onClick={() => setUsername("")}>
+        Wyloguj
+      </ActiveDayStyledWide>
+    </div>
+  ) : (
+    <FormBox onSubmit={handleSubmit}>
+      <Input
+        name="username"
+        value={username}
+        placeholder="Użytkownik"
+        onChange={handleChange}
+        type="text"
+        error={usernameErrors}
+        autoFocus={true}
+      />
+      <Input
+        name="password"
+        value={password}
+        placeholder="Hasło"
+        onChange={handleChange}
+        type="password"
+        error={passwordErrors}
+        autoFocus={false}
+      />
+      <Buttons />
+    </FormBox>
   );
 };
 export default Form;

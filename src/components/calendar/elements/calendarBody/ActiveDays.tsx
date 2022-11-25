@@ -6,7 +6,6 @@ import WorkButton from "./Workbutton";
 import HandleMonthSelect from "../../../../services/Months";
 import InfoButton from "./InfoButton";
 import UndoButton from "./UndoButton";
-import ShiftButton from "./ShiftButton";
 
 const ActiveDays = () => {
   const {
@@ -62,7 +61,7 @@ const ActiveDays = () => {
       (index) => index === actualNurse.id
     );
 
-    if (isActualNurseAtThisNight ) {
+    if (isActualNurseAtThisNight) {
       return (
         <i
           onClick={() => setUndoDay(day)}
@@ -91,19 +90,7 @@ const ActiveDays = () => {
           className="fa-solid fa-sun"
         />
       );
-    // if (
-    //   morningNurses &&
-    //   dayNurses &&
-    //   nightNurses &&
-    //   (morningNurses | dayNurses | nightNurses) > 0
-    // ) {
-    //   <ShiftButton
-    //     day={day}
-    //     isActualNurseAtThisNight={isActualNurseAtThisNight}
-    //     isActualNurseAtThisDay={isActualNurseAtThisDay}
-    //     isActualNurseAtThisMorning={isActualNurseAtThisMorning}
-    //   />;
-    // }
+
     if (Number(Object.keys(activeDay)) === day) {
       return (
         <WorkButton handleClick={() => setUndoDay(0)} activeDay={activeDay} />
@@ -127,7 +114,6 @@ const ActiveDays = () => {
           {handleDaySelect(day)}
         </ActiveDayStyled>
       ))}
-      <button onClick={() => console.log(undoDay)}>Button</button>
     </>
   );
 };

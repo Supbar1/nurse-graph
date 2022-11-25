@@ -6,7 +6,7 @@ const ShiftsButton = styled.div`
   width: 100%;
   height: 100%;
   i {
-    font-size: 1rem;
+    /* font-size: 1rem; */
   }
   div {
     flex-direction: column;
@@ -22,7 +22,7 @@ interface InfoButtonProps {
   nightNurses?: number;
   dayNurses?: number;
   morningNurses?: number;
-  handleClick: ()=> void;
+  handleClick: () => void;
 }
 const InfoButton = ({
   day,

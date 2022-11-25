@@ -1,6 +1,26 @@
 import { useNavigate } from "react-router";
 import { useNurseContext } from "../../context/NurseContext";
+import { ActiveDayStyled } from "./../calendar/elements/calendarBody/ActualDays.styles";
+import styled from "styled-components";
 
+const SetGraphButton = styled(ActiveDayStyled)`
+  padding: 0.5rem 0.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  cursor: pointer;
+  /* line-height: 1.2; */
+`;
+const TableRow = styled.tr`
+  margin-top: 10px;
+  /* border: 2px solid red; */
+`;
+const Cell = styled.td`
+  padding: 1rem;
+  text-align: center;
+  /* border: 1px solid black; */
+`;
 export interface INurse {
   nursesData: NursesDataType;
   handleDelete: (id: number) => void;
@@ -24,7 +44,7 @@ export const TableBody = ({ handleDelete }: TabloBodyType) => {
 
   const navigate = useNavigate();
 
-  const changeUrl = (id?: number ) => {
+  const changeUrl = (id?: number) => {
     let actualNurse = { ...nurses.find((item) => item.id === id) };
     setActualNurse(actualNurse);
     setActiveDay({});
@@ -60,25 +80,24 @@ export const TableBody = ({ handleDelete }: TabloBodyType) => {
     <>
       <tbody>
         {nurses.map((nurse) => (
-          <tr key={nurse.id}>
+          <TableRow key={nurse.id}>
             <td>
               <img alt="nurse picture" src={nurse?.picture} />
               &nbsp;
               {nurse?.firstName}&nbsp;{nurse?.lastName}
             </td>
-            <td>{displayShiftsAmmount("morningShift", nurse.id)}</td>
-            <td>{displayShiftsAmmount("dayShift", nurse.id)}</td>
-            <td>{displayShiftsAmmount("nightShift", nurse.id)}</td>
-            <td>{hours(nurse.id)}h/140h</td>
+            <Cell>
+              <div>{displayShiftsAmmount("morningShift", nurse.id)}</div>
+            </Cell>
+            <Cell>{displayShiftsAmmount("dayShift", nurse.id)}</Cell>
+            <Cell>{displayShiftsAmmount("nightShift", nurse.id)}</Cell>
+            <Cell>{hours(nurse.id)}h/140h</Cell>
             <td>
-              <button
-                style={{ border: "0", backgroundColor: "lightBlue" }}
-                onClick={() => changeUrl(nurse.id)}
-              >
+              <SetGraphButton onClick={() => changeUrl(nurse.id)}>
                 Ustaw grafik
-              </button>
+              </SetGraphButton>
             </td>
-          </tr>
+          </TableRow>
         ))}
       </tbody>
     </>

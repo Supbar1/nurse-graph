@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
+import { useNurseContext } from "../context/NurseContext";
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -16,7 +16,7 @@ const Container = styled.div`
   );
   @media (max-height: 400px) {
     font-size: calc(15vh);
-    width: 15vw;
+    width: 10vw;
     border-radius: 0;
     height: 100%;
   }
@@ -67,24 +67,30 @@ const Login = styled.div`
   }
 `;
 
-const Navigation = () => (
-  <Container>
-    <Link to="/">
-      <Main />
-    </Link>
-    <Link to="/graph">
-      <Graph />
-    </Link>
-    <Link to="/table">
-      <Table />
-    </Link>
-    <Link to="/help">
-      <Help />
-    </Link>
-    <Link to="/login">
-      <Login />
-    </Link>
-  </Container>
-);
+const Navigation = () => {
+  const { userName, actualNurse } = useNurseContext();
 
+  return (
+    <Container>
+      {userName && (
+        <>
+          <Link to="/main">
+            <Main />
+          </Link>
+          {actualNurse.firstName && (
+            <Link to="/graph">
+              <Graph />
+            </Link>
+          )}
+          <Link to="/table">
+            <Table />
+          </Link>
+          <Link to="/">
+            <Login />
+          </Link>
+        </>
+      )}
+    </Container>
+  );
+};
 export default Navigation;

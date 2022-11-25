@@ -3,7 +3,7 @@ import { useNurseContext } from "../../../../context/NurseContext";
 import HandleMonthSelect from "../../../../services/Months";
 const PreviousMonthArrow = styled.i`
   cursor: pointer;
-  font-size: 3rem;
+  /* font-size: 3rem; */
 `;
 
 const PreviousMonth = () => {

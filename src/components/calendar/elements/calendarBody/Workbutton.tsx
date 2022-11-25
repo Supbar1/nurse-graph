@@ -12,7 +12,7 @@ const Container = styled.span`
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  font-size: 13px;
+  /* font-size: 13px; */
   margin: auto;
   span {
     margin: auto;

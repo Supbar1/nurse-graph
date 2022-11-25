@@ -37,9 +37,11 @@ const Scroll = styled.div`
     border-radius: 100vw;
   }
 `;
-
+const TableStyled = styled.table`
+  width: 100%;
+`;
 const Table = () => {
-  // const { nurses } = useNurseContext();
+  const { userName } = useNurseContext();
   const [nurses, setNurses] = useState<NursesDataType>({ nurses: [] });
 
   const nursesArray: NursesDataType = allNurses();
@@ -54,10 +56,10 @@ const Table = () => {
 
   return (
     <Scroll>
-      <table className="table">
+      <TableStyled>
         <TableHeader />
         <TableBody handleDelete={() => console.log(nurses)} />
-      </table>
+      </TableStyled>
     </Scroll>
   );
 };

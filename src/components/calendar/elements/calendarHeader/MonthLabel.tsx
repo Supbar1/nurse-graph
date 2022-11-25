@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useNurseContext } from "../../../../context/NurseContext";
 
 const Header = styled.h1`
-  font-size: 3rem;
+  /* font-size: 3rem; */
   letter-spacing: 0.2rem;
 `;
 

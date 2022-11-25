@@ -9,24 +9,30 @@ import ActiveDays from "./elements/calendarBody/ActiveDays";
 import Month from "./elements/calendarHeader/MonthLabel";
 
 const Container = styled.div`
+  /* font-family: "Roboto"; */
+
+  border: 2px solid green;
   grid-area: calendar;
   height: 100%;
+  /* overflow: hidden; */
   border-radius: 12% 12% 5% 5%;
-  box-shadow: 0 0.5rem 3rem rgba(143, 64, 248, 0.4);
+  box-shadow: 13px -13px 13px 0 rgba(39, 200, 255, 0.2),
+    -13px 13px 13px 0 rgba(143, 64, 248, 0.2);
 `;
 const MonthStyled = styled.div`
-  height: 15%;
+  height: 14%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1%;
-  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  border: 2px solid black;
 `;
 const Days = styled.div`
   height: 70%;
-  font-size: 1.5em;
+  /* font-size: 1.5em; */
   display: grid;
   grid-template-columns: repeat(7, 14.25%);
+  /* grid-template-rows: repeat(5, 20%); */
 
   div {
     margin: 2px;

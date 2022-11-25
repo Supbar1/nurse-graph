@@ -5,6 +5,7 @@ import { useNurseContext } from "../../context/NurseContext";
 const Container = styled.div`
   grid-area: actualNurse;
   display: grid;
+  text-align: center;
 `;
 const Label = styled.div`
   margin: auto;

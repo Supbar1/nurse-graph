@@ -13,9 +13,11 @@ import NewLogin from "./components/login/Login";
 import NurseProvider from "./context/NurseContext";
 import ChangeMobileToHorizontalDimension from "./components/main/Information";
 
-
 const Container = styled.div`
-  font-family: "Trocchi", sans-serif;
+  /* font-family: "Trocchi", sans-serif; */
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: "Roboto";
   letter-spacing: 2px;
   height: 100vh;
   width: 100vw;
@@ -37,15 +39,15 @@ const App: React.FC = () => (
   <React.Fragment>
     <ChangeMobileToHorizontalDimension />
     <Container>
-      <Navigation />
       <NurseProvider>
+        <Navigation />
         <WorkSpace>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<NewLogin />} />
+            <Route path="/main" element={<Main />} />
             <Route path="/graph" element={<Graph />} />
             <Route path="/table" element={<Table />} />
             <Route path="/help" element={<Help />} />
-            <Route path="/login" element={<NewLogin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </WorkSpace>

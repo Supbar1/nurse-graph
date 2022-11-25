@@ -3,14 +3,13 @@ import http from "../services/httpService";
 import config from "../services/config.json";
 import DaysList from "../components/calendar/elements/calendarBody/DaysList";
 import HandleMonthSelect from "../services/Months";
+import ClearSchedule from "./clearSchedule";
 interface NurseProviderProps {
   children: ReactNode;
 }
 
 export interface allShifts {
-  [key:string]: number[];
-  // dayShift?: number[];
-  // nightShift?: number[];
+  [key: string]: number[];
 }
 
 export interface DayOfMonthType {
@@ -32,7 +31,6 @@ interface NurseGraphContext {
   setActualNurse: React.Dispatch<React.SetStateAction<NurseType>>;
   month: number;
   setMonth: React.Dispatch<React.SetStateAction<number>>;
-
   workSchedule: WorkScheduleType;
   setWorkSchedule: React.Dispatch<React.SetStateAction<WorkScheduleType>>;
   monthChange: number;
@@ -57,7 +55,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
   const [activeDay, setActiveDay] = useState<DayOfMonthType>(
     {} as DayOfMonthType
   );
-const [undoDay, setUndoDay] = useState<number>(0)
+  const [undoDay, setUndoDay] = useState<number>(0);
 
   const apiNurses = async (): Promise<any> => {
     let container: any = [];
@@ -77,31 +75,31 @@ const [undoDay, setUndoDay] = useState<number>(0)
     }
     setNurses(nurse);
   };
-
-  let threeMonthsSchedule = {} as WorkScheduleType;
-  for (let i = 0; i <= 2; i++) {
-    const date = new Date();
-    date.setUTCDate(1);
-    let lastDayNumber = new Date(
-      date.getFullYear(),
-      date.getMonth() + 1 + i,
-      0
-    ).getDate();
-    let monthDays = [] as DayOfMonthType[];
-    const threeShifts = {
-      morningShift: [],
-      dayShift: [],
-      nightShift: [],
-    } as allShifts;
-    for (let i = 1; i <= lastDayNumber; i++) {
-      monthDays.push({ [i]: [threeShifts] });
-    }
-    threeMonthsSchedule[HandleMonthSelect(i)] = monthDays;
-  }
+ClearSchedule();
+  // let threeMonthsSchedule = {} as WorkScheduleType;
+  // for (let i = 0; i <= 2; i++) {
+  //   const date = new Date();
+  //   date.setUTCDate(1);
+  //   let lastDayNumber = new Date(
+  //     date.getFullYear(),
+  //     date.getMonth() + 1 + i,
+  //     0
+  //   ).getDate();
+  //   let monthDays = [] as DayOfMonthType[];
+  //   const threeShifts = {
+  //     morningShift: [],
+  //     dayShift: [],
+  //     nightShift: [],
+  //   } as allShifts;
+  //   for (let i = 1; i <= lastDayNumber; i++) {
+  //     monthDays.push({ [i]: [threeShifts] });
+  //   }
+  //   threeMonthsSchedule[HandleMonthSelect(i)] = monthDays;
+  // }
 
   useEffect(() => {
     apiNurses();
-    setWorkSchedule(threeMonthsSchedule);
+    // setWorkSchedule(ClearSchedule());
   }, []);
 
   const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
@@ -110,7 +108,7 @@ const [undoDay, setUndoDay] = useState<number>(0)
     setDaysOfMonth(List.daysOfMonth);
   }, [monthChange]);
   const [workSchedule, setWorkSchedule] = useState<WorkScheduleType>({
-    ...threeMonthsSchedule,
+    ...ClearSchedule()
   } as WorkScheduleType);
 
   return (
@@ -121,7 +119,6 @@ const [undoDay, setUndoDay] = useState<number>(0)
         setActualNurse,
         month,
         setMonth,
-
         workSchedule,
         setWorkSchedule,
         monthChange,
@@ -131,7 +128,8 @@ const [undoDay, setUndoDay] = useState<number>(0)
         daysOfMonth,
         userName,
         setUsername,
-        undoDay, setUndoDay
+        undoDay,
+        setUndoDay,
       }}
     >
       {children}

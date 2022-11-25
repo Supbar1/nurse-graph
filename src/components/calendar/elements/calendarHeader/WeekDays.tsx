@@ -3,17 +3,20 @@ import styled from "styled-components";
 const DaysLabel = styled.div`
   width: 100%;
   display: flex;
-  height: 15%;
-  display: grid;
-  grid-template-columns: repeat(7, 14.25%);
-  font-size: 1.5em;
-  white-space: no;
+  height: 10%;
+  border: 2px solid red;
+  /* display: grid;
+  grid-template-columns: 7/7; */
+  /* background-color: blue; */
+  /* font-size: 1.2rem; */
+  /* white-space: no; */
   div {
-    padding: 20px;
+    
+    /* padding: 20px; */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
     margin: 2px;
   }
 `;
