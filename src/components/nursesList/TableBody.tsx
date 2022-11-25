@@ -2,9 +2,10 @@ import { useNavigate } from "react-router";
 import { useNurseContext } from "../../context/NurseContext";
 import { ActiveDayStyled } from "./../calendar/elements/calendarBody/ActualDays.styles";
 import styled from "styled-components";
+// import Hours from "./../../context/hours";
 
 const SetGraphButton = styled(ActiveDayStyled)`
-  padding: 0.5rem 0.1rem;
+  padding: 0.5rem 0.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,8 +40,9 @@ interface TabloBodyType {
   handleDelete: () => void;
 }
 export const TableBody = ({ handleDelete }: TabloBodyType) => {
-  const { nurses, setActualNurse, setActiveDay, workSchedule } =
+  const { nurses, setActualNurse, setActiveDay, workSchedule,hours } =
     useNurseContext();
+console.log(workSchedule);
 
   const navigate = useNavigate();
 
@@ -50,19 +52,22 @@ export const TableBody = ({ handleDelete }: TabloBodyType) => {
     setActiveDay({});
     navigate("/graph");
   };
-  const hours = (id?: number) => {
-    let hours = 0;
-    for (let element in workSchedule) {
-      for (let day in workSchedule[element]) {
-        const singleDay = Object.values(workSchedule[element][day])[0][0];
-        for (let element in singleDay) {
-          if (singleDay[element].find((nurseId: number) => nurseId === id))
-            hours += 12;
-        }
-      }
-    }
-    return hours;
-  };
+  // console.log("he");
+
+  // Hours(workSchedule, id);
+  // const hours = (id?: number) => {
+  //   let hours = 0;
+  //   for (let element in workSchedule) {
+  //     for (let day in workSchedule[element]) {
+  //       const singleDay = Object.values(workSchedule[element][day])[0][0];
+  //       for (let element in singleDay) {
+  //         if (singleDay[element].find((nurseId: number) => nurseId === id))
+  //           hours += 12;
+  //       }
+  //     }
+  //   }
+  //   return hours;
+  // };
 
   const displayShiftsAmmount = (shift: string, id?: number) => {
     let ammountOfShifts = 0;
@@ -91,7 +96,7 @@ export const TableBody = ({ handleDelete }: TabloBodyType) => {
             </Cell>
             <Cell>{displayShiftsAmmount("dayShift", nurse.id)}</Cell>
             <Cell>{displayShiftsAmmount("nightShift", nurse.id)}</Cell>
-            <Cell>{hours(nurse.id)}h/140h</Cell>
+            <Cell>{hours( nurse.id)}h/140h</Cell>
             <td>
               <SetGraphButton onClick={() => changeUrl(nurse.id)}>
                 Ustaw grafik

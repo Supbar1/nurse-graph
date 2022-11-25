@@ -11,7 +11,7 @@ import Month from "./elements/calendarHeader/MonthLabel";
 const Container = styled.div`
   /* font-family: "Roboto"; */
 
-  border: 2px solid green;
+  /* border: 2px solid green; */
   grid-area: calendar;
   height: 100%;
   /* overflow: hidden; */
@@ -25,7 +25,7 @@ const MonthStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1%;
-  border: 2px solid black;
+  /* border: 2px solid black; */
 `;
 const Days = styled.div`
   height: 70%;

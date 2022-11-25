@@ -42,6 +42,7 @@ interface NurseGraphContext {
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   undoDay: number;
   setUndoDay: React.Dispatch<React.SetStateAction<number>>;
+  hours: (id?:number)=> number;
 }
 
 const NurseContext = createContext({} as NurseGraphContext);
@@ -75,7 +76,20 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
     }
     setNurses(nurse);
   };
-ClearSchedule();
+  const hours = (id?: number) => {
+      let hours = 0;
+      for (let element in workSchedule) {
+        for (let day in workSchedule[element]) {
+          const singleDay = Object.values(workSchedule[element][day])[0][0];
+          for (let element in singleDay) {
+            if (singleDay[element].find((nurseId: number) => nurseId === id))
+              hours += 12;
+          }
+        }
+      }
+      return hours;
+    };
+// ClearSchedule();
   // let threeMonthsSchedule = {} as WorkScheduleType;
   // for (let i = 0; i <= 2; i++) {
   //   const date = new Date();
@@ -130,6 +144,7 @@ ClearSchedule();
         setUsername,
         undoDay,
         setUndoDay,
+        hours,
       }}
     >
       {children}

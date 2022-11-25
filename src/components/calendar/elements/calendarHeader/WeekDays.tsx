@@ -4,7 +4,7 @@ const DaysLabel = styled.div`
   width: 100%;
   display: flex;
   height: 10%;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   /* display: grid;
   grid-template-columns: 7/7; */
   /* background-color: blue; */
