@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { useNurseContext } from "../../context/NurseContext";
-import ClearSchedule from "./../../context/clearSchedule";
+import ClearSchedule from "../../context/ClearSchedule";
 
 interface ButtonProps {
   warning?: boolean;
