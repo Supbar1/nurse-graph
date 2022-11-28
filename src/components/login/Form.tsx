@@ -53,7 +53,7 @@ const Form = ({
     setErrors(submitErrors || {});
     if (submitErrors) return;
     setUsername(username);
-    navigate("/main");
+    navigate("/table");
   };
 
   const validate = () => {

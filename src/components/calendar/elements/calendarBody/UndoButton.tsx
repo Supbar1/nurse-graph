@@ -23,6 +23,7 @@ const UndoButton = ({ day,  }: UndoButtonProps) => {
   const undo = () => {
     const shiftNames: string[] = ["morningShift", "dayShift", "nightShift"];
     console.log("undoButtn");
+
     shiftNames.forEach((shiftName) => {
       let index = actualDayShifts[shiftName].findIndex(
         (id: number) => id === actualNurse.id
@@ -39,7 +40,6 @@ const UndoButton = ({ day,  }: UndoButtonProps) => {
       }
     });
     setUndoDay(0);
-    console.log("undoDay", undoDay);
   };
   return (
     <>

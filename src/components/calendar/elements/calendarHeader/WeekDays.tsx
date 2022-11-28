@@ -3,7 +3,7 @@ import styled from "styled-components";
 const DaysLabel = styled.div`
   width: 100%;
   display: flex;
-  height: 10%;
+  height: 7%;
   /* border: 2px solid red; */
   /* display: grid;
   grid-template-columns: 7/7; */

@@ -18,25 +18,38 @@ const NursesWindow = () => {
   const { activeDay, nurses } = useNurseContext();
   if (!activeDay[Number(Object.keys(activeDay))]) return <></>;
 
-  let actualMorning = [...Object.values(activeDay)[0][0].morningShift];
+  const shiftNurses = (shiftName : string, container: any ) => {
+    let actualShift = [...Object.values(activeDay)[0][0][shiftName]];
+    for (let index of actualShift) {
+      for (let nurse of nurses) if (index === nurse.id) container.push(nurse);
+    }
+  };
+
   let morningContainer: any = [];
-  for (let index of actualMorning) {
-    for (let nurse of nurses)
-      if (index === nurse.id) morningContainer.push(nurse);
-  }
-
-  let actualDay = [...Object.values(activeDay)[0][0].dayShift];
   let dayContainer: any = [];
-  for (let index of actualDay) {
-    for (let nurse of nurses) if (index === nurse.id) dayContainer.push(nurse);
-  }
-
-  let actualNight = [...Object.values(activeDay)[0][0].nightShift];
   let nightContainer: any = [];
-  for (let index of actualNight) {
-    for (let nurse of nurses)
-      if (index === nurse.id) nightContainer.push(nurse);
-  }
+
+  shiftNurses("morningShift", morningContainer);
+  shiftNurses("dayShift", dayContainer);
+  shiftNurses("nightShift", nightContainer);
+
+  const nursesNames = (label: string, shiftName: any) => {
+    return (
+      <>
+        <tr>
+          <th>{label}</th>
+        </tr>
+        {shiftName.map((item: any) => (
+          <tr key={item.id}>
+            <td>
+              {item.firstName}&nbsp;{item.lastName}
+            </td>
+          </tr>
+        ))}
+      </>
+    );
+  };
+
   return (
     <Container>
       <thead>
@@ -45,38 +58,9 @@ const NursesWindow = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>Dzien:</th>
-        </tr>
-        {morningContainer.map((item: any) => (
-          <tr key={item.id}>
-            <td>
-              {item.firstName}&nbsp;{item.lastName}
-            </td>
-          </tr>
-        ))}
-        <tr>
-          <th>Doba:</th>
-        </tr>
-
-        {dayContainer.map((item: any) => (
-          <tr key={item.id}>
-            <td>
-              {item.firstName}&nbsp;{item.lastName}
-            </td>
-          </tr>
-        ))}
-
-        <tr>
-          <th>Noc:</th>
-        </tr>
-        {nightContainer.map((item: any) => (
-          <tr key={item.id}>
-            <td>
-              {item.firstName}&nbsp;{item.lastName}
-            </td>
-          </tr>
-        ))}
+        {nursesNames("Ranek:", morningContainer)}
+        {nursesNames("Dzień:", dayContainer)}
+        {nursesNames("Noc:", nightContainer)}
       </tbody>
     </Container>
   );

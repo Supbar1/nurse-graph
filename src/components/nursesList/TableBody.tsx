@@ -2,7 +2,6 @@ import { useNavigate } from "react-router";
 import { useNurseContext } from "../../context/NurseContext";
 import { ActiveDayStyled } from "./../calendar/elements/calendarBody/ActualDays.styles";
 import styled from "styled-components";
-// import Hours from "./../../context/hours";
 
 const SetGraphButton = styled(ActiveDayStyled)`
   padding: 0.5rem 0.2rem;
@@ -11,16 +10,13 @@ const SetGraphButton = styled(ActiveDayStyled)`
   justify-content: center;
   margin: 0.5rem;
   cursor: pointer;
-  /* line-height: 1.2; */
 `;
 const TableRow = styled.tr`
   margin-top: 10px;
-  /* border: 2px solid red; */
 `;
 const Cell = styled.td`
   padding: 1rem;
   text-align: center;
-  /* border: 1px solid black; */
 `;
 export interface INurse {
   nursesData: NursesDataType;
@@ -36,10 +32,8 @@ type NursesType = {
   courses: { bloodTransfusion: boolean; RKO: boolean; EKG: boolean };
   selfEmplointment: boolean;
 };
-interface TabloBodyType {
-  handleDelete: () => void;
-}
-export const TableBody = ({ handleDelete }: TabloBodyType) => {
+
+export const TableBody = () => {
   const { nurses, setActualNurse, setActiveDay, workSchedule,hours } =
     useNurseContext();
 console.log(workSchedule);
@@ -52,22 +46,6 @@ console.log(workSchedule);
     setActiveDay({});
     navigate("/graph");
   };
-  // console.log("he");
-
-  // Hours(workSchedule, id);
-  // const hours = (id?: number) => {
-  //   let hours = 0;
-  //   for (let element in workSchedule) {
-  //     for (let day in workSchedule[element]) {
-  //       const singleDay = Object.values(workSchedule[element][day])[0][0];
-  //       for (let element in singleDay) {
-  //         if (singleDay[element].find((nurseId: number) => nurseId === id))
-  //           hours += 12;
-  //       }
-  //     }
-  //   }
-  //   return hours;
-  // };
 
   const displayShiftsAmmount = (shift: string, id?: number) => {
     let ammountOfShifts = 0;
@@ -87,7 +65,7 @@ console.log(workSchedule);
         {nurses.map((nurse) => (
           <TableRow key={nurse.id}>
             <td>
-              <img alt="nurse picture" src={nurse?.picture} />
+              <img alt="nurse" src={nurse?.picture} />
               &nbsp;
               {nurse?.firstName}&nbsp;{nurse?.lastName}
             </td>

@@ -1,18 +1,26 @@
 import styled from "styled-components";
 import { useNurseContext } from "../../context/NurseContext";
+
 const Container = styled.div`
+  border: 1px solid black;
   height: 100%;
-  display: grid;
-  grid-template-rows: 20% 80%;
   justify-content: center;
-  align-items: baseline;
   text-align: center;
-  background-image: "https://assets.contenthub.wolterskluwer.com/api/public/content/3023bc9eed3f455f9ce4c036a8e3ca71?v=43d7453f";
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0.8em;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100vw;
+    background: rgba(2, 111, 236, 0.8);
+  }
 `;
 const HeaderSpace = styled.h1`
+  font-weight: bold;
   white-space: nowrap;
-  height: 100%;
   font-size: min(15vh, 6rem);
+  margin-bottom: 2rem;
   letter-spacing: 3px;
   word-spacing: 2px;
   background: linear-gradient(
@@ -24,38 +32,76 @@ const HeaderSpace = styled.h1`
   -webkit-text-fill-color: transparent;
 `;
 const TextArea = styled.div`
-  transform: translateY(-10%);
   display: flex;
   align-items: center;
-  height: 100%;
   justify-content: center;
-  transform: translateY(-10vh);
   flex-direction: column;
   text-align: center;
   background-color: rgba(255, 255, 255, 0);
-  /* background-color: red; */
 `;
 const Text = styled.p`
-  transform: scale(0.9, 1.2);
+  transform: scale(1, 1.2);
   line-height: 2.5rem;
-  /* font-size: 1.2rem; */
-  word-spacing: 1px;
+  word-spacing: 2px;
   letter-spacing: 1px;
 `;
+const IconsLegend = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  text-align: left;
+  i {
+    color: #2785ff;
+    font-size: 2rem;
+    margin: 1rem;
+    padding: 1rem;
+  }
+`;
+
 const Main = () => {
   const { nurses } = useNurseContext();
   return (
     <Container>
       <HeaderSpace>NURSE GRAPH</HeaderSpace>
       <TextArea>
-        <Text>Witam w Nurse Graph</Text>
+        <Text>Witam w Nurse Graph!</Text>
         <Text>
-          Programie służącym do układania grafiku pracy na oddziale szpitalnym
+          Programie służącym do układania grafiku pracy na oddziale szpitalnym.
         </Text>
+        <Text>Grafik można ustawiać maksymalnie 2 miesiące do przodu.</Text>
         <Text>
           Aktualnie program jako pracowników oddziału pobiera losowe:{" "}
           {nurses.length} osób.
         </Text>
+        <Text>(api: https://randomuser.me/api)</Text>
+
+        <IconsLegend>
+          <span>
+            <i className="fa-solid fa-hospital" />
+            Informacje i instrukcja
+          </span>
+          <span>
+            <i className="fa-solid fa-calendar-days" />
+            Kalendarz
+          </span>
+          <span>
+            <i className="fa-solid fa-users" />
+            Tablica Pracowników
+          </span>
+          <span>
+            <i className="fa-solid fa-arrow-right-to-bracket" />
+            Login
+          </span>
+          <span>
+            <i className="fa-solid fa-sun" /> Zmiana poranna
+          </span>
+          <span>
+            <i className="fa-solid fa-clock" /> Zmiana dzienna
+          </span>
+          <span>
+            <i className="fa-solid fa-moon" /> Zmiana nocna
+          </span>
+        </IconsLegend>
       </TextArea>
     </Container>
   );

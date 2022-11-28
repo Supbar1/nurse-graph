@@ -5,7 +5,6 @@ import { allNurses } from "./Nurseslist";
 import { NursesDataType } from "./TableBody";
 import TableHeader from "./TableHeader";
 import { TableBody } from "./TableBody";
-import { useNurseContext } from "../../context/NurseContext";
 
 const Scroll = styled.div`
   height: 100%;
@@ -41,24 +40,12 @@ const TableStyled = styled.table`
   width: 100%;
 `;
 const Table = () => {
-  const { userName } = useNurseContext();
-  const [nurses, setNurses] = useState<NursesDataType>({ nurses: [] });
-
-  const nursesArray: NursesDataType = allNurses();
-  useEffect(() => {
-    setNurses(nursesArray);
-  }, []);
-
-  const handleDelete = (nurse: number) => {
-    const deleteNurses = nurses?.nurses.filter((d) => d.id !== nurse);
-    setNurses({ nurses: deleteNurses });
-  };
 
   return (
     <Scroll>
       <TableStyled>
         <TableHeader />
-        <TableBody handleDelete={() => console.log(nurses)} />
+        <TableBody />
       </TableStyled>
     </Scroll>
   );

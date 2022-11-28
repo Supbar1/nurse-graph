@@ -1,93 +1,122 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useNurseContext } from "../context/NurseContext";
+import { useState } from "react";
 const Container = styled.div`
+  margin-right: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  border-radius: 2rem;
+  border-radius: 1rem;
   font: var(--fa-font-solid);
-  font-size: calc(2vh + 2.4rem);
+  font-size: calc(1.5vh + 2rem);
+  /* height: 360px; */
   background: linear-gradient(
     to left bottom,
     rgba(143, 64, 248, 0.5),
     rgba(39, 200, 255, 0.5)
   );
   @media (max-height: 400px) {
-    font-size: calc(15vh);
+    font-size: calc(2vh + 2.4rem);
+    margin-right: 0;
     width: 10vw;
     border-radius: 0;
     height: 100%;
   }
 `;
-
-const Main = styled.div`
-  /* border: 1px solid black; */
-  padding: 0.5vh;
+interface LinkProps {
+  activelink?: string;
+}
+const LinkToMain = styled(Link)<LinkProps>`
+  background-color: ${(props) =>
+    props.activelink === "main" ? "rgba(39, 200, 255, 0.5)" : null};
+  border-radius: 10px;
   :before {
     display: inline-block;
     content: "\f0f8";
-    color: linear-gradient(rgba(143, 64, 248, 0.5), rgba(39, 200, 255, 0.5));
+  }
+  &:hover {
+    background-color: rgba(39, 200, 255, 0.5);
   }
 `;
-const Graph = styled.div`
-  padding: 1.5vh;
+const Graph = styled(Link)<LinkProps>`
+  background-color: ${({ activelink: activeLink }) =>
+    activeLink === "graph" ? "rgba(39, 200, 255, 0.5)" : null};
+  border-radius: 5px;
   :before {
     display: inline-block;
     content: "\f073";
-    color: linear-gradient(rgba(143, 64, 248, 0.5), rgba(39, 200, 255, 0.5));
+  }
+  &:hover {
+    background-color: rgba(39, 200, 255, 0.5);
   }
 `;
-const Table = styled.div`
-  padding: 1.5vh;
-  /* height: 150px; */
+const LinkToTable = styled(Link)<LinkProps>`
+  background-color: ${(props) =>
+    props.activelink === "table" ? " rgba(143, 64, 248, 0.5)" : null};
+  border-radius: 15px;
   :before {
     display: inline-block;
     content: "\f0c0";
-    color: linear-gradient(rgba(143, 64, 248, 0.5), rgba(39, 200, 255, 0.5));
+  }
+  &:hover {
+    background-color: rgba(143, 64, 248, 0.5);
   }
 `;
-const Help = styled.div`
-  padding: 1vh 0 0 0;
-  /* border: 1px solid black; */
-  :before {
-    display: inline-block;
-    content: "\f128";
-    color: linear-gradient(rgba(143, 64, 248, 0.5), rgba(39, 200, 255, 0.5));
-  }
-`;
-const Login = styled.div`
-  /* border: 1px solid black; */
-  padding: 0.5vh;
+
+const LinkToLogin = styled(Link)<LinkProps>`
+  background-color: ${(props) =>
+    props.activelink === "login" ? " rgba(143, 64, 248, 0.5)" : null};
+  border-radius: 20px;
   :before {
     display: inline-block;
     content: "\f2f6";
-    color: linear-gradient(rgba(143, 64, 248, 0.5), rgba(39, 200, 255, 0.5));
+  }
+  &:hover {
+    background-color: rgba(143, 64, 248, 0.5);
   }
 `;
 
+const linkStyle = {
+  margin: "1rem 1rem",
+  textDecoration: "none",
+  color: "#2785ff",
+};
+
 const Navigation = () => {
   const { userName, actualNurse } = useNurseContext();
-
+  const [activeLink, setActiveLink] = useState("");
   return (
     <Container>
       {userName && (
         <>
-          <Link to="/main">
-            <Main />
-          </Link>
+          <LinkToMain
+            onClick={() => setActiveLink("main")}
+            to="/main"
+            style={linkStyle}
+            activelink={activeLink}
+          />
           {actualNurse.firstName && (
-            <Link to="/graph">
-              <Graph />
-            </Link>
+            <Graph
+              onClick={() => setActiveLink("graph")}
+              to="/graph"
+              style={linkStyle}
+              activelink={activeLink}
+            />
           )}
-          <Link to="/table">
-            <Table />
-          </Link>
-          <Link to="/">
-            <Login />
-          </Link>
+          <LinkToTable
+            onClick={() => setActiveLink("table")}
+            to="/table"
+            style={linkStyle}
+            activelink={activeLink}
+          />
+          <LinkToLogin
+            onClick={() => setActiveLink("login")}
+            to="/"
+            style={linkStyle}
+            activelink={activeLink}
+          />
         </>
       )}
     </Container>

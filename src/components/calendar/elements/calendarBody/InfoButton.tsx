@@ -24,20 +24,25 @@ interface InfoButtonProps {
   morningNurses?: number;
   handleClick: () => void;
 }
-const InfoButton = ({
-  day,
-  nightNurses,
-  dayNurses,
-  morningNurses,
-  handleClick,
-}: InfoButtonProps) => {
+const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
   const { workSchedule, monthChange } = useNurseContext();
   if (!day) return <></>;
+  const actualDayObject = workSchedule[HandleMonthSelect(monthChange)][day - 1];
+
+  const actualDayShifts = actualDayObject[day][0];
+
+  const morningNursesNumber: number | undefined =
+    actualDayShifts.morningShift?.length;
+
+  const dayNursesNumber: number | undefined = actualDayShifts.dayShift?.length;
+
+  const nightNursesNumber: number | undefined = actualDayShifts.nightShift?.length;
+
   return (
     <ShiftsButton onClick={handleClick}>
       <div>{day}</div>
       <div>
-        {morningNurses && morningNurses > 0 ? (
+        {morningNursesNumber > 0 ? (
           <div>
             {
               workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
@@ -48,7 +53,7 @@ const InfoButton = ({
         ) : (
           <></>
         )}
-        {dayNurses && dayNurses > 0 ? (
+        {dayNursesNumber > 0 ? (
           <div>
             {
               workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
@@ -59,7 +64,7 @@ const InfoButton = ({
         ) : (
           <></>
         )}
-        {nightNurses && nightNurses > 0 ? (
+        {nightNursesNumber > 0 ? (
           <div>
             {
               workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]

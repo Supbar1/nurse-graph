@@ -26,7 +26,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 const WorkSpace = styled.div`
-  height: max(80vh, 380px);
+  height: max(80vh, 360px);
 
   width: min(70vw, 900px);
   @media (max-width: 1000px) {

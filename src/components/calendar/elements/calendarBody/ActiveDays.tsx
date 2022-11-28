@@ -4,8 +4,10 @@ import DaysList from "./DaysList";
 import { useNurseContext } from "../../../../context/NurseContext";
 import WorkButton from "./Workbutton";
 import HandleMonthSelect from "../../../../services/Months";
+
 import InfoButton from "./InfoButton";
 import UndoButton from "./UndoButton";
+import ShiftButton from "./ShiftButton";
 
 const ActiveDays = () => {
   const {
@@ -38,73 +40,29 @@ const ActiveDays = () => {
     if (undoDay === day) {
       return <UndoButton day={day} />;
     }
-
     const actualDayObject =
       workSchedule[HandleMonthSelect(monthChange)][day - 1];
 
     const actualDayShifts = actualDayObject[day][0];
-
-    const morningNurses: number | undefined =
-      actualDayShifts.morningShift?.length;
-
-    const dayNurses: number | undefined = actualDayShifts.dayShift?.length;
-
-    const nightNurses: number | undefined = actualDayShifts.nightShift?.length;
-
-    const isActualNurseAtThisNight = actualDayShifts["nightShift"]?.find(
-      (index) => index === actualNurse.id
-    );
-    const isActualNurseAtThisDay = actualDayShifts.dayShift?.find(
-      (index) => index === actualNurse.id
-    );
-    let isActualNurseAtThisMorning = actualDayShifts.morningShift?.find(
-      (index) => index === actualNurse.id
-    );
-
-    if (isActualNurseAtThisNight) {
-      return (
-        <i
-          onClick={() => setUndoDay(day)}
-          style={{ color: "silver" }}
-          className="fa-solid fa-moon"
-        />
+    let container = null;
+    const shifts: string[] = ["morningShift", "dayShift", "nightShift"];
+    shifts.forEach((shiftName) => {
+      let isActualNursePresent = actualDayShifts[shiftName].find(
+        (index) => index === actualNurse.id
       );
+      if (isActualNursePresent) {
+        container = isActualNursePresent
+      }
+    });
+    if (container) {
+      return <ShiftButton day={day} actualDayShifts={actualDayShifts}/>;
     }
-
-    if (isActualNurseAtThisDay && dayNurses && dayNurses > 0)
-      return (
-        <i
-          onClick={() => setUndoDay(day)}
-          style={{ color: "white" }}
-          className="fa-solid fa-clock"
-        />
-      );
-
-    if (isActualNurseAtThisMorning && morningNurses && morningNurses > 0)
-      return (
-        <i
-          onClick={() => {
-            setUndoDay(day);
-          }}
-          style={{ color: "yellow" }}
-          className="fa-solid fa-sun"
-        />
-      );
-
     if (Number(Object.keys(activeDay)) === day) {
       return (
         <WorkButton handleClick={() => setUndoDay(0)} activeDay={activeDay} />
       );
     }
-    return (
-      <InfoButton
-        day={day}
-        morningNurses={morningNurses}
-        dayNurses={dayNurses}
-        nightNurses={nightNurses}
-        handleClick={() => setUndoDay(0)}
-      />
-    );
+    return <InfoButton day={day} handleClick={() => setUndoDay(0)} />;
   };
 
   return (

@@ -38,7 +38,6 @@ const OneDayButton = styled.button<ButtonProps>`
     content: "";
     background-color: ${(props) =>
       props.warning ? "palevioletred" : "rgba(39, 200, 255, 0.5)"};
-    /* background-color: rgba(143, 64, 248, 0.5); */
   }
   :hover::before {
     transition: 0.5s all ease;
