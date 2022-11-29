@@ -9,12 +9,7 @@ const TableHeaderStyled = styled.thead`
 `;
 
 const Cell = styled.th`
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   text-align: center;
-  /* border: 1px solid black; */
 `;
 
 const TableHeader = () => (
@@ -24,7 +19,6 @@ const TableHeader = () => (
       <Cell>Ranki</Cell>
       <Cell>Dni</Cell>
       <Cell>Noce</Cell>
-
       <Cell>Razem</Cell>
       <Cell />
     </tr>

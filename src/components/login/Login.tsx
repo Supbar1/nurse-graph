@@ -4,16 +4,16 @@ import Form from "./Form";
 
 const Container = styled.div`
   height: 100%;
-  display: grid;
-  grid-template-rows: 20% 80%;
 `;
-
 const HeaderSpace = styled.h1`
+  border-right: 0.7rem solid white;
   white-space: nowrap;
+  font-weight: bold;
   font-size: min(15vh, 6rem);
   text-align: center;
   letter-spacing: 3px;
   word-spacing: 2px;
+  margin-bottom: min(30vh, 10rem);
   background: linear-gradient(
     to left bottom,
     rgba(143, 64, 248, 0.8),

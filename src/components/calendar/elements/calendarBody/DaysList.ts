@@ -1,6 +1,5 @@
 import { useNurseContext } from "../../../../context/NurseContext";
 
-
 const DaysList = () => {
 
   const { monthChange } = useNurseContext();
@@ -9,7 +8,6 @@ const DaysList = () => {
   date.setUTCDate(1);
 
   // Need to improve this index
-
   let firstDayIndex =
     new Date(date.getFullYear(), date.getMonth() + monthChange, 0).getDay() + 7;
   firstDayIndex > 7 ? (firstDayIndex -= 7) : (firstDayIndex = firstDayIndex);

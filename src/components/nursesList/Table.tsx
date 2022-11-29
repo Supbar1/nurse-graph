@@ -1,8 +1,4 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
-//Components
-import { allNurses } from "./Nurseslist";
-import { NursesDataType } from "./TableBody";
 import TableHeader from "./TableHeader";
 import { TableBody } from "./TableBody";
 
@@ -39,16 +35,13 @@ const Scroll = styled.div`
 const TableStyled = styled.table`
   width: 100%;
 `;
-const Table = () => {
-
-  return (
-    <Scroll>
-      <TableStyled>
-        <TableHeader />
-        <TableBody />
-      </TableStyled>
-    </Scroll>
-  );
-};
+const Table = () => (
+  <Scroll>
+    <TableStyled>
+      <TableHeader />
+      <TableBody />
+    </TableStyled>
+  </Scroll>
+);
 
 export default Table;

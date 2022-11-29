@@ -2,21 +2,20 @@ import styled from "styled-components";
 import { useNurseContext } from "../../context/NurseContext";
 
 const Container = styled.div`
-  border: 1px solid black;
   height: 100%;
   justify-content: center;
   text-align: center;
   overflow-y: scroll;
-
+  cursor: pointer;
   &::-webkit-scrollbar {
     width: 0.8em;
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 100vw;
-    background: rgba(2, 111, 236, 0.8);
+    background: rgba(2, 111, 236, 0.6);
   }
 `;
-const HeaderSpace = styled.h1`
+const HeaderSpace = styled.h2`
   font-weight: bold;
   white-space: nowrap;
   font-size: min(15vh, 6rem);

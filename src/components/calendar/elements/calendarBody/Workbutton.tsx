@@ -1,6 +1,4 @@
-import React from "react";
 import styled from "styled-components";
-//Components
 import DayButton from "./DayButton";
 import NightButton from "./NightButton";
 import MorningButton from "./MorningButton";
@@ -12,7 +10,6 @@ const Container = styled.span`
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  /* font-size: 13px; */
   margin: auto;
   span {
     margin: auto;

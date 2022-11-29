@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-//Components
 import DaysList from "./DaysList";
-//Context
 import { useNurseContext } from "../../../../context/NurseContext";
 
 const OtherDays = styled.div`

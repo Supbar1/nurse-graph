@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useNurseContext } from "../context/NurseContext";
-import { useState } from "react";
+
 const Container = styled.div`
   margin-right: 1rem;
   display: flex;
@@ -11,7 +11,7 @@ const Container = styled.div`
   border-radius: 1rem;
   font: var(--fa-font-solid);
   font-size: calc(1.5vh + 2rem);
-  /* height: 360px; */
+  width: max(7vw, 70px);
   background: linear-gradient(
     to left bottom,
     rgba(143, 64, 248, 0.5),
@@ -79,14 +79,14 @@ const LinkToLogin = styled(Link)<LinkProps>`
 `;
 
 const linkStyle = {
-  margin: "1rem 1rem",
+  margin: "1rem",
   textDecoration: "none",
   color: "#2785ff",
 };
 
 const Navigation = () => {
-  const { userName, actualNurse } = useNurseContext();
-  const [activeLink, setActiveLink] = useState("");
+  const { userName, actualNurse,activeLink, setActiveLink } = useNurseContext();
+
   return (
     <Container>
       {userName && (

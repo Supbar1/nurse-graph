@@ -9,9 +9,6 @@ const InputBox = styled.div`
   display: inline-block;
   font-weight: 300;
   letter-spacing: 1px;
-  @media (max-width: 60em) {
-    /* font-size: var(--fs-400); */
-  }
 `;
 const SingleInput = styled.input`
   width: 100%;
@@ -25,6 +22,7 @@ const SingleInput = styled.input`
   border-radius: 30px;
 `;
 const Alert = styled.div`
+  font-weight: bold;
   height: 50px;
   background: linear-gradient(
     to left bottom,
@@ -34,10 +32,6 @@ const Alert = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  @media (max-width: 60em) {
-  
-  }
 `;
 interface InputProps {
   name: string;

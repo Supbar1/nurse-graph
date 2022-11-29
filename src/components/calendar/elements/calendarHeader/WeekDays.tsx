@@ -4,15 +4,7 @@ const DaysLabel = styled.div`
   width: 100%;
   display: flex;
   height: 7%;
-  /* border: 2px solid red; */
-  /* display: grid;
-  grid-template-columns: 7/7; */
-  /* background-color: blue; */
-  /* font-size: 1.2rem; */
-  /* white-space: no; */
   div {
-    
-    /* padding: 20px; */
     width: 100%;
     display: flex;
     justify-content: center;

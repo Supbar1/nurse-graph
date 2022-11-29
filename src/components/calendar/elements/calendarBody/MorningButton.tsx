@@ -1,18 +1,19 @@
 import styled from "styled-components";
-import { useNurseContext, allShifts } from "../../../../context/NurseContext";
+import { useNurseContext, allShifts,DayOfMonthType } from "../../../../context/NurseContext";
 import HandleMonthSelect from "../../../../services/Months";
 
 const MorningButtonIcon = styled.i`
   color: yellow;
 `;
+interface WorkButtonType {
+  activeDay: DayOfMonthType;
+}
 
-const MorningButton = ({ activeDay }: any) => {
+const MorningButton = ({ activeDay }: WorkButtonType) => {
   const {
     monthChange,
     workSchedule,
     actualNurse,
-    setWorkSchedule,
-    setActiveDay,
   } = useNurseContext();
 
   const work = () => {
@@ -26,17 +27,9 @@ const MorningButton = ({ activeDay }: any) => {
     wholeWorkDay["morningShift"] = [...shiftWithActualNurse];
 
     const dayDigit = Number(Object.keys(activeDay));
-    // const workScheduleObject = { ...workSchedule };
-    //==========NOT SURE WHY ONLY THIS WAY WORKS ============
-    //=====================DOUBLE SPREAD========== ============
-    // const newSchedule: any = { ...workScheduleObject };
-
     workSchedule[HandleMonthSelect(monthChange)][dayDigit - 1] = {
       [dayDigit]: [wholeWorkDay],
     };
-
-    // setWorkSchedule(newSchedule);
-    // setActiveDay({});
   };
   return <MorningButtonIcon onClick={work} className="fa-solid fa-sun" />;
 };

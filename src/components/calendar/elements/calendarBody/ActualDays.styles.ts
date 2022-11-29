@@ -5,13 +5,14 @@ export const ActiveDayStyled = styled.div`
   position: relative;
   border-radius: 18%;
   overflow: hidden;
-  color: black;
-  /* height: 80px; */
-  /* width: 80px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   &:after {
     content: "";
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     position: absolute;
     top: -70px;
     left: -100px;

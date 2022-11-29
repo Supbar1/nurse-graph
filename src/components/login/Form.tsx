@@ -42,17 +42,17 @@ const Form = ({
   errors,
   setAccount,
 }: FormProps) => {
-  const { setUsername, userName } = useNurseContext();
+  const { setUsername, userName, setActiveLink } = useNurseContext();
   const Joi = require(`joi`);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
-    // function that prevents full page reload
     e.preventDefault();
     const submitErrors = validate();
     setErrors(submitErrors || {});
     if (submitErrors) return;
     setUsername(username);
+    setActiveLink("table");
     navigate("/table");
   };
 

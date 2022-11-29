@@ -2,19 +2,18 @@ import styled from "styled-components";
 import HandleMonthSelect from "../../../../services/Months";
 import { useNurseContext } from "./../../../../context/NurseContext";
 
-const ShiftsButton = styled.div`
+const Container = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
   i {
-    /* font-size: 1rem; */
+    font-size: 0.7rem;
   }
   div {
-    flex-direction: column;
     margin: 0 auto;
     line-height: 1;
-    div {
-      flex-direction: row;
-    }
+  
   }
 `;
 interface InfoButtonProps {
@@ -36,10 +35,11 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
 
   const dayNursesNumber: number | undefined = actualDayShifts.dayShift?.length;
 
-  const nightNursesNumber: number | undefined = actualDayShifts.nightShift?.length;
+  const nightNursesNumber: number | undefined =
+    actualDayShifts.nightShift?.length;
 
   return (
-    <ShiftsButton onClick={handleClick}>
+    <Container onClick={handleClick}>
       <div>{day}</div>
       <div>
         {morningNursesNumber > 0 ? (
@@ -70,13 +70,13 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
               workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
                 .nightShift?.length
             }{" "}
-            <i className="fa-solid fa-moon silver" />
+            <i className="fa-solid fa-moon" />
           </div>
         ) : (
           <></>
         )}
       </div>
-    </ShiftsButton>
+    </Container>
   );
 };
 

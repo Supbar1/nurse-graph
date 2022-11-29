@@ -24,7 +24,6 @@ const OneDayButton = styled.button<ButtonProps>`
   :hover {
     cursor: pointer;
     color: black;
-
     border: 1px solid rgba(143, 64, 248, 0.5);
   }
   ::before {
@@ -58,32 +57,26 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: rgba(255, 255, 255, 0);
-
-  @media (max-width: 900px) {
-    /* flex-direction: column; */
-  }
 `;
 const WithdrawButton = () => {
-  const { setActualNurse, setWorkSchedule, setActiveDay } = useNurseContext();
+  const { setActualNurse, setWorkSchedule, setActiveDay, setActiveLink } =
+    useNurseContext();
 
   const navigate = useNavigate();
+
   const handleSave = () => {
-    navigate("/table");
     setActualNurse({});
+    setActiveLink("table");
+    navigate("/table");
+  };
+  const withdrawChanges = () => {
+    setWorkSchedule(ClearSchedule());
+    setActiveDay({});
   };
   return (
     <Container>
       <OneDayButton onClick={handleSave}>Zapisz Zmiany</OneDayButton>
-      {/* <OneDayButton warning onClick={handleDelete}>
-        Cofnij dzień
-      </OneDayButton> */}
-      <OneDayButton
-        warning
-        onClick={() => {
-          setWorkSchedule(ClearSchedule());
-          setActiveDay({});
-        }}
-      >
+      <OneDayButton warning onClick={withdrawChanges}>
         Cofnij wszystko
       </OneDayButton>
     </Container>

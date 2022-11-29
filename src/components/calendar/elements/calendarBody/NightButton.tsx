@@ -1,11 +1,19 @@
 import styled from "styled-components";
-import { useNurseContext, allShifts } from "../../../../context/NurseContext";
+import {
+  useNurseContext,
+  allShifts,
+  DayOfMonthType,
+} from "../../../../context/NurseContext";
 import HandleMonthSelect from "../../../../services/Months";
 
 const NightButtonIcon = styled.i`
   color: darkblue;
 `;
-const NightButton = ({ activeDay }: any) => {
+interface DayButtonProps {
+  activeDay: DayOfMonthType;
+}
+
+const NightButton = ({ activeDay }: DayButtonProps) => {
   const {
     monthChange,
     workSchedule,
@@ -15,8 +23,6 @@ const NightButton = ({ activeDay }: any) => {
   } = useNurseContext();
 
   const work = () => {
-    // const arrayOfActiveDay: any = ;
-
     const shiftsObject: any = [...Object.values(activeDay)].flat(1)[0];
     const shiftWithActualNurse = [
       ...shiftsObject["nightShift"],

@@ -2,23 +2,24 @@ import styled from "styled-components";
 import { useNurseContext } from "../../context/NurseContext";
 
 const Container = styled.table`
-  display: grid;
   grid-area: nursesWindow;
-  tr {
-    text-align: center;
-  }
-  align-items: flex-start;
-  justify-content: center;
-  thead {
-    font-weight: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  th {
     font-size: 1.2rem;
+  }
+  tr {
+    font-size: 0.7rem;
   }
 `;
 const NursesWindow = () => {
   const { activeDay, nurses } = useNurseContext();
   if (!activeDay[Number(Object.keys(activeDay))]) return <></>;
 
-  const shiftNurses = (shiftName : string, container: any ) => {
+  const shiftNurses = (shiftName: string, container: any) => {
     let actualShift = [...Object.values(activeDay)[0][0][shiftName]];
     for (let index of actualShift) {
       for (let nurse of nurses) if (index === nurse.id) container.push(nurse);

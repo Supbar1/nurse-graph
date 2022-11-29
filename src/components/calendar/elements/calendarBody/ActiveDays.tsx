@@ -51,11 +51,11 @@ const ActiveDays = () => {
         (index) => index === actualNurse.id
       );
       if (isActualNursePresent) {
-        container = isActualNursePresent
+        container = isActualNursePresent;
       }
     });
     if (container) {
-      return <ShiftButton day={day} actualDayShifts={actualDayShifts}/>;
+      return <ShiftButton day={day} actualDayShifts={actualDayShifts} />;
     }
     if (Number(Object.keys(activeDay)) === day) {
       return (

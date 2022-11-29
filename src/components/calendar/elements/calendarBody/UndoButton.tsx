@@ -5,14 +5,13 @@ interface UndoButtonProps {
   day: number;
 }
 
-const UndoButton = ({ day,  }: UndoButtonProps) => {
+const UndoButton = ({day}: UndoButtonProps) => {
   const {
     workSchedule,
     monthChange,
     actualNurse,
     setActiveDay,
     activeDay,
-    undoDay,
     setUndoDay,
   } = useNurseContext();
 
@@ -41,11 +40,9 @@ const UndoButton = ({ day,  }: UndoButtonProps) => {
     });
     setUndoDay(0);
   };
-  return (
-    <>
-      <i onClick={() => undo()} className="fa fa-undo" />
-    </>
-  );
+  return <i onClick={() => undo()} className="fa fa-undo" />
+    
+  
 };
 
 export default UndoButton;

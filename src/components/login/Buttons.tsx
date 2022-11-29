@@ -34,8 +34,6 @@ const Button = styled.button`
 `;
 const Buttons = () => (
   <Container>
-   
-   
       <input type="checkbox" name="" />
       &nbsp;Remember me&nbsp;
       <Button>Zaloguj</Button>

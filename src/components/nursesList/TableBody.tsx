@@ -5,11 +5,11 @@ import styled from "styled-components";
 
 const SetGraphButton = styled(ActiveDayStyled)`
   padding: 0.5rem 0.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0.5rem;
-  cursor: pointer;
+  &:after {
+    width: 450px;
+    height: 450px;
+  }
 `;
 const TableRow = styled.tr`
   margin-top: 10px;
@@ -18,25 +18,10 @@ const Cell = styled.td`
   padding: 1rem;
   text-align: center;
 `;
-export interface INurse {
-  nursesData: NursesDataType;
-  handleDelete: (id: number) => void;
-}
-
-export type NursesDataType = {
-  nurses: NursesType[];
-};
-type NursesType = {
-  id: number;
-  name: string;
-  courses: { bloodTransfusion: boolean; RKO: boolean; EKG: boolean };
-  selfEmplointment: boolean;
-};
 
 export const TableBody = () => {
-  const { nurses, setActualNurse, setActiveDay, workSchedule,hours } =
+  const { nurses, setActualNurse, setActiveDay, workSchedule, hours } =
     useNurseContext();
-console.log(workSchedule);
 
   const navigate = useNavigate();
 
@@ -60,7 +45,6 @@ console.log(workSchedule);
     return ammountOfShifts;
   };
   return (
-    <>
       <tbody>
         {nurses.map((nurse) => (
           <TableRow key={nurse.id}>
@@ -74,7 +58,7 @@ console.log(workSchedule);
             </Cell>
             <Cell>{displayShiftsAmmount("dayShift", nurse.id)}</Cell>
             <Cell>{displayShiftsAmmount("nightShift", nurse.id)}</Cell>
-            <Cell>{hours( nurse.id)}h/140h</Cell>
+            <Cell>{hours(nurse.id)}h/140h</Cell>
             <td>
               <SetGraphButton onClick={() => changeUrl(nurse.id)}>
                 Ustaw grafik
@@ -83,6 +67,5 @@ console.log(workSchedule);
           </TableRow>
         ))}
       </tbody>
-    </>
   );
 };
