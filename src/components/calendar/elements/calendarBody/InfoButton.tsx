@@ -13,7 +13,6 @@ const Container = styled.div`
   div {
     margin: 0 auto;
     line-height: 1;
-  
   }
 `;
 interface InfoButtonProps {
@@ -38,44 +37,31 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
   const nightNursesNumber: number | undefined =
     actualDayShifts.nightShift?.length;
 
-  return (
-    <Container onClick={handleClick}>
-      <div>{day}</div>
-      <div>
-        {morningNursesNumber > 0 ? (
+  const shiftInfo = (nursesQuantity: number, color: string, icon: string) => {
+    const className = "fa-solid fa-" + icon;
+    return (
+      <>
+        {nursesQuantity > 0 ? (
           <div>
             {
               workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
                 .morningShift?.length
             }{" "}
-            <i style={{ color: "yellow" }} className="fa-solid fa-sun" />
+            <i style={{ color: color }} className={className} />
           </div>
         ) : (
           <></>
         )}
-        {dayNursesNumber > 0 ? (
-          <div>
-            {
-              workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
-                .dayShift?.length
-            }{" "}
-            <i style={{ color: "white" }} className="fa-solid fa-clock" />
-          </div>
-        ) : (
-          <></>
-        )}
-        {nightNursesNumber > 0 ? (
-          <div>
-            {
-              workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
-                .nightShift?.length
-            }{" "}
-            <i className="fa-solid fa-moon" />
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
+      </>
+    );
+  };
+
+  return (
+    <Container onClick={handleClick}>
+      <div>{day}</div>
+      {shiftInfo(morningNursesNumber, "yellow", "sun")}
+      {shiftInfo(dayNursesNumber, "white", "clock")}
+      {shiftInfo(nightNursesNumber, "silver", "moon")}
     </Container>
   );
 };

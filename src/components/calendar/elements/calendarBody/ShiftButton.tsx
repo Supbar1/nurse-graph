@@ -36,6 +36,5 @@ const ShiftButton = ({ day, actualDayShifts }: ShiftButtonProps) => {
   if (isActualNurseAtThisMorning) return shiftIcon("yellow", "sun");
   return <></>;
 };
-// }
 
 export default ShiftButton;

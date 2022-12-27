@@ -9,8 +9,8 @@ const DaysList = () => {
 
   // Need to improve this index
   let firstDayIndex =
-    new Date(date.getFullYear(), date.getMonth() + monthChange, 0).getDay() + 7;
-  firstDayIndex > 7 ? (firstDayIndex -= 7) : (firstDayIndex = firstDayIndex);
+    new Date(date.getFullYear(), date.getMonth() + monthChange, 0).getDay() + 6;
+  firstDayIndex > 6 && (firstDayIndex -= 6)
 
   const lastPreviousDay = new Date(
     date.getFullYear(),
