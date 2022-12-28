@@ -16,7 +16,6 @@ export const months: string[] = [
 ];
 
 const HandleMonthSelect = (monthChange: number) => {
-  // const { monthChange } = useNurseContext();
   const date = new Date();
   let miesiac = new Date(
     date.getFullYear(),

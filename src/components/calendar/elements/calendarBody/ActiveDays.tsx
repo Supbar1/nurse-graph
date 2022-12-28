@@ -1,17 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ActiveDayStyled } from "./ActualDays.styles";
 import DaysList from "./DaysList";
 import { useNurseContext } from "../../../../context/NurseContext";
 import WorkButton from "./Workbutton";
 import HandleMonthSelect from "../../../../services/Months";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { useAppSelector } from "../../../../store/hooks";
+import {
+  selectMonthChange,
+} from "../../../../store/monthChangeSlice";
 import InfoButton from "./InfoButton";
 import UndoButton from "./UndoButton";
 import ShiftButton from "./ShiftButton";
 
 const ActiveDays = () => {
   const {
-    monthChange,
     actualNurse,
     workSchedule,
     activeDay,
@@ -20,12 +22,11 @@ const ActiveDays = () => {
     setUndoDay,
   } = useNurseContext();
 
-  const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
+  const { monthChange} = useAppSelector(selectMonthChange);
+
   const List = DaysList();
 
   useEffect(() => {
-    // setDaysOfMonth(List.daysOfMonth);
-
     setActiveDay({});
   }, [monthChange]);
 
@@ -34,26 +35,15 @@ const ActiveDays = () => {
   };
 
   const handleDaySelect = (day: number) => {
-    if (HandleMonthSelect(monthChange) === "November" && day > 30) return <></>;
-    //==================LINE UPSTREAM NEED TO BE CHANGED==============
-    //==================ERROR: DAY 31 DOESNT EXIST IN NOVEMBER===========
 
     if (undoDay === day) {
       return <UndoButton day={day} />;
     }
-    // console.log("====================================");
-    // console.log(workSchedule[HandleMonthSelect(monthChange)]);
-    console.log(workSchedule, "xD?");
-    console.log("====================================");
-
-    console.log(List.daysOfMonth);
+    
     const actualDayObject =
       workSchedule[HandleMonthSelect(monthChange)][day - 1];
 
-    const test = daysOfMonth.find((element) => element === day);
-
     const actualDayShifts = actualDayObject[day][0];
-
     let container = null;
     const shifts: string[] = ["morningShift", "dayShift", "nightShift"];
     shifts.forEach((shiftName) => {
@@ -77,7 +67,6 @@ const ActiveDays = () => {
 
   return (
     <>
-      <button onClick={() => console.log(daysOfMonth)}>Button</button>
       {List.daysOfMonth.map((day) => (
         <ActiveDayStyled onClick={() => addWorkDay(day)} key={day}>
           {handleDaySelect(day)}

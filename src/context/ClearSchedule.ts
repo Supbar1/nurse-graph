@@ -4,6 +4,7 @@ import HandleMonthSelect from "../services/Months";
 const ClearSchedule = () => {
   let fourMonthsSchedule = {} as WorkScheduleType;
   for (let i = 0; i <= 3; i++) {
+    
     const date = new Date();
     date.setUTCDate(1);
     let lastDayNumber = new Date(

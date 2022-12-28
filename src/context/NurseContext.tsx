@@ -18,7 +18,7 @@ export interface DayOfMonthType {
 export interface WorkScheduleType {
   [month: string]: DayOfMonthType[];
 }
-interface NurseType {
+export interface NurseType {
   id?: number;
   firstName?: string;
   lastName?: string;
@@ -32,8 +32,6 @@ interface NurseGraphContext {
   setMonth: React.Dispatch<React.SetStateAction<number>>;
   workSchedule: WorkScheduleType;
   setWorkSchedule: React.Dispatch<React.SetStateAction<WorkScheduleType>>;
-  monthChange: number;
-  setMonthChange: React.Dispatch<React.SetStateAction<number>>;
   activeDay: DayOfMonthType;
   setActiveDay: React.Dispatch<React.SetStateAction<DayOfMonthType>>;
   daysOfMonth: number[];
@@ -52,7 +50,6 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
   const [nurses, setNurses] = useState<NurseType[]>([] as NurseType[]);
   const [actualNurse, setActualNurse] = useState<NurseType>({} as NurseType);
   const [month, setMonth] = useState<number>(0);
-  const [monthChange, setMonthChange] = useState<number>(0);
   const [userName, setUsername] = useState<string>("");
   const [undoDay, setUndoDay] = useState<number>(0);
   const [activeLink, setActiveLink] = useState("");
@@ -100,7 +97,7 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
   const List = DaysList();
   useEffect(() => {
     setDaysOfMonth(List.daysOfMonth);
-  }, [monthChange]);
+  }, []);
   const [workSchedule, setWorkSchedule] = useState<WorkScheduleType>({
     ...ClearSchedule(),
   } as WorkScheduleType);
@@ -115,8 +112,6 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
         setMonth,
         workSchedule,
         setWorkSchedule,
-        monthChange,
-        setMonthChange,
         activeDay,
         setActiveDay,
         daysOfMonth,

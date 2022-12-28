@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import HandleMonthSelect from "../../../../services/Months";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectMonthChange } from "../../../../store/monthChangeSlice";
 import { useNurseContext } from "./../../../../context/NurseContext";
 
 const Container = styled.div`
@@ -16,15 +18,15 @@ const Container = styled.div`
   }
 `;
 interface InfoButtonProps {
-  day?: number;
+  day: number;
   nightNurses?: number;
   dayNurses?: number;
   morningNurses?: number;
   handleClick: () => void;
 }
 const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
-  const { workSchedule, monthChange } = useNurseContext();
-  if (!day) return <></>;
+  const { workSchedule } = useNurseContext();
+  const { monthChange } = useAppSelector(selectMonthChange);
   const actualDayObject = workSchedule[HandleMonthSelect(monthChange)][day - 1];
 
   const actualDayShifts = actualDayObject[day][0];
@@ -37,15 +39,20 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
   const nightNursesNumber: number | undefined =
     actualDayShifts.nightShift?.length;
 
-  const shiftInfo = (nursesQuantity: number, color: string, icon: string) => {
+  const shiftInfo = (
+    nursesQuantity: number,
+    color: string,
+    icon: string,
+    shift: string
+  ) => {
     const className = "fa-solid fa-" + icon;
     return (
       <>
         {nursesQuantity > 0 ? (
           <div>
             {
-              workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0]
-                .morningShift?.length
+              workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0][shift]
+                .length
             }{" "}
             <i style={{ color: color }} className={className} />
           </div>
@@ -59,9 +66,9 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
   return (
     <Container onClick={handleClick}>
       <div>{day}</div>
-      {shiftInfo(morningNursesNumber, "yellow", "sun")}
-      {shiftInfo(dayNursesNumber, "white", "clock")}
-      {shiftInfo(nightNursesNumber, "silver", "moon")}
+      {shiftInfo(morningNursesNumber, "yellow", "sun", "morningShift")}
+      {shiftInfo(dayNursesNumber, "white", "clock", "dayShift")}
+      {shiftInfo(nightNursesNumber, "silver", "moon", "nightShift")}
     </Container>
   );
 };

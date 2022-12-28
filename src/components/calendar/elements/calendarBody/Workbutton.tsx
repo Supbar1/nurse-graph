@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import DayButton from "./DayButton";
-import NightButton from "./NightButton";
-import MorningButton from "./MorningButton";
-import {DayOfMonthType} from "../../../../context/NurseContext"
+import SingleShiftButton from "./SingleShiftButton";
+import { DayOfMonthType } from "../../../../context/NurseContext";
 
 const Container = styled.span`
   height: 100%;
@@ -11,20 +9,32 @@ const Container = styled.span`
   justify-content: space-around;
   width: 100%;
   margin: auto;
-  span {
-    margin: auto;
-  }
 `;
 interface WorkButtonType {
   activeDay: DayOfMonthType;
-  handleClick: ()=> void;
+  handleClick: () => void;
 }
-const WorkButton = ({ activeDay,handleClick }: WorkButtonType) => {
+const WorkButton = ({ activeDay, handleClick }: WorkButtonType) => {
   return (
     <Container onClick={handleClick}>
-      <MorningButton activeDay={activeDay} />
-      <DayButton activeDay={activeDay} />
-      <NightButton activeDay={activeDay} />
+      <SingleShiftButton
+        color="yellow"
+        activeDay={activeDay}
+        shiftName="morningShift"
+        className="fa-solid fa-sun"
+      />
+      <SingleShiftButton
+        color="white"
+        activeDay={activeDay}
+        shiftName="dayShift"
+        className="fa-solid fa-clock"
+      />
+      <SingleShiftButton
+        color="silver"
+        activeDay={activeDay}
+        shiftName="nightShift"
+        className="fa-solid fa-moon"
+      />
     </Container>
   );
 };

@@ -67,7 +67,7 @@ const Main = () => {
         <Text>
           Programie służącym do układania grafiku pracy na oddziale szpitalnym.
         </Text>
-        <Text>Grafik można ustawiać maksymalnie 2 miesiące do przodu.</Text>
+        <Text>Grafik można ustawiać maksymalnie na 4 miesiące</Text>
         <Text>
           Aktualnie program jako pracowników oddziału pobiera losowe:{" "}
           {nurses.length} osób.

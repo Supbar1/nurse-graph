@@ -1,35 +1,36 @@
 import styled from "styled-components";
-import { useNurseContext } from "../../../../context/NurseContext";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectMonthChange } from "../../../../store/monthChangeSlice";
 
 const Header = styled.h1`
   letter-spacing: 0.2rem;
 `;
 
-const Month = () => {
-  const months = [
-    "Styczeń",
-    "Luty",
-    "Marzec",
-    "Kwiecień",
-    "Maj",
-    "Czerwiec",
-    "Lipiec",
-    "Sierpień",
-    "Wrzesien",
-    "Październik",
-    "Listopad",
-    "Grudzień",
-  ];
+const months = [
+  "Styczeń",
+  "Luty",
+  "Marzec",
+  "Kwiecień",
+  "Maj",
+  "Czerwiec",
+  "Lipiec",
+  "Sierpień",
+  "Wrzesien",
+  "Październik",
+  "Listopad",
+  "Grudzień",
+];
 
-  const { monthChange } = useNurseContext();
+const Month = () => {
+  const { monthChange } = useAppSelector(selectMonthChange);
 
   const handleMonthSelect = () => {
     const date = new Date();
-    let miesiac = new Date(
+    let month = new Date(
       date.getFullYear(),
       date.getMonth() + monthChange
     ).getMonth();
-    return months[miesiac];
+    return months[month];
   };
   return <Header>{handleMonthSelect()}</Header>;
 };

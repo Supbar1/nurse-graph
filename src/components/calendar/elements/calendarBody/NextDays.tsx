@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import DaysList from "./DaysList";
-import { useNurseContext } from "../../../../context/NurseContext";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectMonthChange } from "./../../../../store/monthChangeSlice";
 
 const OtherDays = styled.div`
   border-radius: 19px;
@@ -11,8 +12,7 @@ const OtherDays = styled.div`
 
 const NextDays = () => {
   const [nextDays, setNextDays] = useState<number[]>([]);
-  const { monthChange } = useNurseContext();
-
+  const { monthChange } = useAppSelector(selectMonthChange);
   const List = DaysList();
   useEffect(() => {
     setNextDays(List.nextDays);

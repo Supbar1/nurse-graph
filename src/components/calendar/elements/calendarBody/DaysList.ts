@@ -1,27 +1,26 @@
-import { useNurseContext } from "../../../../context/NurseContext";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectMonthChange } from "../../../../store/monthChangeSlice";
 
 const DaysList = () => {
-  const { monthChange } = useNurseContext();
-
+  const { monthChange } = useAppSelector(selectMonthChange);
   const date = new Date();
   date.setUTCDate(1);
 
-  // Need to improve this index
   let firstDayIndex =
-    new Date(date.getFullYear(), date.getMonth() + monthChange, 0).getDay() + 6;
-  firstDayIndex > 6 && (firstDayIndex -= 6);
+    new Date(date.getFullYear(), date.getMonth() + monthChange, 0).getDay();
 
-  const lastPreviousDay = new Date(
+    let lastDayIndex = new Date(
+      date.getFullYear(),
+      date.getMonth() + 1 + monthChange,
+      0
+    ).getDate();
+
+  const lastPreviousMonthDayIndex = new Date(
     date.getFullYear(),
     date.getMonth() + monthChange,
     0
   ).getDate();
 
-  let lastDayNumber = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1 + monthChange,
-    0
-  ).getDate();
 
   let lastCurrentDayIndex = new Date(
     date.getFullYear(),
@@ -31,15 +30,15 @@ const DaysList = () => {
 
   let prevDays: number[] = [];
   for (let x = firstDayIndex; x > 0; x--) {
-    prevDays.push(lastPreviousDay - x + 1);
+    prevDays.push(lastPreviousMonthDayIndex - x + 1);
   }
 
-  let daysOfMonth = [];
-  for (let i = 1; i <= lastDayNumber; i++) {
+  let daysOfMonth: number[] = [];
+  for (let i = 1; i <= lastDayIndex; i++) {
     daysOfMonth.push(i);
   }
 
-  let nextDays = [];
+  let nextDays: number[] = [];
   for (let y = 1; y <= 7 - lastCurrentDayIndex; y++) {
     nextDays.push(y);
   }

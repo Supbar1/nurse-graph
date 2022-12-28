@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import { useNurseContext } from "../../../../context/NurseContext";
-import HandleMonthSelect from "../../../../services/Months";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import {
+  switchMonth,
+  selectMonthChange,
+} from "../../../../store/monthChangeSlice";
 
 const PreviousMonthArrow = styled.i`
   cursor: pointer;
@@ -15,20 +18,20 @@ const AnotherMonthArrow = ({
   arrowDirection,
   changeMonth,
 }: AnotherMonthProps) => {
-  const { monthChange, setMonthChange } = useNurseContext();
-  const className = "fas fa-angle-" + arrowDirection;
+  const { monthChange } = useAppSelector(selectMonthChange);
+  const dispatch = useAppDispatch();
+
+  const arrow = "fas fa-angle-" + arrowDirection;
 
   const changeToNextMonth = () => {
     if (
-     ( monthChange === 0 && changeMonth === -1) ||
+      (monthChange === 0 && changeMonth === -1) ||
       (monthChange === 3 && changeMonth === 1)
     )
       return;
-    setMonthChange(monthChange + changeMonth);
+    dispatch(switchMonth(changeMonth));
   };
-  return (
-    <PreviousMonthArrow onClick={changeToNextMonth} className={className} />
-  );
+  return <PreviousMonthArrow onClick={changeToNextMonth} className={arrow} />;
 };
 
 export default AnotherMonthArrow;
