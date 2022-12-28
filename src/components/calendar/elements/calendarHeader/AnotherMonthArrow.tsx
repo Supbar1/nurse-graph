@@ -20,8 +20,8 @@ const AnotherMonthArrow = ({
 
   const changeToNextMonth = () => {
     if (
-      (HandleMonthSelect(monthChange) === "November" && changeMonth === -1) ||
-      (HandleMonthSelect(monthChange) === "January" && changeMonth === 1)
+     ( monthChange === 0 && changeMonth === -1) ||
+      (monthChange === 3 && changeMonth === 1)
     )
       return;
     setMonthChange(monthChange + changeMonth);

@@ -1,7 +1,6 @@
 import { useNurseContext } from "../../../../context/NurseContext";
 
 const DaysList = () => {
-
   const { monthChange } = useNurseContext();
 
   const date = new Date();
@@ -10,7 +9,7 @@ const DaysList = () => {
   // Need to improve this index
   let firstDayIndex =
     new Date(date.getFullYear(), date.getMonth() + monthChange, 0).getDay() + 6;
-  firstDayIndex > 6 && (firstDayIndex -= 6)
+  firstDayIndex > 6 && (firstDayIndex -= 6);
 
   const lastPreviousDay = new Date(
     date.getFullYear(),
@@ -39,7 +38,6 @@ const DaysList = () => {
   for (let i = 1; i <= lastDayNumber; i++) {
     daysOfMonth.push(i);
   }
-
 
   let nextDays = [];
   for (let y = 1; y <= 7 - lastCurrentDayIndex; y++) {
