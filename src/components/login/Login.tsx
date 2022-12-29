@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { setActualAcount } from "../../store/slices/usernameSlice";
 import Form from "./Form";
+import { useAppDispatch } from "./../../store/hooks";
 
 const Container = styled.div`
   height: 100%;
@@ -56,12 +58,17 @@ const Login = () => {
     username: username,
     password: password,
   });
+  const dispatch = useAppDispatch();
 
+  const onSubmit = () => {
+    dispatch(setActualAcount(account.username));
+  };
   return (
     <Container>
       <HeaderSpace>NURSE GRAPH</HeaderSpace>
       <ContentBox>
         <Form
+          onSubmit={onSubmit}
           account={account}
           setAccount={setAccount}
           errors={errors}

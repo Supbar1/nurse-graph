@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useNurseContext } from "../context/NurseContext";
+import { useAppSelector } from "../store/hooks";
+import { selectActualNurse } from "../store/nursesSlice";
+import { selectUsername } from "../store/slices/usernameSlice";
 
 const Container = styled.div`
   margin-right: 1rem;
@@ -85,11 +88,12 @@ const linkStyle = {
 };
 
 const Navigation = () => {
-  const { userName, actualNurse,activeLink, setActiveLink } = useNurseContext();
-
+  const { activeLink, setActiveLink } = useNurseContext();
+  const { username } = useAppSelector(selectUsername);
+  const actualNurse = useAppSelector(selectActualNurse);
   return (
     <Container>
-      {userName && (
+      {username && (
         <>
           <LinkToMain
             onClick={() => setActiveLink("main")}

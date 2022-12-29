@@ -1,26 +1,28 @@
 import { useAppSelector } from "../../../../store/hooks";
-import { selectMonthChange } from "../../../../store/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
 
 const DaysList = () => {
   const { monthChange } = useAppSelector(selectMonthChange);
   const date = new Date();
   date.setUTCDate(1);
 
-  let firstDayIndex =
-    new Date(date.getFullYear(), date.getMonth() + monthChange, 0).getDay();
+  let firstDayIndex = new Date(
+    date.getFullYear(),
+    date.getMonth() + monthChange,
+    0
+  ).getDay();
 
-    let lastDayIndex = new Date(
-      date.getFullYear(),
-      date.getMonth() + 1 + monthChange,
-      0
-    ).getDate();
+  let lastDayIndex = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1 + monthChange,
+    0
+  ).getDate();
 
   const lastPreviousMonthDayIndex = new Date(
     date.getFullYear(),
     date.getMonth() + monthChange,
     0
   ).getDate();
-
 
   let lastCurrentDayIndex = new Date(
     date.getFullYear(),

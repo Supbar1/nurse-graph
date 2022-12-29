@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useNurseContext } from "../../context/NurseContext";
+import { useAppSelector } from "../../store/hooks";
+import { selectActualNurse } from "../../store/nursesSlice";
 
 const Container = styled.div`
   grid-area: actualNurse;
@@ -23,7 +25,8 @@ const Nurse = styled.div`
   font-size: 1rem;
 `;
 const ActualNurse = () => {
-  const { actualNurse } = useNurseContext();
+  
+  const actualNurse =useAppSelector(selectActualNurse)
   return (
     <Container>
       <Label>Aktualna pielęgniarka:</Label>

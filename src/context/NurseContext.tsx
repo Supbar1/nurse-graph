@@ -25,8 +25,8 @@ export interface NurseType {
   picture?: string;
 }
 interface NurseGraphContext {
-  nurses: NurseType[];
-  actualNurse: NurseType;
+  // nurses: NurseType[];
+  // actualNurse: NurseType;
   setActualNurse: React.Dispatch<React.SetStateAction<NurseType>>;
   month: number;
   setMonth: React.Dispatch<React.SetStateAction<number>>;
@@ -35,8 +35,6 @@ interface NurseGraphContext {
   activeDay: DayOfMonthType;
   setActiveDay: React.Dispatch<React.SetStateAction<DayOfMonthType>>;
   daysOfMonth: number[];
-  userName: string;
-  setUsername: React.Dispatch<React.SetStateAction<string>>;
   undoDay: number;
   setUndoDay: React.Dispatch<React.SetStateAction<number>>;
   activeLink:string;
@@ -47,34 +45,14 @@ interface NurseGraphContext {
 const NurseContext = createContext({} as NurseGraphContext);
 
 const NurseProvider = ({ children }: NurseProviderProps) => {
-  const [nurses, setNurses] = useState<NurseType[]>([] as NurseType[]);
   const [actualNurse, setActualNurse] = useState<NurseType>({} as NurseType);
   const [month, setMonth] = useState<number>(0);
-  const [userName, setUsername] = useState<string>("");
   const [undoDay, setUndoDay] = useState<number>(0);
   const [activeLink, setActiveLink] = useState("");
   const [activeDay, setActiveDay] = useState<DayOfMonthType>(
     {} as DayOfMonthType
   );
 
-  const apiNurses = async (): Promise<any> => {
-    let container: any = [];
-    const { data } = await http.get(config.apiNurses);
-    const { results } = data;
-    container.push(...results);
-
-    let nurse = [];
-    for (let item of container) {
-      const nurseObject = {
-        firstName: item.name.first,
-        lastName: item.name.last,
-        picture: item.picture.thumbnail,
-        id: item.location.street.number,
-      };
-      nurse.push(nurseObject);
-    }
-    setNurses(nurse);
-  };
   const hours = (id?: number) => {
     let hours = 0;
     for (let element in workSchedule) {
@@ -89,10 +67,6 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
     return hours;
   };
 
-  useEffect(() => {
-    apiNurses();
-  }, []);
-
   const [daysOfMonth, setDaysOfMonth] = useState<number[]>([]);
   const List = DaysList();
   useEffect(() => {
@@ -105,8 +79,8 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
   return (
     <NurseContext.Provider
       value={{
-        nurses,
-        actualNurse,
+        // nurses,
+        // actualNurse,
         setActualNurse,
         month,
         setMonth,
@@ -115,8 +89,6 @@ const NurseProvider = ({ children }: NurseProviderProps) => {
         activeDay,
         setActiveDay,
         daysOfMonth,
-        userName,
-        setUsername,
         undoDay,
         setUndoDay,
         hours,

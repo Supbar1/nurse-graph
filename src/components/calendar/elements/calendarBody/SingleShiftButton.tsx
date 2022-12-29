@@ -6,7 +6,8 @@ import {
   allShifts,
   DayOfMonthType,
 } from "../../../../context/NurseContext";
-import { selectMonthChange } from "../../../../store/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
+import { selectActualNurse } from "../../../../store/nursesSlice";
 
 const MorningButtonIcon = styled.i`
   color: ${(props): any => props.color};
@@ -24,10 +25,8 @@ const SingleShiftButton = ({
   className,
   color,
 }: WorkButtonType) => {
-  const {
-    workSchedule,
-    actualNurse,
-  } = useNurseContext();
+  const { workSchedule } = useNurseContext();
+  const actualNurse =useAppSelector(selectActualNurse)
   const { monthChange } = useAppSelector(selectMonthChange);
   const work = () => {
     const shiftsObject: any = [...Object.values(activeDay)].flat(1)[0];

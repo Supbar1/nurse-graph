@@ -5,16 +5,15 @@ import { useNurseContext } from "../../../../context/NurseContext";
 import WorkButton from "./Workbutton";
 import HandleMonthSelect from "../../../../services/Months";
 import { useAppSelector } from "../../../../store/hooks";
-import {
-  selectMonthChange,
-} from "../../../../store/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
 import InfoButton from "./InfoButton";
 import UndoButton from "./UndoButton";
 import ShiftButton from "./ShiftButton";
+import { selectActualNurse, selectNurses } from './../../../../store/nursesSlice';
 
 const ActiveDays = () => {
   const {
-    actualNurse,
+    // actualNurse,
     workSchedule,
     activeDay,
     setActiveDay,
@@ -22,8 +21,9 @@ const ActiveDays = () => {
     setUndoDay,
   } = useNurseContext();
 
-  const { monthChange} = useAppSelector(selectMonthChange);
-
+  const { monthChange } = useAppSelector(selectMonthChange);
+// const {actualNurse} =useAppSelector(selectActualNurse)
+const actualNurse =useAppSelector(selectActualNurse)
   const List = DaysList();
 
   useEffect(() => {
@@ -35,11 +35,10 @@ const ActiveDays = () => {
   };
 
   const handleDaySelect = (day: number) => {
-
     if (undoDay === day) {
       return <UndoButton day={day} />;
     }
-    
+
     const actualDayObject =
       workSchedule[HandleMonthSelect(monthChange)][day - 1];
 

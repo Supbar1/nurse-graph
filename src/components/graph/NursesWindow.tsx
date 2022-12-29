@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useNurseContext } from "../../context/NurseContext";
+import { useAppSelector } from "../../store/hooks";
+import { selectNurses } from './../../store/nursesSlice';
 
 const Container = styled.table`
   grid-area: nursesWindow;
@@ -16,7 +18,8 @@ const Container = styled.table`
   }
 `;
 const NursesWindow = () => {
-  const { activeDay, nurses } = useNurseContext();
+  const nurses = useAppSelector(selectNurses);
+  const { activeDay } = useNurseContext();
   if (!activeDay[Number(Object.keys(activeDay))]) return <></>;
 
   const shiftNurses = (shiftName: string, container: any) => {

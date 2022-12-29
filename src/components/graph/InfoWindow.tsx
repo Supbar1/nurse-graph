@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useAppSelector } from "../../store/hooks";
+import { selectActualNurse } from "../../store/nursesSlice";
 import { useNurseContext } from "./../../context/NurseContext";
 
 const Container = styled.div`
@@ -11,7 +13,8 @@ const Container = styled.div`
 `;
 
 const InfoWindow = () => {
-  const { hours, actualNurse } = useNurseContext();
+  const { hours } = useNurseContext();
+  const actualNurse = useAppSelector(selectActualNurse);
   return (
     <Container>
       <h5>

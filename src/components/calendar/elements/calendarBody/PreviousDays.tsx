@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import DaysList from "./DaysList";
-import { selectMonthChange } from "../../../../store/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
 import { useAppSelector } from "../../../../store/hooks";
 
 const OtherDays = styled.div`
@@ -11,7 +11,7 @@ const OtherDays = styled.div`
 `;
 const PreviousDays = () => {
   const [prevDays, setPrevDays] = useState<number[]>([]);
-  const {monthChange} = useAppSelector(selectMonthChange);
+  const { monthChange } = useAppSelector(selectMonthChange);
 
   const List = DaysList();
   useEffect(() => {

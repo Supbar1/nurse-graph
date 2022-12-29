@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
   switchMonth,
   selectMonthChange,
-} from "../../../../store/monthChangeSlice";
+} from "../../../../store/slices/monthChangeSlice";
 
 const PreviousMonthArrow = styled.i`
   cursor: pointer;

@@ -2,6 +2,8 @@ import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { useNurseContext } from "../../context/NurseContext";
 import ClearSchedule from "../../context/ClearSchedule";
+import { pickedNurse } from "../../store/nursesSlice";
+import { useAppDispatch } from './../../store/hooks';
 
 interface ButtonProps {
   warning?: boolean;
@@ -61,11 +63,11 @@ const Container = styled.div`
 const WithdrawButton = () => {
   const { setActualNurse, setWorkSchedule, setActiveDay, setActiveLink } =
     useNurseContext();
-
-  const navigate = useNavigate();
-
-  const handleSave = () => {
-    setActualNurse({});
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const handleSave = () => {
+      dispatch(pickedNurse({}))
+    // setActualNurse({});
     setActiveLink("table");
     navigate("/table");
   };

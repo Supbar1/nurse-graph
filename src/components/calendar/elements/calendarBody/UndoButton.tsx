@@ -1,6 +1,7 @@
 import HandleMonthSelect from "../../../../services/Months";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectMonthChange } from "../../../../store/monthChangeSlice";
+import { selectActualNurse } from "../../../../store/nursesSlice";
+import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
 import { useNurseContext } from "./../../../../context/NurseContext";
 
 interface UndoButtonProps {
@@ -8,8 +9,9 @@ interface UndoButtonProps {
 }
 
 const UndoButton = ({ day }: UndoButtonProps) => {
-  const { workSchedule, actualNurse, setActiveDay, activeDay, setUndoDay } =
+  const { workSchedule, setActiveDay, activeDay, setUndoDay } =
     useNurseContext();
+    const actualNurse =useAppSelector(selectActualNurse)
   const { monthChange } = useAppSelector(selectMonthChange);
   const actualDayObject = workSchedule[HandleMonthSelect(monthChange)][day - 1];
 

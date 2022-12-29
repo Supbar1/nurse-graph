@@ -2,6 +2,8 @@ import { useNavigate } from "react-router";
 import { useNurseContext } from "../../context/NurseContext";
 import { ActiveDayStyled } from "./../calendar/elements/calendarBody/ActualDays.styles";
 import styled from "styled-components";
+import { pickedNurse, selectNurses } from "../../store/nursesSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const SetGraphButton = styled(ActiveDayStyled)`
   padding: 0.5rem 0.2rem;
@@ -20,14 +22,16 @@ const Cell = styled.td`
 `;
 
 export const TableBody = () => {
-  const { nurses, setActualNurse, setActiveDay, workSchedule, hours } =
+  const { setActualNurse, setActiveDay, workSchedule, hours } =
     useNurseContext();
-
+    const nurses = useAppSelector(selectNurses);
+const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const changeUrl = (id?: number) => {
     let actualNurse = { ...nurses.find((item) => item.id === id) };
-    setActualNurse(actualNurse);
+    // setActualNurse(actualNurse);
+    dispatch(pickedNurse(actualNurse))
     setActiveDay({});
     navigate("/graph");
   };

@@ -1,3 +1,5 @@
+import { useAppSelector } from "../../../../store/hooks";
+import { selectActualNurse } from "../../../../store/nursesSlice";
 import { useNurseContext, allShifts } from "./../../../../context/NurseContext";
 
 interface ShiftButtonProps {
@@ -5,8 +7,8 @@ interface ShiftButtonProps {
   actualDayShifts: allShifts;
 }
 const ShiftButton = ({ day, actualDayShifts }: ShiftButtonProps) => {
-  const { actualNurse, setUndoDay } = useNurseContext();
-
+  const {  setUndoDay } = useNurseContext();
+  const actualNurse =useAppSelector(selectActualNurse)
   const shiftIcon = (color: string, iconName: string) => {
     const fontAwsomeName = "fa-solid fa-" + iconName;
     return (

@@ -4,6 +4,12 @@ import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { useNurseContext } from "./../../context/NurseContext";
 import { ActiveDayStyled } from "./../calendar/elements/calendarBody/ActualDays.styles";
+import { useAppSelector } from "../../store/hooks";
+import {
+  selectUsername,
+  setActualAcount,
+} from "../../store/slices/usernameSlice";
+import { useAppDispatch } from "./../../store/hooks";
 
 const FormBox = styled.form`
   width: min(70%, 300px);
@@ -30,6 +36,7 @@ interface FormProps {
   errors: LoginProps;
   setErrors: React.Dispatch<React.SetStateAction<LoginProps>>;
   schema: any;
+  onSubmit: () => void;
 }
 const Form = ({
   username,
@@ -41,8 +48,12 @@ const Form = ({
   setErrors,
   errors,
   setAccount,
+  onSubmit,
 }: FormProps) => {
-  const { setUsername, userName, setActiveLink } = useNurseContext();
+  const { setActiveLink } = useNurseContext();
+  const actualAccount = useAppSelector(selectUsername);
+  const dispatch = useAppDispatch();
+
   const Joi = require(`joi`);
   const navigate = useNavigate();
 
@@ -51,9 +62,9 @@ const Form = ({
     const submitErrors = validate();
     setErrors(submitErrors || {});
     if (submitErrors) return;
-    setUsername(username);
     setActiveLink("table");
     navigate("/table");
+    onSubmit();
   };
 
   const validate = () => {
@@ -92,9 +103,9 @@ const Form = ({
     setAccount(newAccount);
   };
 
-  return userName ? (
+  return actualAccount.username ? (
     <div>
-      <ActiveDayStyledWide onClick={() => setUsername("")}>
+      <ActiveDayStyledWide onClick={() => dispatch(setActualAcount(null))}>
         Wyloguj
       </ActiveDayStyledWide>
     </div>

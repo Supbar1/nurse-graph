@@ -1,6 +1,6 @@
 import HandleMonthSelect from "../../../../services/Months";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectMonthChange } from "../../../../store/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
 import {
   WorkScheduleType,
   allShifts,
@@ -14,15 +14,14 @@ interface DayButtonProps {
   actualNurse: NurseType;
   workSchedule: WorkScheduleType;
 }
-const Work 
-= ({
+const Work = ({
   shiftName,
   activeDay,
   actualNurse,
   workSchedule,
 }: DayButtonProps) => {
-  const {  monthChange } = useAppSelector(selectMonthChange);
-  
+  const { monthChange } = useAppSelector(selectMonthChange);
+
   const shiftsObject: any = [...Object.values(activeDay)].flat(1)[0];
   const shiftWithActualNurse = [...shiftsObject[shiftName], actualNurse.id];
   const wholeWorkDay: allShifts = { ...shiftsObject };

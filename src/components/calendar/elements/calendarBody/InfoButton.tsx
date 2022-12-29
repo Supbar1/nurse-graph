@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import HandleMonthSelect from "../../../../services/Months";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectMonthChange } from "../../../../store/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
 import { useNurseContext } from "./../../../../context/NurseContext";
 
 const Container = styled.div`
@@ -51,8 +51,9 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
         {nursesQuantity > 0 ? (
           <div>
             {
-              workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0][shift]
-                .length
+              workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0][
+                shift
+              ].length
             }{" "}
             <i style={{ color: color }} className={className} />
           </div>
