@@ -1,7 +1,12 @@
 import styled from "styled-components";
-import { useNurseContext } from "../../context/NurseContext";
 import { useAppSelector } from "../../store/hooks";
-import { selectNurses } from './../../store/nursesSlice';
+import { NurseType, selectNurses } from "../../store/slices/nursesSlice";
+import { selectWorkSchedule } from "./../../store/slices/monthsSlice";
+import HandleMonthSelect from "../../services/Months";
+import {
+  selectActiveDay,
+  selectMonthChange,
+} from "../../store/slices/monthsSlice";
 
 const Container = styled.table`
   grid-area: nursesWindow;
@@ -19,34 +24,38 @@ const Container = styled.table`
 `;
 const NursesWindow = () => {
   const nurses = useAppSelector(selectNurses);
-  const { activeDay } = useNurseContext();
-  if (!activeDay[Number(Object.keys(activeDay))]) return <></>;
+  const activeDay = useAppSelector(selectActiveDay);
+  const monthChange = useAppSelector(selectMonthChange).monthChange;
+  const workSchedule = useAppSelector(selectWorkSchedule);
+  const day = Number(Object.keys(activeDay));
 
+  if (!activeDay[Number(Object.keys(activeDay))]) return <></>;
   const shiftNurses = (shiftName: string, container: any) => {
-    let actualShift = [...Object.values(activeDay)[0][0][shiftName]];
-    for (let index of actualShift) {
+    const actualDay =
+      workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0][shiftName];
+    for (let index of actualDay) {
       for (let nurse of nurses) if (index === nurse.id) container.push(nurse);
     }
   };
 
-  let morningContainer: any = [];
-  let dayContainer: any = [];
-  let nightContainer: any = [];
+  const morningContainer: NurseType[] = [];
+  const dayContainer: NurseType[] = [];
+  const nightContainer: NurseType[] = [];
 
   shiftNurses("morningShift", morningContainer);
   shiftNurses("dayShift", dayContainer);
   shiftNurses("nightShift", nightContainer);
 
-  const nursesNames = (label: string, shiftName: any) => {
+  const nursesNames = (label: string, shiftNurses: NurseType[]) => {
     return (
       <>
         <tr>
           <th>{label}</th>
         </tr>
-        {shiftName.map((item: any) => (
-          <tr key={item.id}>
-            <td>
-              {item.firstName}&nbsp;{item.lastName}
+        {shiftNurses.map((nurse: NurseType) => (
+          <tr key={nurse.id}>
+            <td onClick={() => console.log(nurse)}>
+              {nurse.firstName}&nbsp;{nurse.lastName}
             </td>
           </tr>
         ))}

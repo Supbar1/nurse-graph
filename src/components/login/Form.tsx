@@ -2,7 +2,6 @@ import Input from "./Input";
 import Buttons from "./Buttons";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import { useNurseContext } from "./../../context/NurseContext";
 import { ActiveDayStyled } from "./../calendar/elements/calendarBody/ActualDays.styles";
 import { useAppSelector } from "../../store/hooks";
 import {
@@ -10,6 +9,7 @@ import {
   setActualAcount,
 } from "../../store/slices/usernameSlice";
 import { useAppDispatch } from "./../../store/hooks";
+import { setActiveLink } from "../../store/slices/activeLinkSlice";
 
 const FormBox = styled.form`
   width: min(70%, 300px);
@@ -50,7 +50,6 @@ const Form = ({
   setAccount,
   onSubmit,
 }: FormProps) => {
-  const { setActiveLink } = useNurseContext();
   const actualAccount = useAppSelector(selectUsername);
   const dispatch = useAppDispatch();
 
@@ -62,7 +61,7 @@ const Form = ({
     const submitErrors = validate();
     setErrors(submitErrors || {});
     if (submitErrors) return;
-    setActiveLink("table");
+    dispatch(setActiveLink("table"));
     navigate("/table");
     onSubmit();
   };

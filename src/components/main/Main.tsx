@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { useNurseContext } from "../../context/NurseContext";
 import { useAppSelector } from "../../store/hooks";
-import { selectNurses } from './../../store/nursesSlice';
+import { selectNurses } from "../../store/slices/nursesSlice";
 
 const Container = styled.div`
   height: 100%;
@@ -60,7 +59,6 @@ const IconsLegend = styled.div`
 `;
 
 const Main = () => {
-  
   const nurses = useAppSelector(selectNurses);
   return (
     <Container>

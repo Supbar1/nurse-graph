@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useNurseContext } from "../context/NurseContext";
-import { useAppSelector } from "../store/hooks";
-import { selectActualNurse } from "../store/nursesSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { selectActiveLink, setActiveLink } from "../store/slices/activeLinkSlice";
+import { selectActualNurse } from "../store/slices/nursesSlice";
 import { selectUsername } from "../store/slices/usernameSlice";
 
 const Container = styled.div`
@@ -88,7 +88,8 @@ const linkStyle = {
 };
 
 const Navigation = () => {
-  const { activeLink, setActiveLink } = useNurseContext();
+  const dispatch = useAppDispatch();
+  const activeLink = useAppSelector(selectActiveLink);
   const { username } = useAppSelector(selectUsername);
   const actualNurse = useAppSelector(selectActualNurse);
   return (
@@ -96,7 +97,7 @@ const Navigation = () => {
       {username && (
         <>
           <LinkToMain
-            onClick={() => setActiveLink("main")}
+            onClick={() => dispatch(setActiveLink("main"))}
             to="/main"
             style={linkStyle}
             activelink={activeLink}

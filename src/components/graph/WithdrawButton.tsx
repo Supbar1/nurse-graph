@@ -1,9 +1,13 @@
-import { useNavigate } from "react-router";
 import styled from "styled-components";
-import { useNurseContext } from "../../context/NurseContext";
-import ClearSchedule from "../../context/ClearSchedule";
-import { pickedNurse } from "../../store/nursesSlice";
-import { useAppDispatch } from './../../store/hooks';
+import { useNavigate } from "react-router";
+import ClearSchedule from "../../services/ClearSchedule";
+import { pickedNurse } from "../../store/slices/nursesSlice";
+import { useAppDispatch } from "./../../store/hooks";
+import { setActiveLink } from "../../store/slices/activeLinkSlice";
+import {
+  resetWorkSchedule,
+  setActiveDay,
+} from "../../store/slices/monthsSlice";
 
 interface ButtonProps {
   warning?: boolean;
@@ -61,19 +65,17 @@ const Container = styled.div`
   background-color: rgba(255, 255, 255, 0);
 `;
 const WithdrawButton = () => {
-  const { setActualNurse, setWorkSchedule, setActiveDay, setActiveLink } =
-    useNurseContext();
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const handleSave = () => {
-      dispatch(pickedNurse({}))
-    // setActualNurse({});
-    setActiveLink("table");
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleSave = () => {
+    dispatch(pickedNurse({}));
+    dispatch(setActiveLink("table"));
     navigate("/table");
   };
   const withdrawChanges = () => {
-    setWorkSchedule(ClearSchedule());
-    setActiveDay({});
+    dispatch(resetWorkSchedule(ClearSchedule()));
+    dispatch(setActiveDay({}));
   };
   return (
     <Container>

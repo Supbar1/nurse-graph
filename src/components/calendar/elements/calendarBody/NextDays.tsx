@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import DaysList from "./DaysList";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthsSlice";
 
 const OtherDays = styled.div`
   border-radius: 19px;

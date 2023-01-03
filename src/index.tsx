@@ -6,14 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { fetchNurses } from "./store/slices/nursesSlice";
 
-
-import { fetchNurses } from "./store/nursesSlice";
-
-store.dispatch(fetchNurses())
-
-
-
+store.dispatch(fetchNurses());
 
 ReactDOM.render(
   <React.StrictMode>

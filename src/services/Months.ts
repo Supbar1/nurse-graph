@@ -1,5 +1,3 @@
-
-
 export const months: string[] = [
   "January",
   "February",

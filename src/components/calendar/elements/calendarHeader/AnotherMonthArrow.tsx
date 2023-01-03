@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
   switchMonth,
   selectMonthChange,
-} from "../../../../store/slices/monthChangeSlice";
+} from "../../../../store/slices/monthsSlice";
 
 const PreviousMonthArrow = styled.i`
   cursor: pointer;
@@ -20,7 +20,6 @@ const AnotherMonthArrow = ({
 }: AnotherMonthProps) => {
   const { monthChange } = useAppSelector(selectMonthChange);
   const dispatch = useAppDispatch();
-
   const arrow = "fas fa-angle-" + arrowDirection;
 
   const changeToNextMonth = () => {

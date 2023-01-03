@@ -15,12 +15,10 @@ const Information = styled.div`
   }
 `;
 
-const ChangeMobileToHorizontalDimension = () => {
-  return (
-    <Information>
-      <div>Turn screen horizontally</div>
-    </Information>
-  );
-};
+const ChangeMobileToHorizontalDimension = () => (
+  <Information>
+    <div>Turn screen horizontally</div>
+  </Information>
+);
 
 export default ChangeMobileToHorizontalDimension;

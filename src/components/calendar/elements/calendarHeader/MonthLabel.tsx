@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthsSlice";
 
 const Header = styled.h1`
   letter-spacing: 0.2rem;

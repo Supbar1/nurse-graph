@@ -1,10 +1,13 @@
-import { WorkScheduleType, DayOfMonthType, allShifts } from "./NurseContext";
-import HandleMonthSelect from "../services/Months";
+import HandleMonthSelect from "./Months";
+import {
+  allShifts,
+  DayOfMonthType,
+  WorkScheduleType,
+} from "../store/slices/monthsSlice";
 
 const ClearSchedule = () => {
-  let fourMonthsSchedule = {} as WorkScheduleType;
+  let fourMonthsSchedule = {} as WorkScheduleType["workSchedule"];
   for (let i = 0; i <= 3; i++) {
-    
     const date = new Date();
     date.setUTCDate(1);
     let lastDayNumber = new Date(
@@ -23,6 +26,7 @@ const ClearSchedule = () => {
     }
     fourMonthsSchedule[HandleMonthSelect(i)] = monthDays;
   }
+
   return fourMonthsSchedule;
 };
 

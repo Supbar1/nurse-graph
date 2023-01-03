@@ -8,7 +8,6 @@ import Navigation from "./components/Navigation";
 import NotFound from "./components/NotFound";
 import Graph from "./components/graph/Graph";
 import NewLogin from "./components/login/Login";
-import NurseProvider from "./context/NurseContext";
 import ChangeMobileToHorizontalDimension from "./components/main/Information";
 
 const Container = styled.div`
@@ -34,19 +33,17 @@ const App: React.FC = () => (
   <React.Fragment>
     <ChangeMobileToHorizontalDimension />
     <Container>
-      <NurseProvider>
-        <Navigation />
-        <WorkSpace>
-          <Routes>
-            <Route path="/" element={<NewLogin />} />
-            <Route path="/main" element={<Main />} />
-            <Route path="/graph" element={<Graph />} />
-            <Route path="/table" element={<Table />} />
-            <Route path="/help" element={<Help />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </WorkSpace>
-      </NurseProvider>
+      <Navigation />
+      <WorkSpace>
+        <Routes>
+          <Route path="/" element={<NewLogin />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/graph" element={<Graph />} />
+          <Route path="/table" element={<Table />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </WorkSpace>
     </Container>
   </React.Fragment>
 );

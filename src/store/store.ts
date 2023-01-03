@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import monthChangeSlice from "./slices/monthChangeSlice";
+import monthChangeSlice from "./slices/monthsSlice";
 import usernameSlice from "./slices/usernameSlice";
-import nursesSlice from "./nursesSlice";
+import nursesSlice from "./slices/nursesSlice";
+import activeLinkSlice from "./slices/activeLinkSlice";
 
 export const store = configureStore({
   reducer: {
     monthChange: monthChangeSlice,
     username: usernameSlice,
     nurses: nursesSlice,
+    activeLink: activeLinkSlice,
   },
 });
 

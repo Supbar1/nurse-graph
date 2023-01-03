@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { setActualAcount } from "../../store/slices/usernameSlice";
 import Form from "./Form";
+import { setActualAcount } from "../../store/slices/usernameSlice";
 import { useAppDispatch } from "./../../store/hooks";
 
 const Container = styled.div`

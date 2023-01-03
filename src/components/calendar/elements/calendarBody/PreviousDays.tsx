@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import DaysList from "./DaysList";
-import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthsSlice";
 import { useAppSelector } from "../../../../store/hooks";
 
 const OtherDays = styled.div`

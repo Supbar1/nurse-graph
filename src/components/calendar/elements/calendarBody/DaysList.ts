@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks";
-import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
+import { selectMonthChange } from "../../../../store/slices/monthsSlice";
 
 const DaysList = () => {
   const { monthChange } = useAppSelector(selectMonthChange);

@@ -1,40 +1,20 @@
-import HandleMonthSelect from "../../../../services/Months";
-import { useAppSelector } from "../../../../store/hooks";
-import { selectActualNurse } from "../../../../store/nursesSlice";
-import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
-import { useNurseContext } from "./../../../../context/NurseContext";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { selectActualNurse } from "../../../../store/slices/nursesSlice";
+import {
+  setUndoDay,
+} from "../../../../store/slices/monthsSlice";
 
 interface UndoButtonProps {
   day: number;
 }
 
 const UndoButton = ({ day }: UndoButtonProps) => {
-  const { workSchedule, setActiveDay, activeDay, setUndoDay } =
-    useNurseContext();
-    const actualNurse =useAppSelector(selectActualNurse)
-  const { monthChange } = useAppSelector(selectMonthChange);
-  const actualDayObject = workSchedule[HandleMonthSelect(monthChange)][day - 1];
-
-  const actualDayShifts = actualDayObject[day][0];
+  const dispatch = useAppDispatch();
+  const actualNurse = useAppSelector(selectActualNurse);
+  const dayWithNurse = [day, actualNurse.id];
 
   const undo = () => {
-    const shiftNames: string[] = ["morningShift", "dayShift", "nightShift"];
-
-    shiftNames.forEach((shiftName) => {
-      let index = actualDayShifts[shiftName].findIndex(
-        (id: number) => id === actualNurse.id
-      );
-      const shiftsObject: any = [...Object.values(activeDay)].flat(1)[0];
-      if (index > -1) {
-        shiftsObject[shiftName].splice(index, 1);
-        const dayDigit = Number(Object.keys(activeDay));
-        workSchedule[HandleMonthSelect(monthChange)][dayDigit - 1] = {
-          [dayDigit]: [shiftsObject],
-        };
-        setActiveDay({});
-      }
-    });
-    setUndoDay(0);
+    dispatch(setUndoDay(dayWithNurse));
   };
   return <i onClick={undo} className="fa fa-undo" />;
 };

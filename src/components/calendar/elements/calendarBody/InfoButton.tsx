@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import HandleMonthSelect from "../../../../services/Months";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
-import { useNurseContext } from "./../../../../context/NurseContext";
+import { selectMonthChange } from "../../../../store/slices/monthsSlice";
 
 const Container = styled.div`
   width: 100%;
@@ -25,11 +24,8 @@ interface InfoButtonProps {
   handleClick: () => void;
 }
 const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
-  const { workSchedule } = useNurseContext();
-  const { monthChange } = useAppSelector(selectMonthChange);
-  const actualDayObject = workSchedule[HandleMonthSelect(monthChange)][day - 1];
-
-  const actualDayShifts = actualDayObject[day][0];
+  const { monthChange, workSchedule } = useAppSelector(selectMonthChange);
+  const actualDayShifts = workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0];
 
   const morningNursesNumber: number | undefined =
     actualDayShifts.morningShift?.length;

@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import HandleMonthSelect from "../../../../services/Months";
 import { useAppSelector } from "../../../../store/hooks";
+import { selectActualNurse } from "../../../../store/slices/nursesSlice";
+import { useAppDispatch } from "../../../../store/hooks";
 import {
-  useNurseContext,
   allShifts,
   DayOfMonthType,
-} from "../../../../context/NurseContext";
-import { selectMonthChange } from "../../../../store/slices/monthChangeSlice";
-import { selectActualNurse } from "../../../../store/nursesSlice";
+  setActiveDay,
+  setWorkSchedule,
+} from "../../../../store/slices/monthsSlice";
 
-const MorningButtonIcon = styled.i`
+const SingleShiftIcon = styled.i`
   color: ${(props): any => props.color};
 `;
 interface WorkButtonType {
@@ -25,9 +25,9 @@ const SingleShiftButton = ({
   className,
   color,
 }: WorkButtonType) => {
-  const { workSchedule } = useNurseContext();
-  const actualNurse =useAppSelector(selectActualNurse)
-  const { monthChange } = useAppSelector(selectMonthChange);
+  const actualNurse = useAppSelector(selectActualNurse);
+  const dispatch = useAppDispatch();
+
   const work = () => {
     const shiftsObject: any = [...Object.values(activeDay)].flat(1)[0];
     const shiftWithActualNurse = [...shiftsObject[shiftName], actualNurse.id];
@@ -36,13 +36,12 @@ const SingleShiftButton = ({
     wholeWorkDay[shiftName] = [...shiftWithActualNurse];
 
     const dayDigit = Number(Object.keys(activeDay));
-    workSchedule[HandleMonthSelect(monthChange)][dayDigit - 1] = {
-      [dayDigit]: [wholeWorkDay],
-    };
+    const dayWithNurse = { [dayDigit]: [wholeWorkDay] };
+
+    dispatch(setWorkSchedule(dayWithNurse));
+    dispatch(setActiveDay({}));
   };
-  return (
-    <MorningButtonIcon color={color} onClick={work} className={className} />
-  );
+  return <SingleShiftIcon color={color} onClick={work} className={className} />;
 };
 
 export default SingleShiftButton;

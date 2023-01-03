@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import SingleShiftButton from "./SingleShiftButton";
-import { DayOfMonthType } from "../../../../context/NurseContext";
+import { DayOfMonthType } from "../../../../store/slices/monthsSlice";
+import SingleShiftButton from "./SingleShiftIcon";
 
 const Container = styled.span`
   height: 100%;
@@ -12,11 +12,10 @@ const Container = styled.span`
 `;
 interface WorkButtonType {
   activeDay: DayOfMonthType;
-  handleClick: () => void;
 }
-const WorkButton = ({ activeDay, handleClick }: WorkButtonType) => {
+const WorkButton = ({ activeDay }: WorkButtonType) => {
   return (
-    <Container onClick={handleClick}>
+    <Container>
       <SingleShiftButton
         color="yellow"
         activeDay={activeDay}

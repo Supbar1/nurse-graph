@@ -1,42 +1,42 @@
-import { useAppSelector } from "../../../../store/hooks";
-import { selectActualNurse } from "../../../../store/nursesSlice";
-import { useNurseContext, allShifts } from "./../../../../context/NurseContext";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { selectActualNurse } from "../../../../store/slices/nursesSlice";
+import { allShifts, setUndoDay } from "../../../../store/slices/monthsSlice";
 
 interface ShiftButtonProps {
   day: number;
   actualDayShifts: allShifts;
 }
 const ShiftButton = ({ day, actualDayShifts }: ShiftButtonProps) => {
-  const {  setUndoDay } = useNurseContext();
-  const actualNurse =useAppSelector(selectActualNurse)
+  const dispatch = useAppDispatch();
+  const actualNurse = useAppSelector(selectActualNurse);
+
   const shiftIcon = (color: string, iconName: string) => {
     const fontAwsomeName = "fa-solid fa-" + iconName;
     return (
       <i
-        onClick={() => setUndoDay(day)}
+        onClick={() => dispatch(setUndoDay([day, 0]))}
         style={{ color: color }}
         className={fontAwsomeName}
       />
     );
   };
-
-  const isActualNurseAtThisNight = actualDayShifts.nightShift?.find(
-    (index) => index === actualNurse.id
-  );
-  if (isActualNurseAtThisNight) {
-    return shiftIcon("silver", "moon");
+  const nurseShift = (actualDayShifts: allShifts) => {
+    for (let shift in actualDayShifts) {
+      if (
+        actualDayShifts[shift].find((nurse: number) => nurse === actualNurse.id)
+      ) {
+        return shift;
+      }
+    }
+  };
+  switch (nurseShift(actualDayShifts)) {
+    case "morningShift":
+      return shiftIcon("white", "clock");
+    case "dayShift":
+      return shiftIcon("white", "clock");
+    default:
+      return shiftIcon("silver", "moon");
   }
-
-  const isActualNurseAtThisDay = actualDayShifts.dayShift?.find(
-    (index) => index === actualNurse.id
-  );
-  if (isActualNurseAtThisDay) return shiftIcon("white", "clock");
-
-  let isActualNurseAtThisMorning = actualDayShifts.morningShift?.find(
-    (index) => index === actualNurse.id
-  );
-  if (isActualNurseAtThisMorning) return shiftIcon("yellow", "sun");
-  return <></>;
 };
 
 export default ShiftButton;

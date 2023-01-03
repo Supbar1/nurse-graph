@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router";
-import { useNurseContext } from "../../context/NurseContext";
 import { ActiveDayStyled } from "./../calendar/elements/calendarBody/ActualDays.styles";
 import styled from "styled-components";
-import { pickedNurse, selectNurses } from "../../store/nursesSlice";
+import { pickedNurse, selectNurses } from "../../store/slices/nursesSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  selectWorkSchedule,
+  setActiveDay,
+} from "../../store/slices/monthsSlice";
 
 const SetGraphButton = styled(ActiveDayStyled)`
   padding: 0.5rem 0.2rem;
@@ -22,17 +25,16 @@ const Cell = styled.td`
 `;
 
 export const TableBody = () => {
-  const { setActualNurse, setActiveDay, workSchedule, hours } =
-    useNurseContext();
-    const nurses = useAppSelector(selectNurses);
-const dispatch = useAppDispatch();
+  const nurses = useAppSelector(selectNurses);
+  const workSchedule = useAppSelector(selectWorkSchedule);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const changeUrl = (id?: number) => {
     let actualNurse = { ...nurses.find((item) => item.id === id) };
-    // setActualNurse(actualNurse);
-    dispatch(pickedNurse(actualNurse))
-    setActiveDay({});
+    dispatch(pickedNurse(actualNurse));
+
+    dispatch(setActiveDay({}));
     navigate("/graph");
   };
 
@@ -48,28 +50,41 @@ const dispatch = useAppDispatch();
     }
     return ammountOfShifts;
   };
+  const hours = (id?: number) => {
+    let hours = 0;
+    for (let element in workSchedule) {
+      for (let day in workSchedule[element]) {
+        const singleDay = Object.values(workSchedule[element][day])[0][0];
+        for (let element in singleDay) {
+          if (singleDay[element].find((nurseId: number) => nurseId === id))
+            hours += 12;
+        }
+      }
+    }
+    return hours;
+  };
   return (
-      <tbody>
-        {nurses.map((nurse) => (
-          <TableRow key={nurse.id}>
-            <td>
-              <img alt="nurse" src={nurse?.picture} />
-              &nbsp;
-              {nurse?.firstName}&nbsp;{nurse?.lastName}
-            </td>
-            <Cell>
-              <div>{displayShiftsAmmount("morningShift", nurse.id)}</div>
-            </Cell>
-            <Cell>{displayShiftsAmmount("dayShift", nurse.id)}</Cell>
-            <Cell>{displayShiftsAmmount("nightShift", nurse.id)}</Cell>
-            <Cell>{hours(nurse.id)}h/140h</Cell>
-            <td>
-              <SetGraphButton onClick={() => changeUrl(nurse.id)}>
-                Ustaw grafik
-              </SetGraphButton>
-            </td>
-          </TableRow>
-        ))}
-      </tbody>
+    <tbody>
+      {nurses.map((nurse) => (
+        <TableRow key={nurse.id}>
+          <td>
+            <img alt="nurse" src={nurse?.picture} />
+            &nbsp;
+            {nurse?.firstName}&nbsp;{nurse?.lastName}
+          </td>
+          <Cell>
+            <div>{displayShiftsAmmount("morningShift", nurse.id)}</div>
+          </Cell>
+          <Cell>{displayShiftsAmmount("dayShift", nurse.id)}</Cell>
+          <Cell>{displayShiftsAmmount("nightShift", nurse.id)}</Cell>
+          <Cell>{hours(nurse.id)}h/140h</Cell>
+          <td>
+            <SetGraphButton onClick={() => changeUrl(nurse.id)}>
+              Ustaw grafik
+            </SetGraphButton>
+          </td>
+        </TableRow>
+      ))}
+    </tbody>
   );
 };
