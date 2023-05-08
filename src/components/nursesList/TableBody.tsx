@@ -7,6 +7,7 @@ import {
   selectWorkSchedule,
   setActiveDay,
 } from "../../store/slices/monthsSlice";
+import { setActiveLink } from "../../store/slices/activeLinkSlice";
 
 const SetGraphButton = styled(ActiveDayStyled)`
   padding: 0.5rem 0.2rem;
@@ -33,7 +34,7 @@ export const TableBody = () => {
   const changeUrl = (id?: number) => {
     let actualNurse = { ...nurses.find((item) => item.id === id) };
     dispatch(pickedNurse(actualNurse));
-
+    dispatch(setActiveLink("graph"))
     dispatch(setActiveDay({}));
     navigate("/graph");
   };

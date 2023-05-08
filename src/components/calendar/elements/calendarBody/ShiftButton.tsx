@@ -31,7 +31,7 @@ const ShiftButton = ({ day, actualDayShifts }: ShiftButtonProps) => {
   };
   switch (nurseShift(actualDayShifts)) {
     case "morningShift":
-      return shiftIcon("white", "clock");
+      return shiftIcon("yellow", "sun");
     case "dayShift":
       return shiftIcon("white", "clock");
     default:

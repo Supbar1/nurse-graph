@@ -41,6 +41,7 @@ interface InputProps {
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   autoFocus: boolean;
+  validated:boolean;
 }
 const Input = ({
   name,
@@ -50,6 +51,7 @@ const Input = ({
   onChange,
   type,
   autoFocus,
+  validated
 }: InputProps) => (
   <Container>
     <InputBox>
@@ -62,7 +64,7 @@ const Input = ({
         placeholder={placeholder}
         autoFocus={autoFocus}
       />
-      {error && <Alert>{error}</Alert>}
+      {validated && error && <Alert>{error}</Alert>}
     </InputBox>
   </Container>
 );

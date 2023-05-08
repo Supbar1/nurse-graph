@@ -24,14 +24,7 @@ const Days = styled.div`
   height: 80%;
   display: grid;
   grid-template-columns: repeat(7, 14.25%);
-
-  div {
-    margin: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-  }
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 `;
 
 const Calendar: React.FC = () => (
@@ -42,12 +35,12 @@ const Calendar: React.FC = () => (
       <AnotherMonthArrow arrowDirection="right next" changeMonth={1} />
     </MonthStyled>
     <WeekDays />
-    <Days>
-      <PrevDays />
-      <ActiveDays />
-      <NextDays />
-    </Days>
-  </Container>
+  <Days>
+    <PrevDays />
+    <ActiveDays />
+    <NextDays />
+  </Days>
+   </Container>
 );
 
 export default Calendar;

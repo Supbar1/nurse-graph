@@ -10,7 +10,10 @@ import {
 } from "../../../../store/slices/monthsSlice";
 
 const SingleShiftIcon = styled.i`
-  color: ${(props): any => props.color};
+  color: ${({ color }): any => color};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 interface WorkButtonType {
   activeDay: DayOfMonthType;

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ActiveDayStyled = styled.div`
-  border: 0;
   position: relative;
   border-radius: 18%;
   overflow: hidden;
@@ -9,6 +8,8 @@ export const ActiveDayStyled = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  height: 80px;
+  width: 80px;
   &:after {
     content: "";
     width: 350px;

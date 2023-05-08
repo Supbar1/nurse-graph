@@ -2,20 +2,27 @@ import styled from "styled-components";
 import { DayOfMonthType } from "../../../../store/slices/monthsSlice";
 import SingleShiftButton from "./SingleShiftIcon";
 
-const Container = styled.span`
+const GridContainer = styled.div`
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  outline: none;
   width: 100%;
   margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  width: 100%;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 interface WorkButtonType {
   activeDay: DayOfMonthType;
 }
 const WorkButton = ({ activeDay }: WorkButtonType) => {
   return (
-    <Container>
+    <GridContainer>
       <SingleShiftButton
         color="yellow"
         activeDay={activeDay}
@@ -34,8 +41,16 @@ const WorkButton = ({ activeDay }: WorkButtonType) => {
         shiftName="nightShift"
         className="fa-solid fa-moon"
       />
-    </Container>
+      <SingleShiftButton
+        color="silver"
+        activeDay={activeDay}
+        shiftName="nightShift"
+        className="fa-solid fa-moon"
+      />
+    </GridContainer>
   );
 };
 
+{
+}
 export default WorkButton;

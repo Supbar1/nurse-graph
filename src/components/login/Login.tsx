@@ -52,7 +52,16 @@ const Login = () => {
   const Joi = require(`joi`);
 
   const username = Joi.string().min(3).max(30).required().label("Username");
-  const password = Joi.string().min(3).max(30).required().label("Password");
+  const password = Joi.string()
+    // .pattern(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:<>,.?/~]).{6,}$/
+    // )
+    .required()
+    .label("Password")
+    .messages({
+      "string.pattern.base":
+        "The password must be at least 6 characters long and contain a lowercase and uppercase letter, digit, special character",
+    });
 
   const schema = Joi.object({
     username: username,

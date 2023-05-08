@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { selectActiveLink, setActiveLink } from "../store/slices/activeLinkSlice";
+import {
+  selectActiveLink,
+  setActiveLink,
+} from "../store/slices/activeLinkSlice";
 import { selectActualNurse } from "../store/slices/nursesSlice";
 import { selectUsername } from "../store/slices/usernameSlice";
 
@@ -104,20 +107,20 @@ const Navigation = () => {
           />
           {actualNurse.firstName && (
             <Graph
-              onClick={() => setActiveLink("graph")}
+              onClick={() => dispatch(setActiveLink("graph"))}
               to="/graph"
               style={linkStyle}
               activelink={activeLink}
             />
           )}
           <LinkToTable
-            onClick={() => setActiveLink("table")}
+            onClick={() => dispatch(setActiveLink("table"))}
             to="/table"
             style={linkStyle}
             activelink={activeLink}
           />
           <LinkToLogin
-            onClick={() => setActiveLink("login")}
+            onClick={() => dispatch(setActiveLink("login"))}
             to="/"
             style={linkStyle}
             activelink={activeLink}

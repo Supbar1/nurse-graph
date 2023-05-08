@@ -4,28 +4,26 @@ import { useAppSelector } from "../../../../store/hooks";
 import { selectMonthChange } from "../../../../store/slices/monthsSlice";
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  i {
-    font-size: 0.7rem;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
   div {
-    margin: 0 auto;
+    margin: auto;
     line-height: 1;
   }
 `;
 interface InfoButtonProps {
   day: number;
-  nightNurses?: number;
-  dayNurses?: number;
   morningNurses?: number;
+  dayNurses?: number;
+  nightNurses?: number;
   handleClick: () => void;
 }
 const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
   const { monthChange, workSchedule } = useAppSelector(selectMonthChange);
-  const actualDayShifts = workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0];
+  const actualDayShifts =
+    workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0];
 
   const morningNursesNumber: number | undefined =
     actualDayShifts.morningShift?.length;
@@ -45,7 +43,7 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
     return (
       <>
         {nursesQuantity > 0 ? (
-          <div>
+          <div style={{ display: "flex" }}>
             {
               workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0][
                 shift
@@ -61,12 +59,19 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
   };
 
   return (
-    <Container onClick={handleClick}>
+    <>
+      {morningNursesNumber + dayNursesNumber + nightNursesNumber === 0 && (
       <div>{day}</div>
-      {shiftInfo(morningNursesNumber, "yellow", "sun", "morningShift")}
-      {shiftInfo(dayNursesNumber, "white", "clock", "dayShift")}
-      {shiftInfo(nightNursesNumber, "silver", "moon", "nightShift")}
-    </Container>
+      )}
+      {morningNursesNumber + dayNursesNumber + nightNursesNumber > 0 && (
+        <Container onClick={handleClick}>
+          <div>{day}</div>
+          {shiftInfo(morningNursesNumber, "yellow", "sun", "morningShift")}
+          {shiftInfo(dayNursesNumber, "white", "clock", "dayShift")}
+          {shiftInfo(nightNursesNumber, "silver", "moon", "nightShift")}
+        </Container>
+      )}
+    </>
   );
 };
 

@@ -10,9 +10,10 @@ import {
 } from "../../store/slices/usernameSlice";
 import { useAppDispatch } from "./../../store/hooks";
 import { setActiveLink } from "../../store/slices/activeLinkSlice";
+import { useState } from "react";
 
 const FormBox = styled.form`
-  width: min(70%, 300px);
+  width: min(70%, 500px);
   @media (max-width: 600px) {
     width: 80%;
   }
@@ -52,11 +53,12 @@ const Form = ({
 }: FormProps) => {
   const actualAccount = useAppSelector(selectUsername);
   const dispatch = useAppDispatch();
-
+  const [validated, setValidated] = useState<boolean>(false);
   const Joi = require(`joi`);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
+    setValidated(true);
     e.preventDefault();
     const submitErrors = validate();
     setErrors(submitErrors || {});
@@ -118,6 +120,7 @@ const Form = ({
         type="text"
         error={usernameErrors}
         autoFocus={true}
+        validated={validated}
       />
       <Input
         name="password"
@@ -127,8 +130,9 @@ const Form = ({
         type="password"
         error={passwordErrors}
         autoFocus={false}
+        validated={validated}
       />
-      <Buttons />
+        <Buttons />
     </FormBox>
   );
 };
