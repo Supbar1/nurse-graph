@@ -8,7 +8,7 @@ import {
 import { selectActualNurse } from "../store/slices/nursesSlice";
 import { selectUsername } from "../store/slices/usernameSlice";
 
-const Container = styled.div`
+const Container = styled.div<LinkProps>`
   margin-right: 1rem;
   display: flex;
   justify-content: space-around;
@@ -30,6 +30,8 @@ const Container = styled.div`
     border-radius: 0;
     height: 100%;
   }
+
+  display: ${({ activelink }) => (activelink === "" ? "none" : "flex")};
 `;
 interface LinkProps {
   activelink?: string;
@@ -96,7 +98,7 @@ const Navigation = () => {
   const { username } = useAppSelector(selectUsername);
   const actualNurse = useAppSelector(selectActualNurse);
   return (
-    <Container>
+    <Container activelink={activeLink}>
       {username && (
         <>
           <LinkToMain

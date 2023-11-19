@@ -18,7 +18,7 @@ const FormBox = styled.form`
     width: 80%;
   }
 `;
-const ActiveDayStyledWide = styled(ActiveDayStyled)`
+const LogOutStyled = styled(ActiveDayStyled)`
   padding: 2rem;
 `;
 
@@ -104,11 +104,14 @@ const Form = ({
     setAccount(newAccount);
   };
 
+  const logOut = () => {
+    dispatch(setActiveLink(""));
+    dispatch(setActualAcount(null));
+  };
+
   return actualAccount.username ? (
     <div>
-      <ActiveDayStyledWide onClick={() => dispatch(setActualAcount(null))}>
-        Wyloguj
-      </ActiveDayStyledWide>
+      <LogOutStyled onClick={logOut}>Wyloguj</LogOutStyled>
     </div>
   ) : (
     <FormBox onSubmit={handleSubmit}>
@@ -132,7 +135,7 @@ const Form = ({
         autoFocus={false}
         validated={validated}
       />
-        <Buttons />
+      <Buttons />
     </FormBox>
   );
 };

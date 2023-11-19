@@ -53,9 +53,6 @@ const Login = () => {
 
   const username = Joi.string().min(3).max(30).required().label("Username");
   const password = Joi.string()
-    // .pattern(
-    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:<>,.?/~]).{6,}$/
-    // )
     .required()
     .label("Password")
     .messages({
@@ -78,11 +75,11 @@ const Login = () => {
       <ContentBox>
         <Form
           onSubmit={onSubmit}
+          schema={schema}
           account={account}
           setAccount={setAccount}
           errors={errors}
           setErrors={setErrors}
-          schema={schema}
           username={account.username}
           usernameErrors={errors.username}
           password={account.password}

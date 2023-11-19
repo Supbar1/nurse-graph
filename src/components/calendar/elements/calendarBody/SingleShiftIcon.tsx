@@ -10,6 +10,7 @@ import {
 } from "../../../../store/slices/monthsSlice";
 
 const SingleShiftIcon = styled.i`
+  font-size: 1.2rem;
   color: ${({ color }): any => color};
   display: flex;
   justify-content: center;

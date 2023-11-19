@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-const initialState = {activeLink: ""};
+const initialState = { activeLink: "" };
 
 const activeNameSlice = createSlice({
   name: "activeNameSlice",
@@ -12,7 +12,8 @@ const activeNameSlice = createSlice({
     },
   },
 });
-export const selectActiveLink = (state: RootState) => state.activeLink.activeLink;
+export const selectActiveLink = (state: RootState) =>
+  state.activeLink.activeLink;
 
 export const { setActiveLink } = activeNameSlice.actions;
 

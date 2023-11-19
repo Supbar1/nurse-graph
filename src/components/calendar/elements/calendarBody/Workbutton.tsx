@@ -3,14 +3,14 @@ import { DayOfMonthType } from "../../../../store/slices/monthsSlice";
 import SingleShiftButton from "./SingleShiftIcon";
 
 const GridContainer = styled.div`
+  position: relative;
+  width: 100%;
   height: 100%;
   outline: none;
-  width: 100%;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  width: 100%;
   div {
     display: flex;
     justify-content: center;
@@ -20,37 +20,49 @@ const GridContainer = styled.div`
 interface WorkButtonType {
   activeDay: DayOfMonthType;
 }
+
+interface SingleIconType {
+  color: string;
+  shiftName: string;
+  className: string;
+}
+
 const WorkButton = ({ activeDay }: WorkButtonType) => {
+  const iconsArray: SingleIconType[] = [
+    {
+      color: "yellow",
+      shiftName: "morningShift",
+      className: "fa-solid fa-sun",
+    },
+    {
+      color: "white",
+      shiftName: "dayShift",
+      className: "fa-solid fa-clock",
+    },
+    {
+      color: "silver",
+      shiftName: "nightShift",
+      className: "fa-solid fa-moon",
+    },
+  ];
   return (
     <GridContainer>
-      <SingleShiftButton
-        color="yellow"
-        activeDay={activeDay}
-        shiftName="morningShift"
-        className="fa-solid fa-sun"
-      />
-      <SingleShiftButton
-        color="white"
-        activeDay={activeDay}
-        shiftName="dayShift"
-        className="fa-solid fa-clock"
-      />
-      <SingleShiftButton
-        color="silver"
-        activeDay={activeDay}
-        shiftName="nightShift"
-        className="fa-solid fa-moon"
-      />
-      <SingleShiftButton
-        color="silver"
-        activeDay={activeDay}
-        shiftName="nightShift"
-        className="fa-solid fa-moon"
-      />
+      <div style={{ transform: "translate(5%, 18%)" }}>
+        {Object.keys(activeDay)}
+      </div>
+      {iconsArray.map(({ color, shiftName, className }) => {
+        return (
+          <SingleShiftButton
+            color={color}
+            activeDay={activeDay}
+            shiftName={shiftName}
+            className={className}
+            key={shiftName}
+          />
+        );
+      })}
     </GridContainer>
   );
 };
 
-{
-}
 export default WorkButton;
