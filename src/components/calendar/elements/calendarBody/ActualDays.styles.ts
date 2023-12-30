@@ -8,8 +8,6 @@ export const ActiveDayStyled = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  height: 80px;
-  width: 80px;
   &:after {
     content: "";
     width: 350px;

@@ -20,10 +20,10 @@ const Container = styled.div`
 const Graph = () => (
   <Container>
     <Calendar />
-    <ActualNurse />
+    {/* <ActualNurse />
     <InfoWindow />
     <NursesWindow />
-    <WithdrawButton />
+    <WithdrawButton /> */}
   </Container>
 );
 

@@ -4,13 +4,12 @@ import SingleShiftButton from "./SingleShiftIcon";
 
 const GridContainer = styled.div`
   position: relative;
-  width: 100%;
   height: 100%;
-  outline: none;
-  margin: auto;
+  line-height: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+
   div {
     display: flex;
     justify-content: center;
@@ -50,6 +49,7 @@ const WorkButton = ({ activeDay }: WorkButtonType) => {
       <div style={{ transform: "translate(5%, 18%)" }}>
         {Object.keys(activeDay)}
       </div>
+
       {iconsArray.map(({ color, shiftName, className }) => {
         return (
           <SingleShiftButton

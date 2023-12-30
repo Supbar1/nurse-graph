@@ -9,7 +9,7 @@ export const store = configureStore({
     monthChange: monthChangeSlice,
     username: usernameSlice,
     nurses: nursesSlice,
-    activeLink: activeLinkSlice,
+    activelink: activeLinkSlice,
   },
 });
 

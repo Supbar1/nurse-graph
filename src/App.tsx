@@ -9,8 +9,10 @@ import NotFound from "./components/NotFound";
 import Graph from "./components/graph/Graph";
 import NewLogin from "./components/login/Login";
 import ChangeMobileToHorizontalDimension from "./components/main/Information";
+import { useAppSelector } from "./store/hooks";
+import { selectActiveLink } from "./store/slices/activeLinkSlice";
 
-const Container = styled.div`
+const Container = styled.div<LinkProps>`
   font-weight: bold;
   font-size: 1rem;
   font-family: "Roboto";
@@ -20,32 +22,56 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  display: grid;
+  grid-template-columns: ${({ activelink }) =>
+    activelink === "" ? "auto" : "70px 700px"};
+
+  @media (max-width: 786px) {
+    gap: 0;
+    grid-template-columns: 10vw 90vw;
+  }
 `;
-const WorkSpace = styled.div`
-  height: max(60vh, 500px);
-  width: max(50vw, 800px);
+const NavigationStyled = styled.div<LinkProps>``;
+
+const WorkSpaceStyled = styled.div`
+  height: 500px;
+  overflow-y: hidden;
+  border: 1px solid red;
   @media (max-height: 500px) {
     height: 100%;
   }
 `;
+interface LinkProps {
+  activelink?: string;
+}
+export interface ScreenSize {
+  width: string;
+  height: string;
+}
+const App = () => {
+  const activelink = useAppSelector(selectActiveLink);
 
-const App: React.FC = () => (
-  <React.Fragment>
-    <ChangeMobileToHorizontalDimension />
-    <Container>
-      <Navigation />
-      <WorkSpace>
-        <Routes>
-          <Route path="/" element={<NewLogin />} />
-          <Route path="/main" element={<Main />} />
-          <Route path="/graph" element={<Graph />} />
-          <Route path="/table" element={<Table />} />
-          <Route path="/help" element={<Help />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </WorkSpace>
-    </Container>
-  </React.Fragment>
-);
+  return (
+    <React.Fragment>
+      {/* <ChangeMobileToHorizontalDimension /> */}
+      <Container>
+        <NavigationStyled activelink={activelink}>
+          <Navigation />
+        </NavigationStyled>
+        <WorkSpaceStyled>
+          <Routes>
+            <Route path="/" element={<NewLogin />} />
+            <Route path="/main" element={<Main />} />
+            <Route path="/graph" element={<Graph />} />
+            <Route path="/table" element={<Table />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </WorkSpaceStyled>
+      </Container>
+    </React.Fragment>
+  );
+};
 
 export default App;

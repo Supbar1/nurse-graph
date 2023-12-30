@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-const initialState = { activeLink: "" };
+const initialState = { activelink: "" };
 
 const activeNameSlice = createSlice({
   name: "activeNameSlice",
   initialState,
   reducers: {
     setActiveLink: (state, action: PayloadAction<any>) => {
-      state.activeLink = action.payload;
+      state.activelink = action.payload;
     },
   },
 });
 export const selectActiveLink = (state: RootState) =>
-  state.activeLink.activeLink;
+  state.activelink.activelink;
 
 export const { setActiveLink } = activeNameSlice.actions;
 

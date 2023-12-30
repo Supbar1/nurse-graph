@@ -1,4 +1,3 @@
-import { log } from "console";
 import { useAppSelector } from "../../../../store/hooks";
 import { selectMonthChange } from "../../../../store/slices/monthsSlice";
 
@@ -36,16 +35,16 @@ const DaysList = () => {
     prevDays.push(lastPreviousMonthDayIndex - x + 1);
   }
 
-  let daysOfMonth: number[] = [];
+  let actualDays: number[] = [];
   for (let i = 1; i <= lastDayIndex; i++) {
-    daysOfMonth.push(i);
+    actualDays.push(i);
   }
 
   let nextDays: number[] = [];
   for (let y = 1; y <= 7 - lastCurrentDayIndex; y++) {
     nextDays.push(y);
   }
-  const daysToRender = { prevDays, daysOfMonth, nextDays };
+  const daysToRender = { prevDays, actualDays, nextDays };
   return daysToRender;
 };
 export default DaysList;

@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import ClearSchedule from "../../services/ClearSchedule";
@@ -11,9 +12,17 @@ import {
 
 interface ButtonProps {
   warning?: boolean;
+  fontSize: number;
 }
+const Container = styled.div`
+  grid-area: buttons;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0);
+`;
 
-const OneDayButton = styled.button<ButtonProps>`
+const ActionButton = styled.button<ButtonProps>`
   background-color: rgba(255, 255, 255, 0);
   padding: 8px;
   border: none;
@@ -53,17 +62,14 @@ const OneDayButton = styled.button<ButtonProps>`
   }
   letter-spacing: 1px;
   @media (max-width: 980px) {
-    font-size: 0.7rem;
     padding: 4px;
   }
+  font-size: ${(props) => props.fontSize}px;
+  white-space: nowrap; 
+  overflow: hidden; 
+  border: 1px solid black;
 `;
-const Container = styled.div`
-  grid-area: buttons;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0);
-`;
+
 const WithdrawButton = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -77,12 +83,37 @@ const WithdrawButton = () => {
     dispatch(resetWorkSchedule(ClearSchedule()));
     dispatch(setActiveDay({}));
   };
+
+  const [fontSize, setFontSize] = useState<number>(0);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const resizeText = () => {
+      if (buttonRef.current) {
+        const buttonWidth = buttonRef.current.offsetWidth;
+        const textWidth = buttonRef.current.scrollWidth;
+        console.log("buttonRef", buttonRef.current.scrollWidth);
+        if (textWidth > buttonWidth) {
+          const newFontSize = (buttonWidth / textWidth) * fontSize;
+          setFontSize(newFontSize);
+        }
+      }
+    };
+
+    window.addEventListener("resize", resizeText);
+    resizeText();
+
+    return () => window.removeEventListener("resize", resizeText);
+  }, [fontSize]);
+
   return (
     <Container>
-      <OneDayButton onClick={handleSave}>Zapisz Zmiany</OneDayButton>
-      <OneDayButton warning onClick={withdrawChanges}>
+      <ActionButton fontSize={fontSize} onClick={handleSave}>
+        Zapisz Zmiany
+      </ActionButton>
+      <ActionButton fontSize={fontSize} warning onClick={withdrawChanges}>
         Cofnij wszystko
-      </OneDayButton>
+      </ActionButton>
     </Container>
   );
 };

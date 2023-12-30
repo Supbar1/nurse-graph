@@ -18,7 +18,7 @@ const FormBox = styled.form`
     width: 80%;
   }
 `;
-const LogOutStyled = styled(ActiveDayStyled)`
+const LogOutStyled  = styled(ActiveDayStyled)`
   padding: 2rem;
 `;
 
@@ -63,8 +63,8 @@ const Form = ({
     const submitErrors = validate();
     setErrors(submitErrors || {});
     if (submitErrors) return;
-    dispatch(setActiveLink("table"));
-    navigate("/table");
+    dispatch(setActiveLink("main"));
+    navigate("/main");
     onSubmit();
   };
 
@@ -111,7 +111,7 @@ const Form = ({
 
   return actualAccount.username ? (
     <div>
-      <LogOutStyled onClick={logOut}>Wyloguj</LogOutStyled>
+      <LogOutStyled  onClick={logOut}>Wyloguj</LogOutStyled>
     </div>
   ) : (
     <FormBox onSubmit={handleSubmit}>

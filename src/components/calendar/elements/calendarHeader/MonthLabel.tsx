@@ -3,6 +3,7 @@ import { useAppSelector } from "../../../../store/hooks";
 import { selectMonthChange } from "../../../../store/slices/monthsSlice";
 
 const Header = styled.h1`
+  margin: 0;
   letter-spacing: 0.2rem;
 `;
 

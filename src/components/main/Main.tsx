@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useAppSelector } from "../../store/hooks";
 import { selectNurses } from "../../store/slices/nursesSlice";
-import WorkButton from "../calendar/elements/calendarBody/Workbutton";
 
 const Container = styled.div`
   height: 100%;
@@ -45,6 +44,9 @@ const Text = styled.p`
   line-height: 2.5rem;
   word-spacing: 2px;
   letter-spacing: 1px;
+  @media (min-width: 900px) {
+    font-size: 1.5rem;
+  }
 `;
 const IconsLegend = styled.div`
   display: grid;
@@ -58,13 +60,11 @@ const IconsLegend = styled.div`
     padding: 1rem;
   }
 `;
-
 const Main = () => {
   const nurses = useAppSelector(selectNurses);
   return (
     <Container>
       <HeaderSpace>NURSE GRAPH</HeaderSpace>
-  
       <TextArea>
         <Text>Witam w Nurse Graph!</Text>
         <Text>

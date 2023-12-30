@@ -13,6 +13,8 @@ const SingleShiftIcon = styled.i`
   font-size: 1.2rem;
   color: ${({ color }): any => color};
   display: flex;
+  margin: 0;
+  border: 1px solid red;
   justify-content: center;
   align-items: center;
 `;

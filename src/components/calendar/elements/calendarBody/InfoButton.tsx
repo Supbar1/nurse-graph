@@ -7,7 +7,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 10px;
+  gap: 5px;
   div {
     margin: auto;
     line-height: 1;
@@ -48,7 +48,8 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
               workSchedule[HandleMonthSelect(monthChange)][day - 1][day][0][
                 shift
               ].length
-            }{" "}
+            }
+         
             <i style={{ color: color }} className={className} />
           </div>
         ) : (
@@ -61,7 +62,7 @@ const InfoButton = ({ day, handleClick }: InfoButtonProps) => {
   return (
     <>
       {morningNursesNumber + dayNursesNumber + nightNursesNumber === 0 && (
-      <div>{day}</div>
+        <div>{day}</div>
       )}
       {morningNursesNumber + dayNursesNumber + nightNursesNumber > 0 && (
         <Container onClick={handleClick}>

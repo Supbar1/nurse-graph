@@ -8,16 +8,20 @@ import {
 import { selectActualNurse } from "../store/slices/nursesSlice";
 import { selectUsername } from "../store/slices/usernameSlice";
 
+interface LinkProps {
+  activelink?: string;
+}
+
 const Container = styled.div<LinkProps>`
-  margin-right: 1rem;
-  display: flex;
+  display: ${({ activelink }) => (activelink === "" ? "none" : "flex")};
+  border: 1px solid blue;
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
   border-radius: 1rem;
   font: var(--fa-font-solid);
   font-size: calc(1.5vh + 2rem);
-  width: max(7vw, 70px);
+  height: 300px;
   background: linear-gradient(
     to left bottom,
     rgba(143, 64, 248, 0.5),
@@ -26,16 +30,11 @@ const Container = styled.div<LinkProps>`
   @media (max-height: 400px) {
     font-size: calc(2vh + 2.4rem);
     margin-right: 0;
-    width: 10vw;
-    border-radius: 0;
-    height: 100%;
-  }
 
-  display: ${({ activelink }) => (activelink === "" ? "none" : "flex")};
+    border-radius: 0;
+    height: 100vh;
+  }
 `;
-interface LinkProps {
-  activelink?: string;
-}
 const LinkToMain = styled(Link)<LinkProps>`
   background-color: ${(props) =>
     props.activelink === "main" ? "rgba(39, 200, 255, 0.5)" : null};
@@ -49,8 +48,8 @@ const LinkToMain = styled(Link)<LinkProps>`
   }
 `;
 const Graph = styled(Link)<LinkProps>`
-  background-color: ${({ activelink: activeLink }) =>
-    activeLink === "graph" ? "rgba(39, 200, 255, 0.5)" : null};
+  background-color: ${({ activelink }) =>
+    activelink === "graph" ? "rgba(39, 200, 255, 0.5)" : null};
   border-radius: 5px;
   :before {
     display: inline-block;
@@ -94,42 +93,42 @@ const linkStyle = {
 
 const Navigation = () => {
   const dispatch = useAppDispatch();
-  const activeLink = useAppSelector(selectActiveLink);
+  const activelink = useAppSelector(selectActiveLink);
   const { username } = useAppSelector(selectUsername);
   const actualNurse = useAppSelector(selectActualNurse);
   return (
-    <Container activelink={activeLink}>
+    <>
       {username && (
-        <>
+        <Container activelink={activelink}>
           <LinkToMain
             onClick={() => dispatch(setActiveLink("main"))}
             to="/main"
             style={linkStyle}
-            activelink={activeLink}
+            activelink={activelink}
           />
           {actualNurse.firstName && (
             <Graph
               onClick={() => dispatch(setActiveLink("graph"))}
               to="/graph"
               style={linkStyle}
-              activelink={activeLink}
+              activelink={activelink}
             />
           )}
           <LinkToTable
             onClick={() => dispatch(setActiveLink("table"))}
             to="/table"
             style={linkStyle}
-            activelink={activeLink}
+            activelink={activelink}
           />
           <LinkToLogin
             onClick={() => dispatch(setActiveLink("login"))}
             to="/"
             style={linkStyle}
-            activelink={activeLink}
+            activelink={activelink}
           />
-        </>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 export default Navigation;
